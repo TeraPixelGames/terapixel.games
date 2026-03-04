@@ -814,6 +814,8 @@ input {
 .blog-prose h3 {
   margin: 0.9rem 0 0;
   font-family: Sora, Manrope, sans-serif;
+  color: #eaf3ff;
+  font-weight: 650;
 }
 
 .blog-prose p,

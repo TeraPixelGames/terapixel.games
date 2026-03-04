@@ -25,6 +25,11 @@ Last updated: March 4, 2026
 - [x] Publisher identity and contact visible within one click from homepage
 - [x] Terms and privacy accessible sitewide
 
+## Editorial Ops
+
+- [x] Blog writer persona documented: `docs/BLOG_WRITER_PERSONA.md`
+- [x] Blog post template documented: `docs/BLOG_POST_TEMPLATE.md`
+
 ## Validation
 
 - [x] `npm run build` passes

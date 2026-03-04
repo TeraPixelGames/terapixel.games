@@ -1,6 +1,6 @@
 ---
 title: "Block Forge Board Control: Keep Space, Keep Options"
-description: "A board-control approach for Block Forge to reduce dead zones and extend high-quality runs."
+description: "Keep your board alive longer in Block Forge by protecting space instead of chasing short-term clears."
 publishDate: 2026-03-04
 gameSlug: "block-forge"
 authorName: "Terapixel Games Team"
@@ -11,33 +11,32 @@ tags:
 draft: false
 ---
 
-In [Block Forge](../../block-forge), the board is your resource. Protect space and your scoring opportunities stay open.
+In [Block Forge](../../block-forge), most bad runs end the same way: no room left, no good placement, no recovery path. The fix is simple but disciplined, treat board space like your most valuable resource.
 
 ## Core Loop
 
-Place with future pieces in mind, preserve flexible columns, and avoid creating isolated pockets.  
-Your best moves are usually the ones that improve both current score and future placement options.
+Place for now and later.  
+Each move should either open space, preserve flexibility, or set up a meaningful clear without trapping you.  
+If a move gives points but shrinks your options, it is often a bad trade.
 
 ## Mistakes To Avoid
 
-1. Overfilling one side because it gives a short-term clear.
-2. Ignoring shape diversity and building one repeated structure.
-3. Delaying cleanup until dead zones are unavoidable.
+1. Overbuilding one side because it gives an immediate clear.
+2. Repeating one board pattern even when incoming pieces stop matching it.
+3. Waiting too long to clean awkward pockets near the center.
 
 ## Practice Routine
 
-1. First run: prioritize symmetry and open lanes.
-2. Second run: force yourself to leave at least one bailout column.
-3. Third run: pause after each placement and ask what the next two pieces could break.
+1. Run one: keep both sides playable and avoid extreme stacks.
+2. Run two: reserve one bailout column from start to finish.
+3. Run three: after each placement, ask what the next two pieces might force.
 
 ## Target Milestones
 
-1. Reduce early dead-board endings.
-2. Improve run length consistency across sessions.
-3. Increase score floor, not only score ceiling.
+1. Fewer early dead boards in your first few rounds.
+2. More consistent run length from session to session.
+3. Higher score floor, not just occasional lucky peaks.
 
 ## Related Reading
 
 Also read [GloBlocks space management](../globlocks-space-management-guide) for another board-shape perspective.
-
-

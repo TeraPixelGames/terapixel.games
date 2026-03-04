@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-[Color Crunch](/color-crunch) rewards players who prepare the next chain while resolving the current one.
+[Color Crunch](../../color-crunch) rewards players who prepare the next chain while resolving the current one.
 
 ## Core Loop
 
@@ -38,5 +38,6 @@ Strong runs come from staying one move ahead instead of reacting one move late.
 
 ## Related Reading
 
-Pair this with [SumSlide efficiency training](/blog/sumslide-accuracy-and-efficiency-guide) for better planning discipline.
+Pair this with [SumSlide efficiency training](../sumslide-accuracy-and-efficiency-guide) for better planning discipline.
+
 

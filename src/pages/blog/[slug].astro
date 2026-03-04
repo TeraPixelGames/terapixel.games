@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import games from '../../data/games.json';
 import type { Game } from '../../types';
 import { getCollection } from 'astro:content';
+import { withBase } from '../../utils/site-links';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -59,7 +60,7 @@ const articleJsonLd = {
         {relatedGame && (
           <>
             {' '}
-            · Related game: <a href={`/${relatedGame.slug}`}>{relatedGame.title}</a>
+            - Related game: <a href={withBase(`/${relatedGame.slug}`)}>{relatedGame.title}</a>
           </>
         )}
       </p>
@@ -73,12 +74,12 @@ const articleJsonLd = {
       <h2>Play The Related Game</h2>
       {relatedGame ? (
         <p>
-          Continue with <a href={`/${relatedGame.slug}`}>{relatedGame.title}</a> and apply the techniques from this
+          Continue with <a href={withBase(`/${relatedGame.slug}`)}>{relatedGame.title}</a> and apply the techniques from this
           guide.
         </p>
       ) : (
         <p>
-          Browse all titles on the <a href="/games">Games</a> page.
+          Browse all titles on the <a href={withBase('/games')}>Games</a> page.
         </p>
       )}
     </section>

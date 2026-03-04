@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-In [SpeedSolitaire](/speedsolitaire), time losses usually come from hesitation, not impossible board states.
+In [SpeedSolitaire](../../speedsolitaire), time losses usually come from hesitation, not impossible board states.
 
 ## Core Loop
 
@@ -38,5 +38,6 @@ A smooth sequence of good moves beats occasional perfect moves with long pauses.
 
 ## Related Reading
 
-For recognition speed practice outside card layouts, use [ScrollSort quickstart training](/blog/scrollsort-quickstart-and-release-watch).
+For recognition speed practice outside card layouts, use [ScrollSort quickstart training](../scrollsort-quickstart-and-release-watch).
+
 

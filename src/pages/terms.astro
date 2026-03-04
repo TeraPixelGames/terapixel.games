@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/site-links';
 ---
 
 <BaseLayout
@@ -16,7 +17,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h2>Acceptance Of Terms</h2>
       <p>
         By accessing terapixel.games, you agree to these Terms of Use and our
-        <a href="/privacy-policy">Privacy Policy</a>. If you do not agree, do not use the site.
+        <a href={withBase('/privacy-policy')}>Privacy Policy</a>. If you do not agree, do not use the site.
       </p>
     </section>
 

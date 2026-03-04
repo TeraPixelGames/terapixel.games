@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-[Worm Breaker](/worm-breaker) gets easier once you stop reacting late and start reading movement patterns early.
+[Worm Breaker](../../worm-breaker) gets easier once you stop reacting late and start reading movement patterns early.
 
 ## Core Loop
 
@@ -38,5 +38,6 @@ Late corrections are expensive, so early reads are your best defense.
 
 ## Related Reading
 
-Combine this with [LumaRush movement and combo rhythm](/blog/lumarush-movement-and-combo-rhythm) to sharpen pace control.
+Combine this with [LumaRush movement and combo rhythm](../lumarush-movement-and-combo-rhythm) to sharpen pace control.
+
 

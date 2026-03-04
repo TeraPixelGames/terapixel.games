@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-In [Block Forge](/block-forge), the board is your resource. Protect space and your scoring opportunities stay open.
+In [Block Forge](../../block-forge), the board is your resource. Protect space and your scoring opportunities stay open.
 
 ## Core Loop
 
@@ -38,5 +38,6 @@ Your best moves are usually the ones that improve both current score and future 
 
 ## Related Reading
 
-Also read [GloBlocks space management](/blog/globlocks-space-management-guide) for another board-shape perspective.
+Also read [GloBlocks space management](../globlocks-space-management-guide) for another board-shape perspective.
+
 

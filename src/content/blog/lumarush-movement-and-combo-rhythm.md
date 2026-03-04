@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-[LumaRush](/lumarush) is a control game first and a speed game second. If your movement is stable, score follows.
+[LumaRush](../../lumarush) is a control game first and a speed game second. If your movement is stable, score follows.
 
 ## Core Loop
 
@@ -38,5 +38,6 @@ The most reliable runs alternate between recovery and aggression instead of forc
 
 ## Related Reading
 
-Pair this with [Wormhole Raiders route planning](/blog/wormhole-raiders-survival-route-planning) to improve hazard anticipation.
+Pair this with [Wormhole Raiders route planning](../wormhole-raiders-survival-route-planning) to improve hazard anticipation.
+
 

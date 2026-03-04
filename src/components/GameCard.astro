@@ -1,5 +1,6 @@
 ---
 import type { Game } from '../types';
+import { withBase } from '../utils/site-links';
 
 interface Props {
   game: Game;
@@ -7,11 +8,12 @@ interface Props {
 }
 
 const { game, playMode = 'detail' } = Astro.props;
-const detailHref = `/${game.slug}`;
+const detailHref = withBase(`/${game.slug}`);
 const isPlayable = Boolean(game.embedUrl || game.fullScreenUrl) && !game.isComingSoon;
-const playHref = playMode === 'fullscreen' && game.fullScreenUrl ? game.fullScreenUrl : detailHref;
+const playHref = playMode === 'fullscreen' && game.fullScreenUrl ? withBase(game.fullScreenUrl) : detailHref;
 const playTarget = playMode === 'fullscreen' && game.fullScreenUrl ? '_blank' : undefined;
 const playRel = playMode === 'fullscreen' && game.fullScreenUrl ? 'noreferrer noopener' : undefined;
+const placeholderImageSrc = withBase('/images/placeholder-game.svg');
 ---
 
 <article class="game-card">
@@ -23,7 +25,7 @@ const playRel = playMode === 'fullscreen' && game.fullScreenUrl ? 'noreferrer no
           alt={game.title}
           class="game-card-media"
           loading="lazy"
-          onerror="this.onerror=null;this.src='/images/placeholder-game.svg';"
+          onerror={`this.onerror=null;this.src='${placeholderImageSrc}';`}
         />
         <span class="game-card-overlay" aria-hidden="true"></span>
       </a>
@@ -34,7 +36,7 @@ const playRel = playMode === 'fullscreen' && game.fullScreenUrl ? 'noreferrer no
           alt={game.title}
           class="game-card-media"
           loading="lazy"
-          onerror="this.onerror=null;this.src='/images/placeholder-game.svg';"
+          onerror={`this.onerror=null;this.src='${placeholderImageSrc}';`}
         />
         <span class="game-card-overlay" aria-hidden="true"></span>
       </div>

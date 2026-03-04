@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-[ScrollSort](/scrollsort) is currently marked coming soon, but you can still build the exact skills that matter before release.
+[ScrollSort](../../scrollsort) is currently marked coming soon, but you can still build the exact skills that matter before release.
 
 ## Core Loop (What To Train)
 
@@ -38,5 +38,6 @@ Your biggest gain will come from reducing the gap between recognition and action
 
 ## Related Reading
 
-While waiting for launch, use [Color Crunch chain building](/blog/color-crunch-chain-building-guide) to train visual grouping and [SpeedSolitaire fast clears](/blog/speedsolitaire-fast-clear-guide) to improve decision cadence.
+While waiting for launch, use [Color Crunch chain building](../color-crunch-chain-building-guide) to train visual grouping and [SpeedSolitaire fast clears](../speedsolitaire-fast-clear-guide) to improve decision cadence.
+
 

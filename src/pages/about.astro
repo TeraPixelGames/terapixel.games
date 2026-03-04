@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/site-links';
 
 const siteBase = Astro.site ?? Astro.url;
 const organizationJsonLd = {
@@ -51,8 +52,8 @@ const organizationJsonLd = {
         <a href="mailto:support@terapixel.games">support@terapixel.games</a>
       </p>
       <p>
-        For issue routing details, visit <a href="/support">Support</a>. For privacy details, review our
-        <a href="/privacy-policy">Privacy Policy</a>.
+        For issue routing details, visit <a href={withBase('/support')}>Support</a>. For privacy details, review our
+        <a href={withBase('/privacy-policy')}>Privacy Policy</a>.
       </p>
     </section>
   </div>

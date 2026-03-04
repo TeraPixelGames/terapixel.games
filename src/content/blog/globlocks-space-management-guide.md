@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-[GloBlocks](/globlocks) is won by players who protect future options, not players who maximize only the current turn.
+[GloBlocks](../../globlocks) is won by players who protect future options, not players who maximize only the current turn.
 
 ## Core Loop
 
@@ -38,5 +38,6 @@ As soon as flexibility drops, your score potential drops with it.
 
 ## Related Reading
 
-Use [Block Forge board control](/blog/block-forge-board-control-guide) to compare alternate space-control strategies.
+Use [Block Forge board control](../block-forge-board-control-guide) to compare alternate space-control strategies.
+
 

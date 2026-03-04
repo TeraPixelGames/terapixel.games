@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import games from '../../data/games.json';
 import type { Game } from '../../types';
 import { getCollection } from 'astro:content';
+import { withBase } from '../../utils/site-links';
 
 const gameMap = new Map((games as Game[]).map((game) => [game.slug, game]));
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
@@ -48,12 +49,12 @@ const groups = posts.reduce(
               })}
             </p>
             <h3>
-              <a href={`/blog/${post.slug}`} class="blog-title-link">{post.data.title}</a>
+              <a href={withBase(`/blog/${post.slug}`)} class="blog-title-link">{post.data.title}</a>
             </h3>
             <p>{post.data.description}</p>
             <p class="blog-related-game">
               Related game:{' '}
-              <a href={`/${post.data.gameSlug}`}>{gameMap.get(post.data.gameSlug)?.title ?? post.data.gameSlug}</a>
+              <a href={withBase(`/${post.data.gameSlug}`)}>{gameMap.get(post.data.gameSlug)?.title ?? post.data.gameSlug}</a>
             </p>
           </article>
         ))}
@@ -71,7 +72,7 @@ const groups = posts.reduce(
             <ul class="blog-link-list">
               {entries.map((entry) => (
                 <li>
-                  <a href={`/blog/${entry.slug}`}>{entry.data.title}</a>
+                  <a href={withBase(`/blog/${entry.slug}`)}>{entry.data.title}</a>
                 </li>
               ))}
             </ul>

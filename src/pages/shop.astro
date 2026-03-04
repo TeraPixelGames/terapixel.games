@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/site-links';
 
 const products = [
   {
@@ -48,7 +49,7 @@ const products = [
               {product.benefits.map((benefit) => <li>{benefit}</li>)}
             </ul>
             <div class="hero-actions">
-              <a href="/support" class="btn btn-primary">Purchase Support</a>
+              <a href={withBase('/support')} class="btn btn-primary">Purchase Support</a>
             </div>
           </article>
         ))

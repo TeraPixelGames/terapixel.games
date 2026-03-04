@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/site-links';
 ---
 
 <BaseLayout title="Account" description="Manage your Terapixel account profile, username, and support links.">
@@ -40,14 +41,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2>Store Access</h2>
         <p>Open curated packs and support options built for clarity.</p>
         <div class="hero-actions">
-          <a href="/shop" class="btn btn-secondary">Go to Shop</a>
+          <a href={withBase('/shop')} class="btn btn-secondary">Go to Shop</a>
         </div>
       </article>
       <article class="glass-panel quick-card">
         <h2>Need Help</h2>
         <p>Get support for login, purchases, and gameplay issues.</p>
         <div class="hero-actions">
-          <a href="/support" class="btn btn-secondary">Open Support</a>
+          <a href={withBase('/support')} class="btn btn-secondary">Open Support</a>
         </div>
       </article>
     </section>

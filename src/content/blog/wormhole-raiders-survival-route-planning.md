@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-In [Wormhole Raiders](/wormhole-raiders), survival comes from route planning, not raw reaction speed.
+In [Wormhole Raiders](../../wormhole-raiders), survival comes from route planning, not raw reaction speed.
 
 ## Core Loop
 
@@ -38,5 +38,6 @@ When you plan one move ahead, pressure spikes become manageable.
 
 ## Related Reading
 
-If route decisions still feel rushed, train cadence with [LumaRush movement and combo rhythm](/blog/lumarush-movement-and-combo-rhythm).
+If route decisions still feel rushed, train cadence with [LumaRush movement and combo rhythm](../lumarush-movement-and-combo-rhythm).
+
 

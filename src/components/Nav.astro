@@ -1,4 +1,6 @@
 ---
+import { stripBase, withBase } from '../utils/site-links';
+
 const { pathname = '/' } = Astro.props;
 
 const logoUrl =
@@ -24,7 +26,8 @@ const staticPaths = new Set([
   '/privacy-policy',
   '/contact'
 ]);
-const normalizedPath = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
+const appPathname = stripBase(pathname);
+const normalizedPath = appPathname.endsWith('/') && appPathname !== '/' ? appPathname.slice(0, -1) : appPathname;
 const isGameDetail = /^\/[^/]+$/.test(normalizedPath) && !staticPaths.has(normalizedPath);
 const isBlogDetail = /^\/blog\/[^/]+$/.test(normalizedPath);
 const accountActive = normalizedPath === '/account';
@@ -33,7 +36,7 @@ const accountActive = normalizedPath === '/account';
 <header class="site-header">
   <div class="shell">
     <div class="topbar">
-      <a href="/" class="brand" aria-label="Terapixel Games Home">
+      <a href={withBase('/')} class="brand" aria-label="Terapixel Games Home">
         <img
           src={logoUrl}
           alt=""
@@ -57,7 +60,7 @@ const accountActive = normalizedPath === '/account';
               (link.href === '/blog' && (normalizedPath === '/blog' || isBlogDetail));
             return (
               <li>
-                <a href={link.href} class="nav-link" aria-current={active ? 'page' : undefined}>
+                <a href={withBase(link.href)} class="nav-link" aria-current={active ? 'page' : undefined}>
                   {link.label}
                 </a>
               </li>
@@ -65,7 +68,7 @@ const accountActive = normalizedPath === '/account';
           })
         }
         <li id="tpx-account-nav" class="hidden">
-          <a href="/account" class="nav-link" aria-current={accountActive ? 'page' : undefined}>
+          <a href={withBase('/account')} class="nav-link" aria-current={accountActive ? 'page' : undefined}>
             Account
           </a>
         </li>

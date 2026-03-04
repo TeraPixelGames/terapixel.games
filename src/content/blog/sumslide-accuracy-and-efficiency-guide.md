@@ -11,7 +11,7 @@ tags:
 draft: false
 ---
 
-[SumSlide](/sumslide) rewards deliberate planning. Fast players are usually organized players, not reckless players.
+[SumSlide](../../sumslide) rewards deliberate planning. Fast players are usually organized players, not reckless players.
 
 ## Core Loop
 
@@ -38,5 +38,6 @@ Constantly bouncing between ideas adds extra moves and increases error rate.
 
 ## Related Reading
 
-For faster visual recognition under pressure, use [Color Crunch chain building](/blog/color-crunch-chain-building-guide).
+For faster visual recognition under pressure, use [Color Crunch chain building](../color-crunch-chain-building-guide).
+
 

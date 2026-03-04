@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import games from '../data/games.json';
 import type { Game } from '../types';
 import { getCollection } from 'astro:content';
+import { withBase } from '../utils/site-links';
 
 export function getStaticPaths() {
   const gameList = games as Game[];
@@ -15,10 +16,7 @@ export function getStaticPaths() {
 const { game, allGames } = Astro.props as { game: Game; allGames: Game[] };
 const mapPlayableUrl = (value: string | null): string | null => {
   if (!value) return null;
-  if (value.startsWith('/play/')) {
-    return `../play/${value.slice('/play/'.length)}`;
-  }
-  return value;
+  return withBase(value);
 };
 const blogPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
@@ -126,7 +124,7 @@ const faqJsonLd =
             <span class="chip muted">Fullscreen coming soon</span>
           )
         }
-        <a href="/games" class="btn btn-secondary">Back to Games</a>
+        <a href={withBase('/games')} class="btn btn-secondary">Back to Games</a>
       </div>
     </section>
 
@@ -151,12 +149,12 @@ const faqJsonLd =
         <ul class="blog-link-list">
           {guidePosts.map((post) => (
             <li>
-              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              <a href={withBase(`/blog/${post.slug}`)}>{post.data.title}</a>
             </li>
           ))}
         </ul>
         <div class="hero-actions">
-          <a href="/blog" class="btn btn-secondary">Browse Blog</a>
+          <a href={withBase('/blog')} class="btn btn-secondary">Browse Blog</a>
         </div>
       </article>
     </section>
@@ -187,7 +185,7 @@ const faqJsonLd =
           </h2>
           <div class="related-grid">
             {relatedGames.map((relatedGame) => (
-              <a href={`/${relatedGame.slug}`} class="related-link">
+              <a href={withBase(`/${relatedGame.slug}`)} class="related-link">
                 <strong>{relatedGame.title}</strong>
                 <span>View details</span>
               </a>

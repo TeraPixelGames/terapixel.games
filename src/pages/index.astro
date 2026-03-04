@@ -7,12 +7,22 @@ import type { Game } from '../types';
 const gameList = games as Game[];
 const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScreenUrl) && !game.isComingSoon);
 const featuredGames = playableGames.slice(0, 2);
+const siteBase = Astro.site ?? Astro.url;
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Terapixel Games',
+  url: new URL('/', siteBase).toString(),
+  email: 'support@terapixel.games',
+  sameAs: [new URL('/games', siteBase).toString(), new URL('/blog', siteBase).toString()]
+};
 ---
 
 <BaseLayout
   title="Home"
   description="Terapixel Games helps you jump into great browser games fast, stay in flow, and come back to real progress."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
   <div class="shell stack">
     <section class="hero glass-panel" aria-labelledby="home-hero-title">
       <p class="hero-eyebrow">Terapixel Games</p>

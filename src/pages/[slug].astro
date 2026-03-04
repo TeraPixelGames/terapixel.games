@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import games from '../data/games.json';
 import type { Game } from '../types';
+import { getCollection } from 'astro:content';
 
 export function getStaticPaths() {
   const gameList = games as Game[];
@@ -19,6 +20,9 @@ const mapPlayableUrl = (value: string | null): string | null => {
   }
   return value;
 };
+const blogPosts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
 const embedUrl = mapPlayableUrl(game.embedUrl);
 const fullScreenUrl = mapPlayableUrl(game.fullScreenUrl);
 const showEmbed = Boolean(embedUrl);
@@ -42,6 +46,9 @@ const siteBase = Astro.site ?? Astro.url;
 const canonicalUrl = new URL(`/${game.slug}`, siteBase).toString();
 const imageUrl = new URL(game.image, siteBase).toString();
 const relatedGames = allGames.filter((candidate) => candidate.slug !== game.slug).slice(0, 3);
+const relatedBlogPosts = blogPosts.filter((post) => post.data.gameSlug === game.slug).slice(0, 2);
+const fallbackBlogPosts = blogPosts.filter((post) => post.data.gameSlug !== game.slug).slice(0, 1);
+const guidePosts = relatedBlogPosts.length > 0 ? relatedBlogPosts : fallbackBlogPosts;
 
 const videoGameJsonLd = {
   '@context': 'https://schema.org',
@@ -136,6 +143,21 @@ const faqJsonLd =
         <ul class="product-list">
           {seoFeatures.map((feature) => <li>{feature}</li>)}
         </ul>
+      </article>
+
+      <article class="glass-panel text-panel guides-card">
+        <h2>Guides And Updates</h2>
+        <p>Read compact strategy notes and updates without leaving the game flow.</p>
+        <ul class="blog-link-list">
+          {guidePosts.map((post) => (
+            <li>
+              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            </li>
+          ))}
+        </ul>
+        <div class="hero-actions">
+          <a href="/blog" class="btn btn-secondary">Browse Blog</a>
+        </div>
       </article>
     </section>
 

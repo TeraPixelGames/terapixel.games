@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const siteBase = Astro.site ?? Astro.url;
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Terapixel Games',
+  url: new URL('/', siteBase).toString(),
+  email: 'support@terapixel.games',
+  description: 'Terapixel Games publishes browser-first games with short sessions and repeatable skill progression.'
+};
+---
+
+<BaseLayout
+  title="About"
+  description="Learn about Terapixel Games, our publishing focus, and how to reach support."
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+
+  <div class="shell stack">
+    <header class="page-head">
+      <h1 class="page-title">About Terapixel Games</h1>
+      <p class="page-copy">
+        Terapixel Games is a browser-game publisher focused on clean interfaces, fast starts, and gameplay loops that
+        reward consistent practice.
+      </p>
+    </header>
+
+    <section class="glass-panel text-panel">
+      <h2>Publisher Identity</h2>
+      <p>
+        The site and game pages on this domain are published under the Terapixel Games brand. We operate a portfolio
+        of arcade, puzzle, and card titles that run in modern web browsers.
+      </p>
+    </section>
+
+    <section class="glass-panel text-panel">
+      <h2>What Players Can Expect</h2>
+      <ul class="product-list">
+        <li>Fast loading game pages with direct play access</li>
+        <li>Practical support coverage for account, billing, and gameplay issues</li>
+        <li>Regular gameplay guides and updates through the Terapixel blog</li>
+      </ul>
+    </section>
+
+    <section class="glass-panel text-panel">
+      <h2>Contact</h2>
+      <p>
+        Primary contact email:
+        <a href="mailto:support@terapixel.games">support@terapixel.games</a>
+      </p>
+      <p>
+        For issue routing details, visit <a href="/support">Support</a>. For privacy details, review our
+        <a href="/privacy-policy">Privacy Policy</a>.
+      </p>
+    </section>
+  </div>
+</BaseLayout>

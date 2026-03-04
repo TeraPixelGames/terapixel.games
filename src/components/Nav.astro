@@ -7,13 +7,26 @@ const logoUrl =
 const links = [
   { href: '/', label: 'Home' },
   { href: '/games', label: 'Games' },
+  { href: '/blog', label: 'Blog' },
   { href: '/shop', label: 'Shop' },
   { href: '/support', label: 'Support' }
 ];
 
-const staticPaths = new Set(['/', '/games', '/shop', '/account', '/support', '/privacy-policy', '/contact']);
+const staticPaths = new Set([
+  '/',
+  '/games',
+  '/blog',
+  '/shop',
+  '/account',
+  '/support',
+  '/about',
+  '/terms',
+  '/privacy-policy',
+  '/contact'
+]);
 const normalizedPath = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
 const isGameDetail = /^\/[^/]+$/.test(normalizedPath) && !staticPaths.has(normalizedPath);
+const isBlogDetail = /^\/blog\/[^/]+$/.test(normalizedPath);
 const accountActive = normalizedPath === '/account';
 ---
 
@@ -40,7 +53,8 @@ const accountActive = normalizedPath === '/account';
           links.map((link) => {
             const active =
               normalizedPath === link.href ||
-              (link.href === '/games' && (normalizedPath === '/games' || isGameDetail));
+              (link.href === '/games' && (normalizedPath === '/games' || isGameDetail)) ||
+              (link.href === '/blog' && (normalizedPath === '/blog' || isBlogDetail));
             return (
               <li>
                 <a href={link.href} class="nav-link" aria-current={active ? 'page' : undefined}>

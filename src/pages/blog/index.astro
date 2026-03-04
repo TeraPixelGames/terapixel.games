@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import games from '../../data/games.json';
+import type { Game } from '../../types';
+import { getCollection } from 'astro:content';
+
+const gameMap = new Map((games as Game[]).map((game) => [game.slug, game]));
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+
+const groups = posts.reduce(
+  (acc, post) => {
+    const key = post.data.gameSlug;
+    const existing = acc.get(key) ?? [];
+    existing.push(post);
+    acc.set(key, existing);
+    return acc;
+  },
+  new Map<string, typeof posts>()
+);
+---
+
+<BaseLayout
+  title="Blog"
+  description="Read gameplay guides and release updates from Terapixel Games, grouped by title."
+>
+  <div class="shell stack">
+    <header class="page-head">
+      <h1 class="page-title">Terapixel Blog</h1>
+      <p class="page-copy">
+        Practical gameplay guides and platform updates from the Terapixel Games team.
+      </p>
+    </header>
+
+    <section class="section-block" aria-labelledby="latest-posts-heading">
+      <div class="section-head">
+        <h2 id="latest-posts-heading" class="section-title">Latest Posts</h2>
+      </div>
+      <div class="blog-grid">
+        {posts.map((post) => (
+          <article class="glass-panel blog-card">
+            <p class="blog-meta">
+              {post.data.publishDate.toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+              })}
+            </p>
+            <h3>
+              <a href={`/blog/${post.slug}`} class="blog-title-link">{post.data.title}</a>
+            </h3>
+            <p>{post.data.description}</p>
+            <p class="blog-related-game">
+              Related game:{' '}
+              <a href={`/${post.data.gameSlug}`}>{gameMap.get(post.data.gameSlug)?.title ?? post.data.gameSlug}</a>
+            </p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block" aria-labelledby="by-game-heading">
+      <div class="section-head">
+        <h2 id="by-game-heading" class="section-title">Browse By Game</h2>
+      </div>
+      <div class="blog-group-grid">
+        {[...groups.entries()].map(([gameSlug, entries]) => (
+          <article class="glass-panel blog-group-card">
+            <h3>{gameMap.get(gameSlug)?.title ?? gameSlug}</h3>
+            <ul class="blog-link-list">
+              {entries.map((entry) => (
+                <li>
+                  <a href={`/blog/${entry.slug}`}>{entry.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -630,6 +630,8 @@ input {
   margin: 0;
   font-size: 1.1rem;
   font-family: Sora, Manrope, sans-serif;
+  color: #eaf3ff;
+  font-weight: 650;
 }
 
 .support-card p,

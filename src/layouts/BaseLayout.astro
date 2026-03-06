@@ -25,6 +25,15 @@ const identityEmailParam = import.meta.env.PUBLIC_TPX_IDENTITY_EMAIL_PARAM || 'e
 const identityLogoutMethod = import.meta.env.PUBLIC_TPX_IDENTITY_LOGOUT_METHOD || 'POST';
 const identityHydrateSessionOnLoad =
   import.meta.env.PUBLIC_TPX_IDENTITY_HYDRATE_SESSION_ON_LOAD || 'true';
+const identityConfigScript = `window.__TPX_AUTH_CONFIG = ${JSON.stringify({
+  loginUrl: identityLoginUrl,
+  logoutUrl: identityLogoutUrl,
+  sessionUrl: identitySessionUrl,
+  returnParam: identityReturnParam,
+  emailParam: identityEmailParam,
+  logoutMethod: identityLogoutMethod,
+  hydrateFromSessionOnLoad: identityHydrateSessionOnLoad
+})};`;
 const faviconUrl = withBasePath('/favicon.svg');
 const identityScriptUrl = withBasePath('/scripts/terapixel-identity.js');
 const privacyPolicyUrl = withBasePath('/privacy-policy');
@@ -75,17 +84,7 @@ const contactUrl = withBasePath('/contact');
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8413230766502262"
       crossorigin="anonymous"
     ></script>
-    <script is:inline>
-      window.__TPX_AUTH_CONFIG = {
-        loginUrl: {JSON.stringify(identityLoginUrl)},
-        logoutUrl: {JSON.stringify(identityLogoutUrl)},
-        sessionUrl: {JSON.stringify(identitySessionUrl)},
-        returnParam: {JSON.stringify(identityReturnParam)},
-        emailParam: {JSON.stringify(identityEmailParam)},
-        logoutMethod: {JSON.stringify(identityLogoutMethod)},
-        hydrateFromSessionOnLoad: {JSON.stringify(identityHydrateSessionOnLoad)}
-      };
-    </script>
+    <script is:inline set:html={identityConfigScript} />
     <script src={identityScriptUrl} defer></script>
     <slot name="head" />
   </head>

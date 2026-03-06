@@ -1,5 +1,6 @@
 ---
 import type { Game } from '../types';
+import { addBuildVersion, withBasePath } from '../lib/site-paths';
 
 interface Props {
   game: Game;
@@ -7,9 +8,16 @@ interface Props {
 }
 
 const { game, playMode = 'detail' } = Astro.props;
-const detailHref = `/${game.slug}`;
+const buildVersion = import.meta.env.PUBLIC_TPX_BUILD_ID;
+const detailHref = withBasePath(`/${game.slug}`);
 const isPlayable = Boolean(game.embedUrl || game.fullScreenUrl) && !game.isComingSoon;
-const playHref = playMode === 'fullscreen' && game.fullScreenUrl ? game.fullScreenUrl : detailHref;
+const fallbackImage = withBasePath('/images/placeholder-game.svg');
+const gameImageSrc = game.image.startsWith('/') ? withBasePath(game.image) : game.image;
+const fullScreenPath =
+  game.fullScreenUrl && game.fullScreenUrl.startsWith('/')
+    ? addBuildVersion(withBasePath(game.fullScreenUrl), buildVersion)
+    : game.fullScreenUrl;
+const playHref = playMode === 'fullscreen' && fullScreenPath ? fullScreenPath : detailHref;
 const playTarget = playMode === 'fullscreen' && game.fullScreenUrl ? '_blank' : undefined;
 const playRel = playMode === 'fullscreen' && game.fullScreenUrl ? 'noreferrer noopener' : undefined;
 ---
@@ -19,22 +27,22 @@ const playRel = playMode === 'fullscreen' && game.fullScreenUrl ? 'noreferrer no
     isPlayable ? (
       <a href={detailHref} class="game-card-media-link">
         <img
-          src={game.image}
+          src={gameImageSrc}
           alt={game.title}
           class="game-card-media"
           loading="lazy"
-          onerror="this.onerror=null;this.src='/images/placeholder-game.svg';"
+          onerror={`this.onerror=null;this.src='${fallbackImage}';`}
         />
         <span class="game-card-overlay" aria-hidden="true"></span>
       </a>
     ) : (
       <div class="game-card-media-link">
         <img
-          src={game.image}
+          src={gameImageSrc}
           alt={game.title}
           class="game-card-media"
           loading="lazy"
-          onerror="this.onerror=null;this.src='/images/placeholder-game.svg';"
+          onerror={`this.onerror=null;this.src='${fallbackImage}';`}
         />
         <span class="game-card-overlay" aria-hidden="true"></span>
       </div>

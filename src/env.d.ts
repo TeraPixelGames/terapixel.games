@@ -9,6 +9,7 @@ interface ImportMetaEnv {
   readonly PUBLIC_TPX_IDENTITY_EMAIL_PARAM?: string;
   readonly PUBLIC_TPX_IDENTITY_LOGOUT_METHOD?: string;
   readonly PUBLIC_TPX_IDENTITY_HYDRATE_SESSION_ON_LOAD?: string;
+  readonly PUBLIC_TPX_BUILD_ID?: string;
 }
 
 interface ImportMeta {

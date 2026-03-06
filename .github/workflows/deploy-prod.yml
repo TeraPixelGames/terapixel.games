@@ -33,6 +33,7 @@ jobs:
       PUBLIC_TPX_IDENTITY_EMAIL_PARAM: ${{ vars.PUBLIC_TPX_IDENTITY_EMAIL_PARAM }}
       PUBLIC_TPX_IDENTITY_LOGOUT_METHOD: ${{ vars.PUBLIC_TPX_IDENTITY_LOGOUT_METHOD }}
       PUBLIC_TPX_IDENTITY_HYDRATE_SESSION_ON_LOAD: ${{ vars.PUBLIC_TPX_IDENTITY_HYDRATE_SESSION_ON_LOAD }}
+      PUBLIC_TPX_BUILD_ID: ${{ github.sha }}
 
     steps:
       - name: Checkout
@@ -75,6 +76,7 @@ jobs:
             printf 'PUBLIC_TPX_IDENTITY_EMAIL_PARAM=%s\n' "${PUBLIC_TPX_IDENTITY_EMAIL_PARAM:-}"
             printf 'PUBLIC_TPX_IDENTITY_LOGOUT_METHOD=%s\n' "${PUBLIC_TPX_IDENTITY_LOGOUT_METHOD:-}"
             printf 'PUBLIC_TPX_IDENTITY_HYDRATE_SESSION_ON_LOAD=%s\n' "${PUBLIC_TPX_IDENTITY_HYDRATE_SESSION_ON_LOAD:-}"
+            printf 'PUBLIC_TPX_BUILD_ID=%s\n' "${PUBLIC_TPX_BUILD_ID:-}"
           } > .env.production
 
       - name: Deploy production static site to Cloud Run

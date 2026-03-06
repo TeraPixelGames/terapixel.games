@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import GameCard from '../components/GameCard.astro';
 import games from '../data/games.json';
 import type { Game } from '../types';
+import { withBasePath } from '../lib/site-paths';
 
 const gameList = games as Game[];
 const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScreenUrl) && !game.isComingSoon);
@@ -21,8 +22,8 @@ const featuredGames = playableGames.slice(0, 2);
         Pick a game, jump straight into the fun, and play until there's just time for one more run.
       </p>
       <div class="hero-actions">
-        <a href="/games" class="btn btn-primary">Play Games</a>
-        <a href="/shop" class="btn btn-secondary">Visit Shop</a>
+        <a href={withBasePath('/games')} class="btn btn-primary">Play Games</a>
+        <a href={withBasePath('/shop')} class="btn btn-secondary">Visit Shop</a>
       </div>
       <p class="hero-note">Quick to start, easy to return to, built for players who value clean experiences.</p>
       <div class="stat-row" aria-label="Platform highlights">

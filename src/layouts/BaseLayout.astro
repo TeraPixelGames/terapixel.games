@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
+import { withBasePath } from '../lib/site-paths';
 
 interface Props {
   title: string;
@@ -24,6 +25,11 @@ const identityEmailParam = import.meta.env.PUBLIC_TPX_IDENTITY_EMAIL_PARAM || 'e
 const identityLogoutMethod = import.meta.env.PUBLIC_TPX_IDENTITY_LOGOUT_METHOD || 'POST';
 const identityHydrateSessionOnLoad =
   import.meta.env.PUBLIC_TPX_IDENTITY_HYDRATE_SESSION_ON_LOAD || 'true';
+const faviconUrl = withBasePath('/favicon.svg');
+const identityScriptUrl = withBasePath('/scripts/terapixel-identity.js');
+const privacyPolicyUrl = withBasePath('/privacy-policy');
+const supportUrl = withBasePath('/support');
+const contactUrl = withBasePath('/contact');
 ---
 
 <!doctype html>
@@ -44,7 +50,7 @@ const identityHydrateSessionOnLoad =
     <meta name="twitter:title" content={socialTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageHref} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={faviconUrl} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -80,7 +86,7 @@ const identityHydrateSessionOnLoad =
         hydrateFromSessionOnLoad: {JSON.stringify(identityHydrateSessionOnLoad)}
       };
     </script>
-    <script src="/scripts/terapixel-identity.js" defer></script>
+    <script src={identityScriptUrl} defer></script>
     <slot name="head" />
   </head>
   <body class="site-body">
@@ -93,9 +99,9 @@ const identityHydrateSessionOnLoad =
       <div class="shell footer-row">
         <p>&copy; {new Date().getFullYear()} Terapixel Games</p>
         <div class="footer-links">
-          <a href="/privacy-policy">Privacy Policy</a>
-          <a href="/support">Support</a>
-          <a href="/contact">Contact</a>
+          <a href={privacyPolicyUrl}>Privacy Policy</a>
+          <a href={supportUrl}>Support</a>
+          <a href={contactUrl}>Contact</a>
         </div>
       </div>
     </footer>

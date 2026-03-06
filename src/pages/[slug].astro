@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import games from '../data/games.json';
 import type { Game } from '../types';
+import { addBuildVersion, withBasePath } from '../lib/site-paths';
 
 export function getStaticPaths() {
   const gameList = games as Game[];
@@ -12,10 +13,15 @@ export function getStaticPaths() {
 }
 
 const { game, allGames } = Astro.props as { game: Game; allGames: Game[] };
+const buildVersion = import.meta.env.PUBLIC_TPX_BUILD_ID;
 const mapPlayableUrl = (value: string | null): string | null => {
   if (!value) return null;
-  if (value.startsWith('/play/')) {
-    return `../play/${value.slice('/play/'.length)}`;
+  if (value.startsWith('/')) {
+    const baseAwareUrl = withBasePath(value);
+    if (value.startsWith('/play/')) {
+      return addBuildVersion(baseAwareUrl, buildVersion);
+    }
+    return baseAwareUrl;
   }
   return value;
 };
@@ -119,7 +125,7 @@ const faqJsonLd =
             <span class="chip muted">Fullscreen coming soon</span>
           )
         }
-        <a href="/games" class="btn btn-secondary">Back to Games</a>
+        <a href={withBasePath('/games')} class="btn btn-secondary">Back to Games</a>
       </div>
     </section>
 
@@ -165,7 +171,7 @@ const faqJsonLd =
           </h2>
           <div class="related-grid">
             {relatedGames.map((relatedGame) => (
-              <a href={`/${relatedGame.slug}`} class="related-link">
+              <a href={withBasePath(`/${relatedGame.slug}`)} class="related-link">
                 <strong>{relatedGame.title}</strong>
                 <span>View details</span>
               </a>

@@ -55,7 +55,7 @@ jobs:
 
   sync:
     needs: resolve
-    uses: Terapixel-Games/ArcadeCore/.github/workflows/reusable-sync-consumer-web-build.yml@e2f8b44
+    uses: Terapixel-Games/ArcadeCore/.github/workflows/reusable-sync-consumer-web-build.yml@main
     with:
       source_repo: ${{ needs.resolve.outputs.source_repo }}
       release_tag: ${{ needs.resolve.outputs.release_tag }}

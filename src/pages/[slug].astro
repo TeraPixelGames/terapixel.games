@@ -88,9 +88,40 @@ const faqJsonLd =
   {faqJsonLd && <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
   <div class="shell stack">
-    <section class="page-head">
-      <h1 class="detail-title">{game.title}</h1>
-      <p class="page-copy">Play in browser now and switch to fullscreen when available.</p>
+    <section class="detail-hero glass-panel" data-accent={game.accent ?? 'signal'}>
+      <div class="detail-hero-copy">
+        <div class="card-kicker">
+          {game.genre && <span class="meta-pill">{game.genre}</span>}
+          {game.mood && <span class="meta-pill muted">{game.mood}</span>}
+          <span class="meta-pill muted">{showEmbed ? 'Playable now' : 'In development'}</span>
+        </div>
+        <h1 class="detail-title">{game.title}</h1>
+        <p class="page-copy">{seoIntro}</p>
+        <div class="detail-actions">
+          {
+            showFullScreen ? (
+              <a href={fullScreenUrl as string} target="_blank" rel="noreferrer noopener" class="btn btn-primary">
+                Launch Fullscreen
+              </a>
+            ) : (
+              <span class="chip muted">Fullscreen coming soon</span>
+            )
+          }
+          <a href={withBasePath('/games')} class="btn btn-secondary">Back to Library</a>
+        </div>
+      </div>
+      <div class="detail-hero-meta">
+        <div class="hero-rail-card">
+          <span class="rail-label">Play mode</span>
+          <strong>{showEmbed ? 'Instant browser launch' : 'Wishlist this release'}</strong>
+          <p>{showEmbed ? 'Load the build below or open a dedicated fullscreen session.' : 'This page is ready for launch details as soon as the build ships.'}</p>
+        </div>
+        <div class="hero-rail-card">
+          <span class="rail-label">Best fit</span>
+          <strong>{game.mood ?? 'Short repeat sessions'}</strong>
+          <p>{seoHowToPlay}</p>
+        </div>
+      </div>
     </section>
 
     <section aria-label={`${game.title} player`}>
@@ -114,25 +145,11 @@ const faqJsonLd =
           </div>
         )
       }
-
-      <div class="detail-actions">
-        {
-          showFullScreen ? (
-            <a href={fullScreenUrl as string} target="_blank" rel="noreferrer noopener" class="btn btn-primary">
-              Full Screen
-            </a>
-          ) : (
-            <span class="chip muted">Fullscreen coming soon</span>
-          )
-        }
-        <a href={withBasePath('/games')} class="btn btn-secondary">Back to Games</a>
-      </div>
     </section>
 
     <section class="content-grid" aria-label="Game details">
       <article class="glass-panel text-panel">
         <h2>About {game.title}</h2>
-        <p>{seoIntro}</p>
         <p>{seoDetails}</p>
       </article>
 

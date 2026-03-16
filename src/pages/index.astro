@@ -7,7 +7,8 @@ import { withBasePath } from '../lib/site-paths';
 
 const gameList = games as Game[];
 const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScreenUrl) && !game.isComingSoon);
-const featuredGames = playableGames.slice(0, 2);
+const featuredGames = playableGames.slice(0, 3);
+const heroGames = gameList.slice(0, 4);
 ---
 
 <BaseLayout
@@ -15,30 +16,67 @@ const featuredGames = playableGames.slice(0, 2);
   description="Terapixel Games helps you jump into great browser games fast, stay in flow, and come back to real progress."
 >
   <div class="shell stack">
-    <section class="hero glass-panel" aria-labelledby="home-hero-title">
-      <p class="hero-eyebrow">Terapixel Games</p>
-      <h1 id="home-hero-title" class="hero-title">Find your next favorite game in seconds.</h1>
-      <p class="hero-copy">
-        Pick a game, jump straight into the fun, and play until there's just time for one more run.
-      </p>
-      <div class="hero-actions">
-        <a href={withBasePath('/games')} class="btn btn-primary">Play Games</a>
-        <a href={withBasePath('/shop')} class="btn btn-secondary">Visit Shop</a>
+    <section class="hero hero-split glass-panel" aria-labelledby="home-hero-title">
+      <div class="hero-copy-block">
+        <div class="eyebrow-row">
+          <p class="hero-eyebrow">Terapixel Games</p>
+          <span class="chip">Studio Picks</span>
+        </div>
+        <h1 id="home-hero-title" class="hero-title">Arcade energy up front. Puzzle clarity everywhere else.</h1>
+        <p class="hero-copy">
+          Browse a sharp lineup of browser games, launch instantly, and stay inside a product system that feels fast,
+          legible, and distinctly TeraPixel.
+        </p>
+        <div class="hero-actions">
+          <a href={withBasePath('/games')} class="btn btn-primary">Browse Library</a>
+          <a href={withBasePath('/shop')} class="btn btn-secondary">See Support Packs</a>
+        </div>
+        <div class="signal-strip" aria-label="Studio lanes">
+          {heroGames.map((game) => (
+            <a href={withBasePath(`/${game.slug}`)} class="signal-pill" data-accent={game.accent ?? 'signal'}>
+              <strong>{game.title}</strong>
+              <span>{game.genre ?? 'Browser game'}</span>
+            </a>
+          ))}
+        </div>
       </div>
-      <p class="hero-note">Quick to start, easy to return to, built for players who value clean experiences.</p>
-      <div class="stat-row" aria-label="Platform highlights">
-        <div class="stat-pill">
-          <strong>{playableGames.length}+ playable titles</strong>
-          <span>Start a round right away</span>
+      <div class="hero-rail">
+        <div class="hero-rail-card">
+          <span class="rail-label">Now playable</span>
+          <strong>{playableGames.length} live builds</strong>
+          <p>Jump straight into our current browser-ready lineup without extra setup.</p>
         </div>
-        <div class="stat-pill">
-          <strong>Progress that sticks</strong>
-          <span>Come back and keep moving</span>
+        <div class="hero-rail-card">
+          <span class="rail-label">Design direction</span>
+          <strong>Bold, readable, low-friction</strong>
+          <p>Every surface is tuned to get players from discovery to play in a few decisive taps.</p>
         </div>
-        <div class="stat-pill">
-          <strong>Comfortable on any screen</strong>
-          <span>Play wherever you are</span>
+        <div class="hero-rail-card">
+          <span class="rail-label">Return loop</span>
+          <strong>Built for repeat sessions</strong>
+          <p>Fast restarts, clear routes, and product pages that stay out of the way when it is time to play.</p>
         </div>
+      </div>
+    </section>
+
+    <section class="section-block" aria-labelledby="home-highlights-heading">
+      <div class="section-head">
+        <h2 id="home-highlights-heading" class="section-title">Why The Library Feels Tighter</h2>
+        <p class="section-copy">The site is now organized around pace, mood, and quick launch confidence.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="glass-panel feature-card">
+          <h3>Clear product lanes</h3>
+          <p>Each game now carries a visible genre and mood, so the grid scans faster and feels less anonymous.</p>
+        </article>
+        <article class="glass-panel feature-card">
+          <h3>Faster launch calls</h3>
+          <p>Playable products lead with fullscreen-ready actions while upcoming titles still communicate direction.</p>
+        </article>
+        <article class="glass-panel feature-card">
+          <h3>Sharper studio identity</h3>
+          <p>A stronger type pair, richer surfaces, and accent-coded cards make the catalog feel owned instead of generic.</p>
+        </article>
       </div>
     </section>
 
@@ -47,7 +85,7 @@ const featuredGames = playableGames.slice(0, 2);
         <section class="section-block" aria-labelledby="featured-heading">
           <div class="section-head">
             <h2 id="featured-heading" class="section-title">Featured Games</h2>
-            <p class="section-copy">Two strong picks to jump into right now.</p>
+            <p class="section-copy">The fastest routes into the current lineup.</p>
           </div>
           <div class="game-grid">
             {featuredGames.map((game) => <GameCard game={game} playMode="fullscreen" />)}
@@ -59,7 +97,7 @@ const featuredGames = playableGames.slice(0, 2);
     <section class="section-block" aria-labelledby="library-heading">
       <div class="section-head">
         <h2 id="library-heading" class="section-title">Game Library</h2>
-        <p class="section-copy">Browse the full lineup and pick the mood you want today.</p>
+        <p class="section-copy">Browse the full lineup and pick the genre, tone, and pace you want right now.</p>
       </div>
       <div class="game-grid">
         {gameList.map((game) => <GameCard game={game} />)}

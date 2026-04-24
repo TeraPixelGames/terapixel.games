@@ -4,6 +4,8 @@
 
 :root {
   color-scheme: dark;
+  --font-body: 'Saira', 'Segoe UI', sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', sans-serif;
   --bg: #08111b;
   --bg-elevated: #101c2c;
   --bg-panel: rgba(15, 24, 38, 0.84);
@@ -40,7 +42,7 @@ html {
     radial-gradient(32rem 24rem at 50% 100%, rgba(142, 242, 166, 0.12), transparent 72%),
     linear-gradient(180deg, #09111a 0%, #0c1621 42%, #081019 100%);
   color: var(--text);
-  font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
   line-height: 1.55;
   position: relative;
   overflow-x: hidden;
@@ -93,7 +95,7 @@ input {
 }
 
 .shell {
-  width: min(1180px, calc(100% - 2rem));
+  width: min(1180px, calc(100vw - 2rem));
   margin: 0 auto;
   position: relative;
   z-index: 1;
@@ -1049,5 +1051,571 @@ input {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.brand-name,
+.modal-head h2,
+.hero-title,
+.section-title,
+.hero-rail-card strong,
+.signal-pill strong,
+.stat-pill strong,
+.feature-card h3,
+.game-card-content h2,
+.page-title,
+.product-card h2,
+.product-price,
+.tile-value,
+.profile-meta h2,
+.support-card h2,
+.quick-card h2,
+.text-panel h2,
+.detail-title,
+.faq-item h3,
+.related-link strong,
+.portal-player-copy h1,
+.arcade-wall-copy h1,
+.arcade-spotlight strong,
+.play-title-row h1,
+.coming-soon-stage strong {
+  font-family: var(--font-display);
+}
+
+.site-main:has(.portal-hero),
+.site-main:has(.arcade-wall-hero),
+.site-main:has(.play-shell) {
+  padding-top: 0;
+}
+
+.portal-hero,
+.arcade-wall-hero,
+.play-shell {
+  width: min(100%, 1720px);
+  margin-inline: auto;
+  padding: clamp(0.7rem, 1.8vw, 1.2rem);
+  position: relative;
+  z-index: 1;
+}
+
+.portal-stage,
+.play-shell,
+.arcade-wall-hero {
+  position: relative;
+  min-height: calc(100svh - 118px);
+  border: 1px solid rgba(118, 209, 229, 0.24);
+  border-radius: clamp(1rem, 2vw, 1.7rem);
+  background:
+    radial-gradient(44rem 30rem at 16% 0%, rgba(73, 210, 216, 0.22), transparent 68%),
+    radial-gradient(34rem 26rem at 90% 12%, rgba(242, 141, 73, 0.16), transparent 72%),
+    linear-gradient(180deg, rgba(12, 22, 34, 0.96), rgba(5, 10, 18, 0.98));
+  box-shadow: 0 36px 110px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.portal-stage::before,
+.play-shell::before,
+.arcade-wall-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(180deg, rgba(255, 255, 255, 0.7), transparent 86%);
+}
+
+.portal-toolbar,
+.play-toolbar {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  min-height: 58px;
+  margin: clamp(0.55rem, 1.2vw, 0.95rem);
+  padding: 0.45rem;
+  border: 1px solid rgba(131, 185, 212, 0.2);
+  border-radius: 999px;
+  background: rgba(2, 8, 14, 0.74);
+  backdrop-filter: blur(18px);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.portal-brand-lockup {
+  min-height: 44px;
+  padding: 0 0.95rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(84, 214, 210, 0.22), rgba(23, 64, 73, 0.18));
+  border: 1px solid rgba(84, 214, 210, 0.28);
+  color: #effdff;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  white-space: nowrap;
+}
+
+.portal-led {
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 999px;
+  background: #80ffe2;
+  box-shadow: 0 0 22px rgba(128, 255, 226, 0.9);
+}
+
+.portal-game-tabs {
+  min-width: 0;
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding: 0.1rem;
+}
+
+.portal-tab,
+.portal-tool-button {
+  min-height: 42px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.82rem;
+  color: #b7c7d7;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.portal-tab:hover,
+.portal-tool-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(99, 216, 255, 0.42);
+  background: rgba(25, 46, 68, 0.7);
+  color: #f2fbff;
+}
+
+.portal-tab.is-active,
+.portal-tool-button {
+  border-color: rgba(84, 214, 210, 0.46);
+  background: linear-gradient(180deg, rgba(84, 214, 210, 0.24), rgba(27, 91, 104, 0.22));
+  color: #f8ffff;
+}
+
+.portal-tool-button.muted {
+  border-color: rgba(143, 159, 198, 0.26);
+  background: rgba(30, 42, 64, 0.64);
+  color: #d7e4ef;
+}
+
+.portal-toolbar-actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.portal-player-grid {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  min-height: calc(100svh - 210px);
+  display: grid;
+  grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr);
+  gap: clamp(0.8rem, 2vw, 1.2rem);
+  padding: 0 clamp(0.75rem, 1.8vw, 1.35rem) clamp(0.75rem, 1.8vw, 1.35rem);
+}
+
+.portal-player-copy,
+.arcade-wall-copy {
+  align-self: stretch;
+  border-radius: 1.35rem;
+  border: 1px solid rgba(137, 174, 202, 0.18);
+  background:
+    radial-gradient(24rem 18rem at 0% 0%, rgba(84, 214, 210, 0.14), transparent 70%),
+    rgba(4, 12, 22, 0.68);
+  padding: clamp(1rem, 2vw, 1.35rem);
+  display: grid;
+  align-content: end;
+}
+
+.portal-player-copy h1,
+.arcade-wall-copy h1,
+.play-title-row h1 {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(2.35rem, 7.5vw, 6.6rem);
+  line-height: 0.86;
+  letter-spacing: -0.075em;
+}
+
+.portal-player-copy h1 {
+  max-width: 10ch;
+  font-size: clamp(2.35rem, 5vw, 4.65rem);
+}
+
+.portal-player-copy p,
+.arcade-wall-copy p,
+.arcade-spotlight p {
+  color: #b9cbda;
+  margin: 0.8rem 0 0;
+}
+
+.portal-kicker {
+  margin: 0 0 0.55rem;
+  color: #80ffe2;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.portal-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 0.9rem;
+}
+
+.portal-meta-row span {
+  min-height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(133, 184, 205, 0.24);
+  background: rgba(15, 31, 47, 0.74);
+  color: #d9f4ff;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.72rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.portal-player-frame,
+.play-frame-shell {
+  position: relative;
+  align-self: stretch;
+  min-height: 420px;
+  border-radius: 1.35rem;
+  border: 1px solid rgba(145, 203, 225, 0.28);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 14%),
+    #03070d;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 28px 70px rgba(0, 0, 0, 0.46);
+  overflow: hidden;
+}
+
+.portal-player-frame iframe,
+.portal-player-frame img,
+.play-frame-shell iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.portal-player-frame img {
+  object-fit: cover;
+}
+
+.portal-player-frame.is-portrait,
+.play-frame-shell.is-portrait {
+  max-width: min(100%, 620px);
+  justify-self: center;
+  width: 100%;
+}
+
+.portal-player-frame.is-portrait iframe,
+.play-frame-shell.is-portrait iframe {
+  width: min(100%, 520px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.below-play {
+  margin-top: 1.4rem;
+}
+
+.split-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.arcade-grid .game-card {
+  min-height: 100%;
+}
+
+.cabinet-list {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+
+.cabinet-link {
+  min-height: 82px;
+  padding: 0.9rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(135, 170, 205, 0.2);
+  background: rgba(15, 26, 42, 0.7);
+  display: grid;
+  align-content: center;
+  gap: 0.25rem;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.cabinet-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(84, 214, 210, 0.42);
+}
+
+.cabinet-link strong {
+  font-family: var(--font-display);
+}
+
+.cabinet-link span {
+  color: #a9bac8;
+  font-size: 0.9rem;
+}
+
+.arcade-wall-hero {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.65fr) minmax(0, 1fr);
+  gap: clamp(0.85rem, 2vw, 1.2rem);
+  padding: clamp(0.8rem, 1.8vw, 1.35rem);
+}
+
+.arcade-spotlight {
+  position: relative;
+  z-index: 2;
+  align-self: stretch;
+  border-radius: 1.35rem;
+  overflow: hidden;
+  border: 1px solid rgba(143, 196, 221, 0.25);
+  background: rgba(2, 8, 15, 0.74);
+  display: grid;
+  grid-template-rows: minmax(260px, 1fr) auto;
+}
+
+.arcade-spotlight img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 260px;
+  filter: saturate(1.06) contrast(1.04);
+}
+
+.arcade-spotlight > div {
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(3, 8, 14, 0.8), rgba(3, 8, 14, 0.98));
+}
+
+.arcade-spotlight span {
+  display: block;
+  color: #80ffe2;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.arcade-spotlight strong {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 0.95;
+}
+
+.filter-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.filter-strip a {
+  min-height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(138, 168, 203, 0.24);
+  background: rgba(17, 31, 49, 0.68);
+  color: #c6dae8;
+  padding: 0 0.72rem;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.84rem;
+}
+
+.play-shell {
+  display: grid;
+  grid-template-rows: minmax(360px, 1fr) auto auto;
+}
+
+.play-title-row {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 clamp(0.9rem, 1.8vw, 1.35rem) clamp(0.8rem, 1.6vw, 1.1rem);
+}
+
+.play-title-row h1 {
+  font-size: clamp(2rem, 6vw, 5rem);
+}
+
+.play-frame-shell {
+  z-index: 2;
+  margin: clamp(0.75rem, 1.8vw, 1.35rem) clamp(0.75rem, 1.8vw, 1.35rem) 0;
+}
+
+.coming-soon-stage {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.7fr);
+  align-items: end;
+}
+
+.coming-soon-stage img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  opacity: 0.72;
+  filter: saturate(0.88) contrast(1.08);
+}
+
+.coming-soon-stage > div {
+  padding: clamp(1rem, 2vw, 1.5rem);
+  background: linear-gradient(180deg, rgba(8, 14, 22, 0.7), rgba(8, 14, 22, 0.96));
+}
+
+.coming-soon-stage span {
+  color: #ffc76b;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  font-size: 0.76rem;
+}
+
+.coming-soon-stage strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: clamp(1.8rem, 5vw, 4rem);
+  line-height: 0.9;
+}
+
+.coming-soon-stage p {
+  color: #bdd0dd;
+}
+
+@media (max-width: 980px) {
+  .portal-toolbar,
+  .play-toolbar {
+    grid-template-columns: 1fr;
+    border-radius: 1.2rem;
+  }
+
+  .portal-toolbar-actions {
+    justify-content: stretch;
+  }
+
+  .portal-toolbar-actions > * {
+    flex: 1;
+  }
+
+  .portal-player-grid,
+  .arcade-wall-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-player-copy,
+  .arcade-wall-copy {
+    align-content: start;
+  }
+
+  .portal-player-copy h1,
+  .arcade-wall-copy h1 {
+    max-width: 14ch;
+  }
+
+  .play-title-row,
+  .split-head {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 620px) {
+  .portal-hero,
+  .arcade-wall-hero,
+  .play-shell {
+    padding: 0.5rem;
+  }
+
+  .portal-stage,
+  .play-shell,
+  .arcade-wall-hero {
+    border-radius: 0.9rem;
+    min-height: auto;
+  }
+
+  .portal-player-grid {
+    min-height: auto;
+  }
+
+  .portal-player-frame,
+  .play-frame-shell {
+    min-height: 62svh;
+    border-radius: 0.9rem;
+  }
+
+  .portal-player-frame.is-portrait,
+  .play-frame-shell.is-portrait {
+    min-height: 72svh;
+  }
+
+  .coming-soon-stage {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .portal-stage,
+  .arcade-wall-hero,
+  .play-shell {
+    animation: rise-in 0.5s ease-out both;
+  }
+
+  .portal-player-frame,
+  .play-frame-shell,
+  .arcade-spotlight {
+    animation: glow-in 0.62s ease-out 0.08s both;
+  }
+}
+
+@keyframes glow-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+    filter: brightness(0.78);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: brightness(1);
   }
 }

@@ -6,6 +6,9 @@ export type GameFaq = {
 export type Game = {
   title: string;
   slug: string;
+  genre?: string;
+  mood?: string;
+  accent?: 'signal' | 'neon' | 'ember' | 'citrus' | 'mint' | 'gold';
   description?: string;
   image: string;
   seoIntro?: string;

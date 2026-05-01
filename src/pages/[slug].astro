@@ -42,6 +42,7 @@ const seoFeatures = game.seoFeatures ?? fallbackFeatures;
 const designNotes = game.designNotes;
 const controls = game.controls ?? [];
 const playerTips = game.playerTips ?? [];
+const guideSections = game.guideSections ?? [];
 const faq = game.faq ?? [];
 
 const metaDescription = `${seoIntro} ${seoDetails}`.slice(0, 158);
@@ -204,6 +205,25 @@ const faqJsonLd =
               </ul>
             </article>
           )}
+        </section>
+      )
+    }
+
+    {
+      guideSections.length > 0 && (
+        <section aria-labelledby="guide-heading" class="stack">
+          <div class="section-head">
+            <p class="portal-kicker">Player guide</p>
+            <h2 id="guide-heading" class="section-title">{game.title} Strategy Notes</h2>
+          </div>
+          <div class="content-grid">
+            {guideSections.map((section) => (
+              <article class="glass-panel text-panel">
+                <h3>{section.heading}</h3>
+                <p>{section.copy}</p>
+              </article>
+            ))}
+          </div>
         </section>
       )
     }

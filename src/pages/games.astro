@@ -17,14 +17,18 @@ const primaryFullScreenUrl =
 const genreFilters = Array.from(new Set(gameList.map((game) => game.genre).filter(Boolean)));
 ---
 
-<BaseLayout title="Games" description="Explore the Terapixel Games arcade wall and launch playable browser games instantly." enableAds={true}>
+<BaseLayout
+  title="Games"
+  description="Browse playable Terapixel browser games, read player guides, and see which titles are live or still in development."
+  enableAds={true}
+>
   <section class="arcade-wall-hero" aria-labelledby="games-heading">
     <div class="arcade-wall-copy">
       <p class="portal-kicker">Cabinet wall</p>
-      <h1 id="games-heading">Pick a game before the page starts talking.</h1>
+      <h1 id="games-heading">Playable browser games, clearly separated from previews.</h1>
       <p>
-        Playable builds sit at the top like arcade cabinets. Details, release notes, and slower-reading content stay below
-        the wall so the first screen is built for action.
+        This library separates live web builds from projects still in development. Playable games include launch links,
+        guide content, controls, and practical notes so visitors can decide what to play without opening dead-end pages.
       </p>
       <div class="portal-meta-row">
         <span>{gameList.length} titles</span>
@@ -61,7 +65,7 @@ const genreFilters = Array.from(new Set(gameList.map((game) => game.genre).filte
           <p class="portal-kicker">Ready now</p>
           <h2 id="playable-games-heading" class="section-title">Playable Games</h2>
         </div>
-        <p class="section-copy">Fullscreen links go straight to the exported Godot builds.</p>
+        <p class="section-copy">Fullscreen links go directly to live web exports. Details pages include controls and strategy notes.</p>
       </div>
       <div class="game-grid arcade-grid">
         {playableGames.map((game) => (
@@ -78,7 +82,7 @@ const genreFilters = Array.from(new Set(gameList.map((game) => game.genre).filte
           <p class="portal-kicker">Queued cabinets</p>
           <h2 id="upcoming-games-heading" class="section-title">Coming Soon</h2>
         </div>
-        <p class="section-copy">No broken iframes; unreleased titles stay as readable previews.</p>
+        <p class="section-copy">No fake play buttons or broken iframes. These titles are listed only for release transparency.</p>
       </div>
       <div class="game-grid">
         {upcomingGames.map((game) => (
@@ -98,15 +102,15 @@ const genreFilters = Array.from(new Set(gameList.map((game) => game.genre).filte
         <article class="glass-panel text-panel">
           <h3>Playable Browser Builds</h3>
           <p>
-            A game marked playable has an active web export, a detail page, and a fullscreen launch path. We do not label
+            A game marked playable has an active web export, a detail page, and a fullscreen launch path. We do not mark
             unreleased work as playable, and cards without a build stay in preview mode until there is something real to try.
           </p>
         </article>
         <article class="glass-panel text-panel">
           <h3>Useful Game Pages</h3>
           <p>
-            Each live game page includes plain-language rules, control notes, design context, and player tips. That keeps
-            the site useful even before a player starts the embedded game frame.
+            Each live game page includes plain-language rules, control notes, design context, and player tips. That makes
+            the page useful on its own instead of relying on an embedded frame to carry all of the value.
           </p>
         </article>
       </div>

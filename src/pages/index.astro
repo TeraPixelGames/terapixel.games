@@ -27,7 +27,7 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
 
 <BaseLayout
   title="Home"
-  description="Play free browser games from Terapixel Games in a fullscreen-first arcade portal."
+  description="Play original browser arcade, puzzle, and card games from Terapixel Games with clear game guides and no downloads."
   image={featuredGame.image}
   enableAds={true}
 >
@@ -59,7 +59,7 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
         <div class="portal-player-copy">
           <p class="portal-kicker">Playable now</p>
           <h1 id="home-hero-title">{featuredGame.title}</h1>
-          <p>{featuredGame.seoIntro ?? 'Launch a TeraPixel browser game instantly and keep the info below the play surface.'}</p>
+          <p>{featuredGame.seoIntro ?? 'Launch a playable Terapixel browser game and read the guide notes below the play surface.'}</p>
           <div class="portal-meta-row">
             {featuredGame.genre && <span>{featuredGame.genre}</span>}
             {featuredGame.mood && <span>{featuredGame.mood}</span>}
@@ -93,7 +93,7 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
           <p class="portal-kicker">Instant launch</p>
           <h2 id="playable-heading" class="section-title">Live Games</h2>
         </div>
-        <p class="section-copy">A compact arcade rail for the browser-ready lineup.</p>
+        <p class="section-copy">These titles have working browser builds, direct game pages, and fullscreen launch links.</p>
       </div>
       <div class="game-grid arcade-grid">
         {playableGames.map((game) => <GameCard game={game} playMode="fullscreen" />)}
@@ -104,7 +104,7 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
       <div class="section-head split-head">
         <div>
           <p class="portal-kicker">The full cabinet wall</p>
-          <h2 id="library" class="section-title">Game Library</h2>
+          <h2 id="library" class="section-title">Game Status</h2>
         </div>
         <a href={withBasePath('/games')} class="btn btn-secondary">Open Library</a>
       </div>
@@ -125,16 +125,16 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
         <article class="glass-panel text-panel">
           <h3>Short Sessions, Clear Goals</h3>
           <p>
-            Terapixel Games focuses on browser games that load quickly, explain themselves through play, and give players
-            a concrete reason to retry. We prioritize readable controls, fast restarts, and simple score improvement over
-            heavy accounts or forced downloads.
+            Terapixel Games focuses on browser games that load quickly, explain their goals clearly, and give players a
+            concrete reason to retry. The site is built around playable exports, direct support contact, and written
+            guides that help players understand each game before or after launching it.
           </p>
         </article>
         <article class="glass-panel text-panel">
           <h3>Playable Builds First</h3>
           <p>
-            Live games are separated from unreleased experiments so players and reviewers can find working content without
-            hunting through empty pages. Coming-soon titles are previews, not fake play links.
+            Live games are separated from unreleased experiments so players and reviewers can find working content
+            quickly. Coming-soon titles are shown only as status previews until a playable web build is available.
           </p>
         </article>
       </div>
@@ -148,10 +148,10 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
         </div>
         <div class="cabinet-list">
           {upcomingGames.slice(0, 6).map((game) => (
-            <a href={withBasePath(`/${game.slug}`)} class="cabinet-link">
+            <div class="cabinet-link">
               <strong>{game.title}</strong>
-              <span>{game.genre ?? 'Browser game'} / {game.mood ?? 'In production'}</span>
-            </a>
+              <span>{game.genre ?? 'Browser game'} / Preview only until a web build is ready</span>
+            </div>
           ))}
         </div>
       </section>

@@ -54,6 +54,20 @@
       "Make smaller corrections when the run gets faster",
       "Treat early seconds as rhythm setup, not just empty time"
     ],
+    "guideSections": [
+      {
+        "heading": "Who LumaRush Is For",
+        "copy": "LumaRush fits players who like short arcade runs where improvement is visible quickly. A good session is not about unlocking a long checklist; it is about reading the lane, reacting cleanly, and starting another run with a slightly better rhythm."
+      },
+      {
+        "heading": "How to Build Consistency",
+        "copy": "The most reliable improvement comes from watching upcoming movement space instead of reacting at the last possible moment. Players who make small corrections early usually last longer than players who wait for a dramatic save."
+      },
+      {
+        "heading": "When to Use Fullscreen",
+        "copy": "Fullscreen is recommended when the embedded frame feels tight or when browser chrome distracts from the play area. It gives the exported build more space and helps keep focus on motion cues."
+      }
+    ],
     "faq": [
       {
         "question": "Can I play LumaRush instantly in my browser?",
@@ -121,6 +135,20 @@
       "Scan from large color groups to smaller cleanup moves",
       "Avoid breaking useful clusters too early",
       "Use failed rounds to learn which patterns slow you down"
+    ],
+    "guideSections": [
+      {
+        "heading": "Who Color Crunch Is For",
+        "copy": "Color Crunch is for puzzle players who enjoy quick visual decisions more than long rule explanations. It works best as a focused break: scan the board, make a clean match, and learn from the patterns that slowed the previous round."
+      },
+      {
+        "heading": "Reading the Board",
+        "copy": "Start by looking for obvious color clusters, then check whether a smaller move creates a better follow-up. The strongest rounds usually come from preserving useful groups instead of clearing the first match you notice."
+      },
+      {
+        "heading": "Avoiding Common Mistakes",
+        "copy": "The easiest mistake is moving too quickly through the first few seconds and breaking the layout before you have a plan. Slow down just enough to identify the best group, then use speed once the route is clear."
+      }
     ],
     "faq": [
       {
@@ -273,6 +301,20 @@
       "Expose hidden cards as early as possible when the move is clean",
       "Do not chase every possible move if it slows the whole run",
       "Practice one session goal at a time, such as fewer hesitations or faster foundation moves"
+    ],
+    "guideSections": [
+      {
+        "heading": "Who SpeedSolitaire Is For",
+        "copy": "SpeedSolitaire is for card players who know the comfort of classic solitaire but want a sharper pace. It is useful for short daily practice because each run gives clear feedback on hesitation, missed card flow, and decision speed."
+      },
+      {
+        "heading": "Playing for Time",
+        "copy": "Fast runs are not only about moving every card immediately. The better habit is to expose hidden cards, keep foundations moving when it costs little time, and avoid side moves that create more searching later."
+      },
+      {
+        "heading": "Improving Without Guessing",
+        "copy": "Pick one goal per session: fewer pauses, faster opening moves, cleaner stack management, or more consistent endgame flow. Practicing one behavior at a time makes progress easier to notice than simply replaying until a lucky layout appears."
+      }
     ],
     "faq": [
       {

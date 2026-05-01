@@ -43,6 +43,17 @@
       "Smooth controls with immediate feedback",
       "Repeatable runs ideal for score improvement"
     ],
+    "designNotes": "LumaRush is built around readable momentum. The useful skill is not only reacting quickly, but keeping enough control to avoid overcorrecting when the pace rises.",
+    "controls": [
+      "Use keyboard movement on desktop browsers when available in the embedded build",
+      "Use the fullscreen launch for the most stable play area on smaller screens",
+      "Restart quickly after mistakes so each attempt reinforces timing"
+    ],
+    "playerTips": [
+      "Watch the next safe lane instead of staring at the player position",
+      "Make smaller corrections when the run gets faster",
+      "Treat early seconds as rhythm setup, not just empty time"
+    ],
     "faq": [
       {
         "question": "Can I play LumaRush instantly in my browser?",
@@ -99,6 +110,17 @@
       "Color-based puzzle mechanics with quick rounds",
       "Easy to learn and challenging at higher pace",
       "Optimized for instant browser sessions"
+    ],
+    "designNotes": "Color Crunch is strongest when players build a repeatable scanning pattern. The game rewards quick visual grouping, but rushing without a plan can waste the openings that lead to better chains.",
+    "controls": [
+      "Use direct pointer or touch input for quick selections",
+      "Keep the browser zoom at a normal level so color groups remain readable",
+      "Use fullscreen if the embedded frame feels cramped"
+    ],
+    "playerTips": [
+      "Scan from large color groups to smaller cleanup moves",
+      "Avoid breaking useful clusters too early",
+      "Use failed rounds to learn which patterns slow you down"
     ],
     "faq": [
       {
@@ -240,6 +262,17 @@
       "Classic solitaire principles with speed emphasis",
       "Simple controls and immediate browser access",
       "Excellent for daily practice and time attacks"
+    ],
+    "designNotes": "SpeedSolitaire keeps the familiar solitaire structure but frames each session around pace. The best runs come from reducing pauses, recognizing card movement options early, and avoiding unnecessary backtracking.",
+    "controls": [
+      "Use mouse, trackpad, or touch input to move cards in the browser build",
+      "Use fullscreen mode when practicing time-focused runs",
+      "Pause only when needed; repeated short runs build faster recognition"
+    ],
+    "playerTips": [
+      "Expose hidden cards as early as possible when the move is clean",
+      "Do not chase every possible move if it slows the whole run",
+      "Practice one session goal at a time, such as fewer hesitations or faster foundation moves"
     ],
     "faq": [
       {

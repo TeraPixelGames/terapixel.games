@@ -2,14 +2,16 @@ import games from '../data/games.json';
 import type { APIRoute } from 'astro';
 import type { Game } from '../types';
 
-const staticPaths = ['/', '/games', '/shop', '/account', '/support', '/contact', '/privacy-policy'];
+const staticPaths = ['/', '/games', '/about', '/support', '/contact', '/privacy-policy'];
 
 export const GET: APIRoute = ({ site }) => {
   if (!site) {
     return new Response('Missing site config', { status: 500 });
   }
 
-  const gamePaths = (games as Game[]).map((game) => `/${game.slug}`);
+  const gamePaths = (games as Game[])
+    .filter((game) => Boolean(game.embedUrl || game.fullScreenUrl) && !game.isComingSoon)
+    .map((game) => `/${game.slug}`);
   const allPaths = [...staticPaths, ...gamePaths];
 
   const urls = allPaths

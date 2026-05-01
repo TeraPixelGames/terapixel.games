@@ -15,6 +15,9 @@ export type Game = {
   seoDetails?: string;
   seoHowToPlay?: string;
   seoFeatures?: string[];
+  designNotes?: string;
+  controls?: string[];
+  playerTips?: string[];
   faq?: GameFaq[];
   fullScreenUrl: string | null;
   embedUrl: string | null;

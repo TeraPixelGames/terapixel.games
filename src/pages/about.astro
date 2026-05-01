@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBasePath } from '../lib/site-paths';
+---
+
+<BaseLayout
+  title="About"
+  description="Learn how Terapixel Games publishes fast, playable browser games with clear controls and honest release status."
+>
+  <div class="shell stack">
+    <header class="page-head">
+      <h1 class="page-title">About Terapixel Games</h1>
+      <p class="page-copy">
+        Terapixel Games is a small browser-game studio building quick arcade and puzzle sessions for players who want to
+        open a tab, understand the goal, and start improving within the first minute.
+      </p>
+    </header>
+
+    <section class="content-grid" aria-label="Studio principles">
+      <article class="glass-panel text-panel">
+        <h2>What We Make</h2>
+        <p>
+          We publish lightweight web games with immediate controls, readable goals, and short repeatable runs. The current
+          live library includes arcade, puzzle, and card games exported for modern desktop and mobile browsers.
+        </p>
+      </article>
+
+      <article class="glass-panel text-panel">
+        <h2>How We Label Releases</h2>
+        <p>
+          Playable games have active launch links and game pages. Unreleased projects are clearly marked as coming soon,
+          kept out of the sitemap, and do not pretend to offer a playable build.
+        </p>
+      </article>
+
+      <article class="glass-panel text-panel">
+        <h2>What Players Can Expect</h2>
+        <p>
+          Every live game page should explain the core loop, controls, and practical play tips before asking anyone to
+          launch fullscreen. If something breaks, the Support and Contact pages provide a direct email channel.
+        </p>
+      </article>
+
+      <article class="glass-panel text-panel">
+        <h2>Editorial Standard</h2>
+        <p>
+          We keep site copy specific to games we operate, avoid fake download claims, and separate publisher information
+          from ads, account tools, and shop experiments. The goal is a site that is useful with or without monetization.
+        </p>
+      </article>
+    </section>
+
+    <section class="glass-panel text-panel" aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact the Studio</h2>
+      <p>
+        For gameplay reports, privacy questions, or partnership inquiries, email
+        <a href="mailto:support@terapixel.games">support@terapixel.games</a> or use the
+        <a href={withBasePath('/support')}>Support page</a>.
+      </p>
+    </section>
+  </div>
+</BaseLayout>

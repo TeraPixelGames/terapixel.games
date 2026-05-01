@@ -17,7 +17,7 @@ const primaryFullScreenUrl =
 const genreFilters = Array.from(new Set(gameList.map((game) => game.genre).filter(Boolean)));
 ---
 
-<BaseLayout title="Games" description="Explore the Terapixel Games arcade wall and launch playable browser games instantly.">
+<BaseLayout title="Games" description="Explore the Terapixel Games arcade wall and launch playable browser games instantly." enableAds={true}>
   <section class="arcade-wall-hero" aria-labelledby="games-heading">
     <div class="arcade-wall-copy">
       <p class="portal-kicker">Cabinet wall</p>
@@ -86,6 +86,29 @@ const genreFilters = Array.from(new Set(gameList.map((game) => game.genre).filte
             <GameCard game={game} />
           </div>
         ))}
+      </div>
+    </section>
+
+    <section class="section-block" aria-labelledby="quality-heading">
+      <div class="section-head">
+        <p class="portal-kicker">Player-first publishing</p>
+        <h2 id="quality-heading" class="section-title">What We Publish Here</h2>
+      </div>
+      <div class="content-grid">
+        <article class="glass-panel text-panel">
+          <h3>Playable Browser Builds</h3>
+          <p>
+            A game marked playable has an active web export, a detail page, and a fullscreen launch path. We do not label
+            unreleased work as playable, and cards without a build stay in preview mode until there is something real to try.
+          </p>
+        </article>
+        <article class="glass-panel text-panel">
+          <h3>Useful Game Pages</h3>
+          <p>
+            Each live game page includes plain-language rules, control notes, design context, and player tips. That keeps
+            the site useful even before a player starts the embedded game frame.
+          </p>
+        </article>
       </div>
     </section>
   </div>

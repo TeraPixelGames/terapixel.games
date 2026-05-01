@@ -27,12 +27,17 @@ const products = [
 ];
 ---
 
-<BaseLayout title="Shop" description="Browse clear, trustworthy support packs from the Terapixel Games shop.">
+<BaseLayout
+  title="Shop"
+  description="Browse planned Terapixel Games support packs and contact support for availability."
+  noindex={true}
+>
   <div class="shell stack">
     <header class="page-head">
       <h1 class="page-title">Shop</h1>
       <p class="page-copy">
-        Structured offers with clear value. No cramped layouts, no hidden details, and no checkout surprises.
+        Support packs are not available for self-service checkout yet. This page is kept out of search indexing until
+        purchases are live, documented, and backed by a complete checkout flow.
       </p>
     </header>
 
@@ -49,7 +54,7 @@ const products = [
               {product.benefits.map((benefit) => <li>{benefit}</li>)}
             </ul>
             <div class="hero-actions">
-              <a href={withBasePath('/support')} class="btn btn-primary">Purchase Support</a>
+              <a href={withBasePath('/support')} class="btn btn-secondary">Ask About Availability</a>
             </div>
           </article>
         ))

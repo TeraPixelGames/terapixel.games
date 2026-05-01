@@ -29,6 +29,7 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
   title="Home"
   description="Play free browser games from Terapixel Games in a fullscreen-first arcade portal."
   image={featuredGame.image}
+  enableAds={true}
 >
   <section class="portal-hero" aria-labelledby="home-hero-title">
     <div class="portal-stage" data-accent={featuredGame.accent ?? 'signal'}>
@@ -109,6 +110,33 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
       </div>
       <div class="game-grid">
         {gameList.map((game) => <GameCard game={game} />)}
+      </div>
+    </section>
+
+    <section class="section-block" aria-labelledby="studio-note-heading">
+      <div class="section-head split-head">
+        <div>
+          <p class="portal-kicker">Studio notes</p>
+          <h2 id="studio-note-heading" class="section-title">Why These Games Exist</h2>
+        </div>
+        <a href={withBasePath('/about')} class="btn btn-secondary">About Terapixel</a>
+      </div>
+      <div class="content-grid">
+        <article class="glass-panel text-panel">
+          <h3>Short Sessions, Clear Goals</h3>
+          <p>
+            Terapixel Games focuses on browser games that load quickly, explain themselves through play, and give players
+            a concrete reason to retry. We prioritize readable controls, fast restarts, and simple score improvement over
+            heavy accounts or forced downloads.
+          </p>
+        </article>
+        <article class="glass-panel text-panel">
+          <h3>Playable Builds First</h3>
+          <p>
+            Live games are separated from unreleased experiments so players and reviewers can find working content without
+            hunting through empty pages. Coming-soon titles are previews, not fake play links.
+          </p>
+        </article>
       </div>
     </section>
 

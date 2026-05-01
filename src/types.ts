@@ -3,6 +3,11 @@ export type GameFaq = {
   answer: string;
 };
 
+export type GameGuideSection = {
+  heading: string;
+  copy: string;
+};
+
 export type Game = {
   title: string;
   slug: string;
@@ -15,6 +20,10 @@ export type Game = {
   seoDetails?: string;
   seoHowToPlay?: string;
   seoFeatures?: string[];
+  designNotes?: string;
+  controls?: string[];
+  playerTips?: string[];
+  guideSections?: GameGuideSection[];
   faq?: GameFaq[];
   fullScreenUrl: string | null;
   embedUrl: string | null;

@@ -39,6 +39,10 @@ const seoIntro = game.seoIntro ?? fallbackIntro;
 const seoDetails = game.seoDetails ?? fallbackDetails;
 const seoHowToPlay = game.seoHowToPlay ?? fallbackHowToPlay;
 const seoFeatures = game.seoFeatures ?? fallbackFeatures;
+const designNotes = game.designNotes;
+const controls = game.controls ?? [];
+const playerTips = game.playerTips ?? [];
+const guideSections = game.guideSections ?? [];
 const faq = game.faq ?? [];
 
 const metaDescription = `${seoIntro} ${seoDetails}`.slice(0, 158);
@@ -46,7 +50,9 @@ const siteBase = Astro.site ?? Astro.url;
 const canonicalUrl = new URL(`/${game.slug}`, siteBase).toString();
 const imageUrl = new URL(game.image, siteBase).toString();
 const playableGames = allGames.filter((candidate) => (candidate.embedUrl || candidate.fullScreenUrl) && !candidate.isComingSoon);
-const relatedGames = allGames.filter((candidate) => candidate.slug !== game.slug).slice(0, 3);
+const relatedGames = allGames
+  .filter((candidate) => candidate.slug !== game.slug && Boolean(candidate.embedUrl || candidate.fullScreenUrl) && !candidate.isComingSoon)
+  .slice(0, 3);
 
 const videoGameJsonLd = {
   '@context': 'https://schema.org',
@@ -82,7 +88,13 @@ const faqJsonLd =
     : null;
 ---
 
-<BaseLayout title={game.title} description={metaDescription} image={game.image}>
+<BaseLayout
+  title={game.title}
+  description={metaDescription}
+  image={game.image}
+  enableAds={showEmbed}
+  noindex={!showEmbed}
+>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(videoGameJsonLd)} />
   {faqJsonLd && <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
@@ -162,6 +174,59 @@ const faqJsonLd =
         </ul>
       </article>
     </section>
+
+    {
+      (designNotes || controls.length > 0 || playerTips.length > 0) && (
+        <section class="content-grid" aria-label={`${game.title} player guide`}>
+          {designNotes && (
+            <article class="glass-panel text-panel">
+              <p class="portal-kicker">Design notes</p>
+              <h2>What to Watch</h2>
+              <p>{designNotes}</p>
+            </article>
+          )}
+
+          {controls.length > 0 && (
+            <article class="glass-panel text-panel">
+              <p class="portal-kicker">Controls</p>
+              <h2>Input Basics</h2>
+              <ul class="product-list">
+                {controls.map((control) => <li>{control}</li>)}
+              </ul>
+            </article>
+          )}
+
+          {playerTips.length > 0 && (
+            <article class="glass-panel text-panel">
+              <p class="portal-kicker">Player tips</p>
+              <h2>Improve Your Run</h2>
+              <ul class="product-list">
+                {playerTips.map((tip) => <li>{tip}</li>)}
+              </ul>
+            </article>
+          )}
+        </section>
+      )
+    }
+
+    {
+      guideSections.length > 0 && (
+        <section aria-labelledby="guide-heading" class="stack">
+          <div class="section-head">
+            <p class="portal-kicker">Player guide</p>
+            <h2 id="guide-heading" class="section-title">{game.title} Strategy Notes</h2>
+          </div>
+          <div class="content-grid">
+            {guideSections.map((section) => (
+              <article class="glass-panel text-panel">
+                <h3>{section.heading}</h3>
+                <p>{section.copy}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )
+    }
 
     {
       faq.length > 0 && (

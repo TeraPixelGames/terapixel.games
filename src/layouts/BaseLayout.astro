@@ -7,9 +7,17 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  enableAds?: boolean;
+  noindex?: boolean;
 }
 
-const { title, description = 'Play browser games from Terapixel Games.', image = '/images/games/lumarush.jpg' } = Astro.props;
+const {
+  title,
+  description = 'Play browser games from Terapixel Games.',
+  image = '/images/games/lumarush.jpg',
+  enableAds = false,
+  noindex = false
+} = Astro.props;
 
 // Canonical URLs are generated from astro.config.mjs site = https://terapixel.games
 const canonicalHref = Astro.site
@@ -37,6 +45,7 @@ const identityConfigScript = `window.__TPX_AUTH_CONFIG = ${JSON.stringify({
 const faviconUrl = withBasePath('/favicon.svg');
 const identityScriptUrl = withBasePath('/scripts/terapixel-identity.js');
 const privacyPolicyUrl = withBasePath('/privacy-policy');
+const aboutUrl = withBasePath('/about');
 const supportUrl = withBasePath('/support');
 const contactUrl = withBasePath('/contact');
 ---
@@ -48,6 +57,7 @@ const contactUrl = withBasePath('/contact');
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{socialTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonicalHref} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Terapixel Games" />
@@ -79,11 +89,15 @@ const contactUrl = withBasePath('/contact');
       gtag('config', 'G-L74E223LX0');
     </script>
 
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8413230766502262"
-      crossorigin="anonymous"
-    ></script>
+    {
+      enableAds && (
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8413230766502262"
+          crossorigin="anonymous"
+        />
+      )
+    }
     <script is:inline set:html={identityConfigScript} />
     <script src={identityScriptUrl} defer></script>
     <slot name="head" />
@@ -98,6 +112,7 @@ const contactUrl = withBasePath('/contact');
       <div class="shell footer-row">
         <p>&copy; {new Date().getFullYear()} Terapixel Games</p>
         <div class="footer-links">
+          <a href={aboutUrl}>About</a>
           <a href={privacyPolicyUrl}>Privacy Policy</a>
           <a href={supportUrl}>Support</a>
           <a href={contactUrl}>Contact</a>

@@ -9,11 +9,11 @@ const logoUrl =
 const links = [
   { href: '/', label: 'Home' },
   { href: '/games', label: 'Games' },
-  { href: '/shop', label: 'Shop' },
+  { href: '/about', label: 'About' },
   { href: '/support', label: 'Support' }
 ];
 
-const staticPaths = new Set(['/', '/games', '/shop', '/account', '/support', '/privacy-policy', '/contact']);
+const staticPaths = new Set(['/', '/games', '/about', '/shop', '/account', '/support', '/privacy-policy', '/contact']);
 const baseRelativePath = withoutBasePath(pathname);
 const normalizedPath =
   baseRelativePath.endsWith('/') && baseRelativePath !== '/' ? baseRelativePath.slice(0, -1) : baseRelativePath;

@@ -68,18 +68,22 @@ jobs:
           check_status "https://terapixel.games/play/lumarush/" "200"
           check_status "https://terapixel.games/play/color-crunch/" "200"
           check_status "https://terapixel.games/play/speedsolitaire/" "200"
+          check_status "https://terapixel.games/play/racer/" "200"
 
           check_status "https://terapixel.games/nakama/lumarush/healthcheck" "200"
           check_status "https://terapixel.games/nakama/color-crunch/healthcheck" "200"
           check_status "https://terapixel.games/nakama/speedsolitaire/healthcheck" "200"
+          check_status "https://terapixel.games/nakama/racer/healthcheck" "200"
 
           # Staging routes are Access-gated, so 302 is expected outside Access auth.
           check_status "https://terapixel.games/staging/play/lumarush/" "302,200"
           check_status "https://terapixel.games/staging/play/color-crunch/" "302,200"
           check_status "https://terapixel.games/staging/play/speedsolitaire/" "302,200"
+          check_status "https://terapixel.games/staging/play/racer/" "302,200"
           check_status "https://terapixel.games/staging/nakama/lumarush/healthcheck" "302,200"
           check_status "https://terapixel.games/staging/nakama/color-crunch/healthcheck" "302,200"
           check_status "https://terapixel.games/staging/nakama/speedsolitaire/healthcheck" "302,200"
+          check_status "https://terapixel.games/staging/nakama/racer/healthcheck" "302,200"
 
           if [[ "${failures}" -gt 0 ]]; then
             echo "Smoke checks failed: ${failures}"

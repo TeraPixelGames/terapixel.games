@@ -1,0 +1,73 @@
+name: Sync Racer Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Racer release tag to sync (for example: v1.2.3)"
+        required: false
+        default: ""
+      release_asset:
+        description: "Racer release asset name (optional)"
+        required: false
+        default: ""
+  repository_dispatch:
+    types: [racer_main_updated]
+
+concurrency:
+  group: sync-web-builds-main
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    outputs:
+      source_repo: ${{ steps.vars.outputs.source_repo }}
+      release_tag: ${{ steps.vars.outputs.release_tag }}
+      release_asset: ${{ steps.vars.outputs.release_asset }}
+    steps:
+      - name: Resolve payload values
+        id: vars
+        shell: bash
+        run: |
+          SOURCE_REPO="${{ github.event.client_payload.source_repo }}"
+          RELEASE_TAG="${{ github.event.client_payload.release_tag }}"
+          RELEASE_ASSET="${{ github.event.client_payload.release_asset }}"
+
+          if [ -z "${SOURCE_REPO}" ]; then
+            SOURCE_REPO="Terapixel-Games/racer"
+          fi
+
+          if [ -z "${RELEASE_TAG}" ]; then
+            RELEASE_TAG="${{ inputs.release_tag }}"
+          fi
+
+          if [ -z "${RELEASE_ASSET}" ]; then
+            RELEASE_ASSET="${{ inputs.release_asset }}"
+          fi
+          if [ -z "${RELEASE_ASSET}" ] && [ -n "${RELEASE_TAG}" ]; then
+            VERSION="${RELEASE_TAG#v}"
+            RELEASE_ASSET="racer-web-${VERSION}.zip"
+          fi
+
+          echo "source_repo=${SOURCE_REPO}" >> "$GITHUB_OUTPUT"
+          echo "release_tag=${RELEASE_TAG}" >> "$GITHUB_OUTPUT"
+          echo "release_asset=${RELEASE_ASSET}" >> "$GITHUB_OUTPUT"
+
+  sync:
+    needs: resolve
+    uses: Terapixel-Games/ArcadeCore/.github/workflows/reusable-sync-consumer-web-build.yml@main
+    with:
+      source_repo: ${{ needs.resolve.outputs.source_repo }}
+      release_tag: ${{ needs.resolve.outputs.release_tag }}
+      release_asset: ${{ needs.resolve.outputs.release_asset }}
+      destination_dir: public/play/racer
+      game_slug: racer
+      game_play_path: racer
+      target_branch: main
+      commit_message: "sync: update Racer web build"
+    secrets:
+      UPSTREAM_RELEASE_READ_TOKEN: ${{ secrets.RACER_RELEASE_READ_TOKEN }}

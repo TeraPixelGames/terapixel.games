@@ -84,6 +84,11 @@ function resolveNakamaRoute(pathname) {
       route: "staging-nakama-speedsolitaire",
     },
     {
+      prefix: "/staging/nakama/racer",
+      target: "STAGING_NAKAMA_RACER_ORIGIN",
+      route: "staging-nakama-racer",
+    },
+    {
       prefix: "/nakama/lumarush",
       target: "NAKAMA_LUMARUSH_ORIGIN",
       route: "nakama-lumarush",
@@ -107,6 +112,11 @@ function resolveNakamaRoute(pathname) {
       prefix: "/nakama/speed-solitaire",
       target: "NAKAMA_SPEEDSOLITAIRE_ORIGIN",
       route: "nakama-speedsolitaire",
+    },
+    {
+      prefix: "/nakama/racer",
+      target: "NAKAMA_RACER_ORIGIN",
+      route: "nakama-racer",
     },
   ];
 

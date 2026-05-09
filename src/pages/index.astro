@@ -3,67 +3,158 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import GameCard from '../components/GameCard.astro';
 import games from '../data/games.json';
 import type { Game } from '../types';
-import { withBasePath } from '../lib/site-paths';
+import { addBuildVersion, withBasePath } from '../lib/site-paths';
 
 const gameList = games as Game[];
 const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScreenUrl) && !game.isComingSoon);
-const featuredGames = playableGames.slice(0, 2);
+const upcomingGames = gameList.filter((game) => !((game.embedUrl || game.fullScreenUrl) && !game.isComingSoon));
+const featuredGame = playableGames[0] ?? gameList[0];
+const buildVersion = import.meta.env.PUBLIC_TPX_BUILD_ID;
+
+const mapPlayableUrl = (value: string | null): string | null => {
+  if (!value) return null;
+  if (value.startsWith('/')) {
+    const baseAwareUrl = withBasePath(value);
+    return value.startsWith('/play/') ? addBuildVersion(baseAwareUrl, buildVersion) : baseAwareUrl;
+  }
+  return value;
+};
+
+const featuredEmbedUrl = mapPlayableUrl(featuredGame.embedUrl);
+const featuredFullScreenUrl = mapPlayableUrl(featuredGame.fullScreenUrl);
+const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
 ---
 
 <BaseLayout
   title="Home"
-  description="Terapixel Games helps you jump into great browser games fast, stay in flow, and come back to real progress."
+  description="Play original browser arcade, puzzle, and card games from Terapixel Games with clear game guides and no downloads."
+  image={featuredGame.image}
+  enableAds={true}
 >
-  <div class="shell stack">
-    <section class="hero glass-panel" aria-labelledby="home-hero-title">
-      <p class="hero-eyebrow">Terapixel Games</p>
-      <h1 id="home-hero-title" class="hero-title">Find your next favorite game in seconds.</h1>
-      <p class="hero-copy">
-        Pick a game, jump straight into the fun, and play until there's just time for one more run.
-      </p>
-      <div class="hero-actions">
-        <a href={withBasePath('/games')} class="btn btn-primary">Play Games</a>
-        <a href={withBasePath('/shop')} class="btn btn-secondary">Visit Shop</a>
+  <section class="portal-hero" aria-labelledby="home-hero-title">
+    <div class="portal-stage" data-accent={featuredGame.accent ?? 'signal'}>
+      <div class="portal-toolbar" aria-label="Featured game controls">
+        <a href={withBasePath('/games')} class="portal-brand-lockup">
+          <span class="portal-led" aria-hidden="true"></span>
+          <span>TeraPixel Arcade</span>
+        </a>
+        <nav class="portal-game-tabs" aria-label="Playable games">
+          {playableGames.map((game) => (
+            <a href={withBasePath(`/${game.slug}`)} class:list={['portal-tab', game.slug === featuredGame.slug && 'is-active']}>
+              {game.title}
+            </a>
+          ))}
+        </nav>
+        <div class="portal-toolbar-actions">
+          {featuredFullScreenUrl && (
+            <a href={featuredFullScreenUrl} target="_blank" rel="noreferrer noopener" class="portal-tool-button">
+              Fullscreen
+            </a>
+          )}
+          <a href="#library" class="portal-tool-button muted">Library</a>
+        </div>
       </div>
-      <p class="hero-note">Quick to start, easy to return to, built for players who value clean experiences.</p>
-      <div class="stat-row" aria-label="Platform highlights">
-        <div class="stat-pill">
-          <strong>{playableGames.length}+ playable titles</strong>
-          <span>Start a round right away</span>
+
+      <div class="portal-player-grid">
+        <div class="portal-player-copy">
+          <p class="portal-kicker">Playable now</p>
+          <h1 id="home-hero-title">{featuredGame.title}</h1>
+          <p>{featuredGame.seoIntro ?? 'Launch a playable Terapixel browser game and read the guide notes below the play surface.'}</p>
+          <div class="portal-meta-row">
+            {featuredGame.genre && <span>{featuredGame.genre}</span>}
+            {featuredGame.mood && <span>{featuredGame.mood}</span>}
+            <span>{playableGames.length} live builds</span>
+          </div>
         </div>
-        <div class="stat-pill">
-          <strong>Progress that sticks</strong>
-          <span>Come back and keep moving</span>
+
+        <div class:list={['portal-player-frame', isFeaturedPortrait && 'is-portrait']}>
+          {
+            featuredEmbedUrl ? (
+              <iframe
+                src={featuredEmbedUrl}
+                title={`${featuredGame.title} featured game`}
+                loading="eager"
+                allow="fullscreen"
+                allowfullscreen
+              />
+            ) : (
+              <img src={withBasePath(featuredGame.image)} alt={featuredGame.title} />
+            )
+          }
         </div>
-        <div class="stat-pill">
-          <strong>Comfortable on any screen</strong>
-          <span>Play wherever you are</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="shell stack below-play">
+    <section class="section-block" aria-labelledby="playable-heading">
+      <div class="section-head split-head">
+        <div>
+          <p class="portal-kicker">Instant launch</p>
+          <h2 id="playable-heading" class="section-title">Live Games</h2>
         </div>
+        <p class="section-copy">These titles have working browser builds, direct game pages, and fullscreen launch links.</p>
+      </div>
+      <div class="game-grid arcade-grid">
+        {playableGames.map((game) => <GameCard game={game} playMode="fullscreen" />)}
       </div>
     </section>
 
-    {
-      featuredGames.length > 0 && (
-        <section class="section-block" aria-labelledby="featured-heading">
-          <div class="section-head">
-            <h2 id="featured-heading" class="section-title">Featured Games</h2>
-            <p class="section-copy">Two strong picks to jump into right now.</p>
-          </div>
-          <div class="game-grid">
-            {featuredGames.map((game) => <GameCard game={game} playMode="fullscreen" />)}
-          </div>
-        </section>
-      )
-    }
-
-    <section class="section-block" aria-labelledby="library-heading">
-      <div class="section-head">
-        <h2 id="library-heading" class="section-title">Game Library</h2>
-        <p class="section-copy">Browse the full lineup and pick the mood you want today.</p>
+    <section class="section-block" aria-labelledby="library">
+      <div class="section-head split-head">
+        <div>
+          <p class="portal-kicker">The full cabinet wall</p>
+          <h2 id="library" class="section-title">Game Status</h2>
+        </div>
+        <a href={withBasePath('/games')} class="btn btn-secondary">Open Library</a>
       </div>
       <div class="game-grid">
         {gameList.map((game) => <GameCard game={game} />)}
       </div>
     </section>
+
+    <section class="section-block" aria-labelledby="studio-note-heading">
+      <div class="section-head split-head">
+        <div>
+          <p class="portal-kicker">Studio notes</p>
+          <h2 id="studio-note-heading" class="section-title">Why These Games Exist</h2>
+        </div>
+        <a href={withBasePath('/about')} class="btn btn-secondary">About Terapixel</a>
+      </div>
+      <div class="content-grid">
+        <article class="glass-panel text-panel">
+          <h3>Short Sessions, Clear Goals</h3>
+          <p>
+            Terapixel Games focuses on browser games that load quickly, explain their goals clearly, and give players a
+            concrete reason to retry. The site is built around playable exports, direct support contact, and written
+            guides that help players understand each game before or after launching it.
+          </p>
+        </article>
+        <article class="glass-panel text-panel">
+          <h3>Playable Builds First</h3>
+          <p>
+            Live games are separated from unreleased experiments so players and reviewers can find working content
+            quickly. Coming-soon titles are shown only as status previews until a playable web build is available.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    {upcomingGames.length > 0 && (
+      <section class="section-block" aria-labelledby="upcoming-heading">
+        <div class="section-head">
+          <p class="portal-kicker">Next cabinets</p>
+          <h2 id="upcoming-heading" class="section-title">Coming Soon</h2>
+        </div>
+        <div class="cabinet-list">
+          {upcomingGames.slice(0, 6).map((game) => (
+            <div class="cabinet-link">
+              <strong>{game.title}</strong>
+              <span>{game.genre ?? 'Browser game'} / Preview only until a web build is ready</span>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
   </div>
 </BaseLayout>

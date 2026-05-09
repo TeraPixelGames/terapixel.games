@@ -27,22 +27,41 @@ jobs:
             local url="$1"
             local allowed_csv="$2"
             local code
-            code="$(curl -sS -o /dev/null -w "%{http_code}" "${url}")"
-            echo "${code} ${url} (allowed: ${allowed_csv})"
+            local attempts=5
+            local delay=3
+            local attempt
+            local history=""
 
-            local ok=1
-            IFS=',' read -r -a allowed_codes <<< "${allowed_csv}"
-            for allowed in "${allowed_codes[@]}"; do
-              if [[ "${code}" == "${allowed}" ]]; then
-                ok=0
-                break
+            for attempt in $(seq 1 "${attempts}"); do
+              code="$(curl -sS --connect-timeout 10 --max-time 20 -o /dev/null -w "%{http_code}" "${url}" || echo "curl_failed")"
+              history="${history}${history:+, }${code}"
+
+              local ok=1
+              IFS=',' read -r -a allowed_codes <<< "${allowed_csv}"
+              for allowed in "${allowed_codes[@]}"; do
+                if [[ "${code}" == "${allowed}" ]]; then
+                  ok=0
+                  break
+                fi
+              done
+
+              if [[ "${ok}" -eq 0 ]]; then
+                echo "${code} ${url} (allowed: ${allowed_csv}; attempts: ${history})"
+                return 0
               fi
+
+              if [[ "${attempt}" -lt "${attempts}" && ("${code}" == "curl_failed" || "${code}" =~ ^5) ]]; then
+                sleep "${delay}"
+                delay=$((delay * 2))
+                continue
+              fi
+
+              break
             done
 
-            if [[ "${ok}" -ne 0 ]]; then
-              echo "::error::Unexpected status ${code} for ${url}. Allowed: ${allowed_csv}"
-              failures=$((failures + 1))
-            fi
+            echo "${code} ${url} (allowed: ${allowed_csv}; attempts: ${history})"
+            echo "::error::Unexpected status ${code} for ${url}. Allowed: ${allowed_csv}. Attempts: ${history}"
+            failures=$((failures + 1))
           }
 
           check_status "https://terapixel.games/_edge/health" "200"

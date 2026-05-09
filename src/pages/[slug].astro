@@ -18,17 +18,15 @@ const mapPlayableUrl = (value: string | null): string | null => {
   if (!value) return null;
   if (value.startsWith('/')) {
     const baseAwareUrl = withBasePath(value);
-    if (value.startsWith('/play/')) {
-      return addBuildVersion(baseAwareUrl, buildVersion);
-    }
-    return baseAwareUrl;
+    return value.startsWith('/play/') ? addBuildVersion(baseAwareUrl, buildVersion) : baseAwareUrl;
   }
   return value;
 };
+
 const embedUrl = mapPlayableUrl(game.embedUrl);
 const fullScreenUrl = mapPlayableUrl(game.fullScreenUrl);
-const showEmbed = Boolean(embedUrl);
-const showFullScreen = Boolean(fullScreenUrl);
+const showEmbed = Boolean(embedUrl) && !game.isComingSoon;
+const showFullScreen = Boolean(fullScreenUrl) && !game.isComingSoon;
 const isPortraitEmbed = game.embedOrientation === 'portrait';
 
 const fallbackIntro = `${game.title} is a browser game from Terapixel Games with quick sessions and accessible gameplay.`;
@@ -41,13 +39,20 @@ const seoIntro = game.seoIntro ?? fallbackIntro;
 const seoDetails = game.seoDetails ?? fallbackDetails;
 const seoHowToPlay = game.seoHowToPlay ?? fallbackHowToPlay;
 const seoFeatures = game.seoFeatures ?? fallbackFeatures;
+const designNotes = game.designNotes;
+const controls = game.controls ?? [];
+const playerTips = game.playerTips ?? [];
+const guideSections = game.guideSections ?? [];
 const faq = game.faq ?? [];
 
 const metaDescription = `${seoIntro} ${seoDetails}`.slice(0, 158);
 const siteBase = Astro.site ?? Astro.url;
 const canonicalUrl = new URL(`/${game.slug}`, siteBase).toString();
 const imageUrl = new URL(game.image, siteBase).toString();
-const relatedGames = allGames.filter((candidate) => candidate.slug !== game.slug).slice(0, 3);
+const playableGames = allGames.filter((candidate) => (candidate.embedUrl || candidate.fullScreenUrl) && !candidate.isComingSoon);
+const relatedGames = allGames
+  .filter((candidate) => candidate.slug !== game.slug && Boolean(candidate.embedUrl || candidate.fullScreenUrl) && !candidate.isComingSoon)
+  .slice(0, 3);
 
 const videoGameJsonLd = {
   '@context': 'https://schema.org',
@@ -83,67 +88,145 @@ const faqJsonLd =
     : null;
 ---
 
-<BaseLayout title={game.title} description={metaDescription} image={game.image}>
+<BaseLayout
+  title={game.title}
+  description={metaDescription}
+  image={game.image}
+  enableAds={showEmbed}
+  noindex={!showEmbed}
+>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(videoGameJsonLd)} />
   {faqJsonLd && <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
-  <div class="shell stack">
-    <section class="page-head">
-      <h1 class="detail-title">{game.title}</h1>
-      <p class="page-copy">Play in browser now and switch to fullscreen when available.</p>
-    </section>
-
-    <section aria-label={`${game.title} player`}>
+  <section class="play-shell" data-accent={game.accent ?? 'signal'} aria-labelledby="game-title">
+    <div class:list={['play-frame-shell', isPortraitEmbed && 'is-portrait']}>
       {
         showEmbed ? (
-          <div class="player-wrap">
-            <div class:list={['player-frame', isPortraitEmbed && 'player-frame-portrait']}>
-              <iframe
-                src={embedUrl as string}
-                title={`${game.title} game`}
-                loading="lazy"
-                allow="fullscreen"
-                allowfullscreen
-              />
-            </div>
-          </div>
+          <iframe
+            src={embedUrl as string}
+            title={`${game.title} game`}
+            loading="eager"
+            allow="fullscreen"
+            allowfullscreen
+          />
         ) : (
-          <div class="glass-panel text-panel">
-            <h2>Coming Soon</h2>
-            <p>This title is in development. Check back on the Games page for release updates.</p>
+          <div class="coming-soon-stage">
+            <img src={withBasePath(game.image)} alt={game.title} />
+            <div>
+              <span>Coming soon</span>
+              <strong>{game.title}</strong>
+              <p>{seoIntro}</p>
+            </div>
           </div>
         )
       }
+    </div>
 
-      <div class="detail-actions">
-        {
-          showFullScreen ? (
-            <a href={fullScreenUrl as string} target="_blank" rel="noreferrer noopener" class="btn btn-primary">
-              Full Screen
-            </a>
-          ) : (
-            <span class="chip muted">Fullscreen coming soon</span>
-          )
-        }
-        <a href={withBasePath('/games')} class="btn btn-secondary">Back to Games</a>
+    <div class="play-toolbar" aria-label={`${game.title} controls`}>
+      <a href={withBasePath('/games')} class="portal-brand-lockup">
+        <span class="portal-led" aria-hidden="true"></span>
+        <span>Games</span>
+      </a>
+      <nav class="portal-game-tabs" aria-label="Switch playable game">
+        {playableGames.map((playableGame) => (
+          <a href={withBasePath(`/${playableGame.slug}`)} class:list={['portal-tab', playableGame.slug === game.slug && 'is-active']}>
+            {playableGame.title}
+          </a>
+        ))}
+      </nav>
+      <div class="portal-toolbar-actions">
+        {showFullScreen && (
+          <a href={fullScreenUrl as string} target="_blank" rel="noreferrer noopener" class="portal-tool-button">
+            Fullscreen
+          </a>
+        )}
+        <a href="#game-info" class="portal-tool-button muted">Info</a>
       </div>
-    </section>
+    </div>
 
+    <div class="play-title-row">
+      <div>
+        <p class="portal-kicker">{showEmbed ? 'Playable now' : 'Cabinet warming up'}</p>
+        <h1 id="game-title">{game.title}</h1>
+      </div>
+      <div class="portal-meta-row">
+        {game.genre && <span>{game.genre}</span>}
+        {game.mood && <span>{game.mood}</span>}
+        <span>{showEmbed ? 'Embedded build' : 'Coming soon'}</span>
+      </div>
+    </div>
+  </section>
+
+  <div id="game-info" class="shell stack below-play">
     <section class="content-grid" aria-label="Game details">
       <article class="glass-panel text-panel">
+        <p class="portal-kicker">About this cabinet</p>
         <h2>About {game.title}</h2>
-        <p>{seoIntro}</p>
         <p>{seoDetails}</p>
       </article>
 
       <article class="glass-panel text-panel">
-        <h2>How To Play</h2>
+        <p class="portal-kicker">How to play</p>
+        <h2>Start Fast</h2>
         <p>{seoHowToPlay}</p>
         <ul class="product-list">
           {seoFeatures.map((feature) => <li>{feature}</li>)}
         </ul>
       </article>
     </section>
+
+    {
+      (designNotes || controls.length > 0 || playerTips.length > 0) && (
+        <section class="content-grid" aria-label={`${game.title} player guide`}>
+          {designNotes && (
+            <article class="glass-panel text-panel">
+              <p class="portal-kicker">Design notes</p>
+              <h2>What to Watch</h2>
+              <p>{designNotes}</p>
+            </article>
+          )}
+
+          {controls.length > 0 && (
+            <article class="glass-panel text-panel">
+              <p class="portal-kicker">Controls</p>
+              <h2>Input Basics</h2>
+              <ul class="product-list">
+                {controls.map((control) => <li>{control}</li>)}
+              </ul>
+            </article>
+          )}
+
+          {playerTips.length > 0 && (
+            <article class="glass-panel text-panel">
+              <p class="portal-kicker">Player tips</p>
+              <h2>Improve Your Run</h2>
+              <ul class="product-list">
+                {playerTips.map((tip) => <li>{tip}</li>)}
+              </ul>
+            </article>
+          )}
+        </section>
+      )
+    }
+
+    {
+      guideSections.length > 0 && (
+        <section aria-labelledby="guide-heading" class="stack">
+          <div class="section-head">
+            <p class="portal-kicker">Player guide</p>
+            <h2 id="guide-heading" class="section-title">{game.title} Strategy Notes</h2>
+          </div>
+          <div class="content-grid">
+            {guideSections.map((section) => (
+              <article class="glass-panel text-panel">
+                <h3>{section.heading}</h3>
+                <p>{section.copy}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )
+    }
 
     {
       faq.length > 0 && (
@@ -173,7 +256,7 @@ const faqJsonLd =
             {relatedGames.map((relatedGame) => (
               <a href={withBasePath(`/${relatedGame.slug}`)} class="related-link">
                 <strong>{relatedGame.title}</strong>
-                <span>View details</span>
+                <span>{relatedGame.genre ?? 'View details'}</span>
               </a>
             ))}
           </div>

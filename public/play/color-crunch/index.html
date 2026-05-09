@@ -95,7 +95,67 @@ body {
 <script>
 window.COLOR_CRUNCH_PAYPAL_CLIENT_ID = "AbG4sfI0nBa9q1mz57fXTn2MCI9EGhNmc1y71c5Ba-ruYaZztTqhqfjmH2C8i7xSrRThBMpWV7yksija";
 </script>
-	</head>
+	<!-- arcadecore-h5-ads:start -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-8413230766502262" crossorigin="anonymous" data-ad-client="pub-8413230766502262"></script>
+<script>
+window.adsbygoogle = window.adsbygoogle || [];
+window.adBreak = window.adConfig = function(o) { window.adsbygoogle.push(o); };
+window.arcadecoreH5Ads = window.arcadecoreH5Ads || (function() {
+  function hasApi() {
+    return typeof window.adBreak === "function" && typeof window.adConfig === "function";
+  }
+  function callSafe(fn) {
+    if (typeof fn === "function") {
+      fn();
+    }
+  }
+  return {
+    configure: function(soundOn) {
+      if (!hasApi()) {
+        return false;
+      }
+      window.adConfig({
+        preloadAdBreaks: "auto",
+        sound: soundOn ? "on" : "off"
+      });
+      return true;
+    },
+    showInterstitial: function(name, beforeAd, afterAd, done) {
+      if (!hasApi()) {
+        callSafe(done);
+        return false;
+      }
+      window.adBreak({
+        type: "next",
+        name: name || "arcadecore_interstitial",
+        beforeAd: function() { callSafe(beforeAd); },
+        afterAd: function() { callSafe(afterAd); },
+        adBreakDone: function() { callSafe(done); }
+      });
+      return true;
+    },
+    showRewarded: function(name, beforeAd, afterAd, dismissed, viewed, done) {
+      if (!hasApi()) {
+        callSafe(done);
+        return false;
+      }
+      window.adBreak({
+        type: "reward",
+        name: name || "arcadecore_rewarded",
+        beforeAd: function() { callSafe(beforeAd); },
+        afterAd: function() { callSafe(afterAd); },
+        beforeReward: function(showAdFn) { showAdFn(); },
+        adDismissed: function() { callSafe(dismissed); },
+        adViewed: function() { callSafe(viewed); },
+        adBreakDone: function() { callSafe(done); }
+      });
+      return true;
+    }
+  };
+}());
+</script>
+<!-- arcadecore-h5-ads:end -->
+</head>
 	<body>
 		<canvas id="canvas">
 			Your browser does not support the canvas tag.
@@ -113,7 +173,7 @@ window.COLOR_CRUNCH_PAYPAL_CLIENT_ID = "AbG4sfI0nBa9q1mz57fXTn2MCI9EGhNmc1y71c5B
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":30910712,"index.wasm":38034280},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":30917724,"index.wasm":38034280},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 

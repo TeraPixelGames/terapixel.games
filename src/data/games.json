@@ -299,8 +299,9 @@
         "answer": "Yes. Worm Breaker is intended to be accessible as a free browser game."
       }
     ],
-    "fullScreenUrl": null,
-    "embedUrl": null
+    "fullScreenUrl": "/play/worm-breaker/",
+    "embedUrl": "/play/worm-breaker/",
+    "embedOrientation": "portrait"
   },
   {
     "title": "GloBlocks",

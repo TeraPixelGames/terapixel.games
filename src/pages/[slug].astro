@@ -6,9 +6,10 @@ import { addBuildVersion, withBasePath } from '../lib/site-paths';
 
 export function getStaticPaths() {
   const gameList = games as Game[];
-  return gameList.map((game) => ({
+  const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScreenUrl) && !game.isComingSoon);
+  return playableGames.map((game) => ({
     params: { slug: game.slug },
-    props: { game, allGames: gameList }
+    props: { game, allGames: playableGames }
   }));
 }
 

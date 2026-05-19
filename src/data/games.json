@@ -289,6 +289,31 @@
       "Short sessions with high replay potential",
       "Designed for players who like reflex challenges"
     ],
+    "designNotes": "Worm Breaker is about controlled reactions more than constant movement. The safest runs come from reading the next pressure point early, then making one clean adjustment instead of a chain of panic moves.",
+    "controls": [
+      "Use keyboard movement controls on desktop browsers when available",
+      "Keep the play area in fullscreen when practicing longer survival runs",
+      "Restart quickly after a collision so the timing pattern stays fresh"
+    ],
+    "playerTips": [
+      "Watch the nearest escape lane before committing to a direction",
+      "Avoid drifting into corners unless the next route is already clear",
+      "Slow your decisions enough to make one clean move instead of several corrections"
+    ],
+    "guideSections": [
+      {
+        "heading": "Who Worm Breaker Is For",
+        "copy": "Worm Breaker fits players who like short action challenges where every mistake is readable. It is not a long campaign; it is a focused survival loop for practicing reaction timing, spacing, and composure under pressure."
+      },
+      {
+        "heading": "Reading Pressure",
+        "copy": "The important habit is to identify where danger is forming before it reaches the player. If you only react after the path closes, you are forced into sharp corrections. Better runs come from moving toward open space early."
+      },
+      {
+        "heading": "Improving Survival Time",
+        "copy": "Use each failed run to name the mistake: late turn, trapped route, overcorrection, or lost focus. That makes the next attempt specific and prevents repeated restarts from feeling random."
+      }
+    ],
     "faq": [
       {
         "question": "What is the goal in Worm Breaker?",

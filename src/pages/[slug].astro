@@ -99,7 +99,7 @@ const faqJsonLd =
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(videoGameJsonLd)} />
   {faqJsonLd && <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
-  <section class="play-shell" data-accent={game.accent ?? 'signal'} aria-labelledby="game-title">
+  <section class="play-shell is-game-first" data-accent={game.accent ?? 'signal'} aria-labelledby="game-title">
     <div class:list={['play-frame-shell', isPortraitEmbed && 'is-portrait']}>
       {
         showEmbed ? (

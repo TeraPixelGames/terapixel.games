@@ -7,7 +7,6 @@ import { addBuildVersion, withBasePath } from '../lib/site-paths';
 
 const gameList = games as Game[];
 const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScreenUrl) && !game.isComingSoon);
-const upcomingGames = gameList.filter((game) => !((game.embedUrl || game.fullScreenUrl) && !game.isComingSoon));
 const featuredGame = playableGames[0] ?? gameList[0];
 const buildVersion = import.meta.env.PUBLIC_TPX_BUILD_ID;
 
@@ -63,7 +62,7 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
           <div class="portal-meta-row">
             {featuredGame.genre && <span>{featuredGame.genre}</span>}
             {featuredGame.mood && <span>{featuredGame.mood}</span>}
-            <span>{playableGames.length} live builds</span>
+            <span>{playableGames.length} playable guides</span>
           </div>
         </div>
 
@@ -104,12 +103,12 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
       <div class="section-head split-head">
         <div>
           <p class="portal-kicker">The full cabinet wall</p>
-          <h2 id="library" class="section-title">Game Status</h2>
+          <h2 id="library" class="section-title">Player Guides</h2>
         </div>
-        <a href={withBasePath('/games')} class="btn btn-secondary">Open Library</a>
+        <a href={withBasePath('/guides')} class="btn btn-secondary">Open Guides</a>
       </div>
       <div class="game-grid">
-        {gameList.map((game) => <GameCard game={game} />)}
+        {playableGames.map((game) => <GameCard game={game} />)}
       </div>
     </section>
 
@@ -133,28 +132,12 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
         <article class="glass-panel text-panel">
           <h3>Playable Builds First</h3>
           <p>
-            Live games are separated from unreleased experiments so players and reviewers can find working content
-            quickly. Coming-soon titles are shown only as status previews until a playable web build is available.
+            Live games stay paired with instructions, controls, tips, and guide notes so the page is useful even before
+            a player opens the embedded build. Preview-only projects stay out of public navigation until they have a
+            working browser export.
           </p>
         </article>
       </div>
     </section>
-
-    {upcomingGames.length > 0 && (
-      <section class="section-block" aria-labelledby="upcoming-heading">
-        <div class="section-head">
-          <p class="portal-kicker">Next cabinets</p>
-          <h2 id="upcoming-heading" class="section-title">Coming Soon</h2>
-        </div>
-        <div class="cabinet-list">
-          {upcomingGames.slice(0, 6).map((game) => (
-            <div class="cabinet-link">
-              <strong>{game.title}</strong>
-              <span>{game.genre ?? 'Browser game'} / Preview only until a web build is ready</span>
-            </div>
-          ))}
-        </div>
-      </section>
-    )}
   </div>
 </BaseLayout>

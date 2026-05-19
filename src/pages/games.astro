@@ -7,33 +7,31 @@ import { addBuildVersion, withBasePath } from '../lib/site-paths';
 
 const gameList = games as Game[];
 const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScreenUrl) && !game.isComingSoon);
-const upcomingGames = gameList.filter((game) => !((game.embedUrl || game.fullScreenUrl) && !game.isComingSoon));
 const buildVersion = import.meta.env.PUBLIC_TPX_BUILD_ID;
 const primaryGame = playableGames[0] ?? gameList[0];
 const primaryFullScreenUrl =
   primaryGame.fullScreenUrl && primaryGame.fullScreenUrl.startsWith('/')
     ? addBuildVersion(withBasePath(primaryGame.fullScreenUrl), buildVersion)
     : primaryGame.fullScreenUrl;
-const genreFilters = Array.from(new Set(gameList.map((game) => game.genre).filter(Boolean)));
+const genreFilters = Array.from(new Set(playableGames.map((game) => game.genre).filter(Boolean)));
 ---
 
 <BaseLayout
   title="Games"
-  description="Browse playable Terapixel browser games, read player guides, and see which titles are live or still in development."
+  description="Browse playable Terapixel browser games with fullscreen launch links, controls, and original player guides."
   enableAds={true}
 >
   <section class="arcade-wall-hero" aria-labelledby="games-heading">
     <div class="arcade-wall-copy">
       <p class="portal-kicker">Cabinet wall</p>
-      <h1 id="games-heading">Playable browser games, clearly separated from previews.</h1>
+      <h1 id="games-heading">Playable browser games with guides, controls, and fullscreen builds.</h1>
       <p>
-        This library separates live web builds from projects still in development. Playable games include launch links,
-        guide content, controls, and practical notes so visitors can decide what to play without opening dead-end pages.
+        This library only lists games with working web exports. Each playable game includes launch links, guide content,
+        controls, and practical notes so visitors can decide what to play before opening a fullscreen build.
       </p>
       <div class="portal-meta-row">
-        <span>{gameList.length} titles</span>
         <span>{playableGames.length} playable now</span>
-        <span>{upcomingGames.length} in production</span>
+        <span>{playableGames.length} player guides</span>
       </div>
       <div class="filter-strip" aria-label="Genre shortcuts">
         {genreFilters.map((genre) => <a href={`#${String(genre).toLowerCase().replaceAll(' ', '-')}`}>{genre}</a>)}
@@ -76,23 +74,6 @@ const genreFilters = Array.from(new Set(gameList.map((game) => game.genre).filte
       </div>
     </section>
 
-    <section class="section-block" aria-labelledby="upcoming-games-heading">
-      <div class="section-head split-head">
-        <div>
-          <p class="portal-kicker">Queued cabinets</p>
-          <h2 id="upcoming-games-heading" class="section-title">Coming Soon</h2>
-        </div>
-        <p class="section-copy">No fake play buttons or broken iframes. These titles are listed only for release transparency.</p>
-      </div>
-      <div class="game-grid">
-        {upcomingGames.map((game) => (
-          <div id={game.genre ? String(game.genre).toLowerCase().replaceAll(' ', '-') : undefined}>
-            <GameCard game={game} />
-          </div>
-        ))}
-      </div>
-    </section>
-
     <section class="section-block" aria-labelledby="quality-heading">
       <div class="section-head">
         <p class="portal-kicker">Player-first publishing</p>
@@ -102,8 +83,8 @@ const genreFilters = Array.from(new Set(gameList.map((game) => game.genre).filte
         <article class="glass-panel text-panel">
           <h3>Playable Browser Builds</h3>
           <p>
-            A game marked playable has an active web export, a detail page, and a fullscreen launch path. We do not mark
-            unreleased work as playable, and cards without a build stay in preview mode until there is something real to try.
+            Every game listed here has an active web export, a detail page, and a fullscreen launch path. Unreleased
+            work stays out of public navigation until there is something real to try.
           </p>
         </article>
         <article class="glass-panel text-panel">

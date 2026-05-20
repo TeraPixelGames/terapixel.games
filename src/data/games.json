@@ -37,11 +37,11 @@
     "image": "/images/games/lumarush.jpg",
     "seoIntro": "LumaRush is a fast-paced web game focused on movement, timing, and staying in control as intensity ramps up.",
     "seoDetails": "LumaRush is about staying calm while the screen keeps asking for faster decisions. A good run feels smooth: you spot the next safe lane early, move just enough, and keep the rhythm alive instead of jerking back and forth.",
-    "seoHowToPlay": "Start by watching the space ahead of you, not the center of the screen. Move early, make small corrections, and use each restart to learn which hazards made you panic.",
+    "seoHowToPlay": "Guide the runner through the glowing lanes, dodge the incoming blocks, and keep your movement tight as the pace climbs. The goal is not to make huge saves; it is to stay centered, read the next opening, and keep the run alive one lane change at a time.",
     "seoFeatures": [
-      "Look ahead for the next safe lane",
-      "Make small corrections instead of big saves",
-      "Restart quickly and chase a cleaner rhythm"
+      "Shift lanes before the next block reaches you",
+      "Stay near the center so both escape routes remain open",
+      "Use each restart to learn the speed ramp"
     ],
     "designNotes": "The trap in LumaRush is overreacting. When the pace rises, the best players make fewer moves, not more. Treat the early seconds as rhythm setup so your hands are ready before the hard part starts.",
     "controls": [

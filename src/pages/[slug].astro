@@ -161,14 +161,14 @@ const faqJsonLd =
   <div id="game-info" class="shell stack below-play">
     <section class="content-grid" aria-label="Game details">
       <article class="glass-panel text-panel">
-        <p class="portal-kicker">About the game</p>
-        <h2>About {game.title}</h2>
+        <p class="portal-kicker">Why play</p>
+        <h2>The Hook</h2>
         <p>{seoDetails}</p>
       </article>
 
       <article class="glass-panel text-panel">
         <p class="portal-kicker">How to play</p>
-        <h2>Start Fast</h2>
+        <h2>Your First Run</h2>
         <p>{seoHowToPlay}</p>
         <ul class="product-list">
           {seoFeatures.map((feature) => <li>{feature}</li>)}
@@ -181,7 +181,7 @@ const faqJsonLd =
         <section class="content-grid" aria-label={`${game.title} player guide`}>
           {designNotes && (
             <article class="glass-panel text-panel">
-              <p class="portal-kicker">Design notes</p>
+              <p class="portal-kicker">What matters</p>
               <h2>What to Watch</h2>
               <p>{designNotes}</p>
             </article>
@@ -190,7 +190,7 @@ const faqJsonLd =
           {controls.length > 0 && (
             <article class="glass-panel text-panel">
               <p class="portal-kicker">Controls</p>
-              <h2>Input Basics</h2>
+              <h2>Controls</h2>
               <ul class="product-list">
                 {controls.map((control) => <li>{control}</li>)}
               </ul>

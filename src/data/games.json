@@ -36,18 +36,18 @@
     "accent": "neon",
     "image": "/images/games/lumarush.jpg",
     "seoIntro": "LumaRush is a fast-paced web game focused on movement, timing, and staying in control as intensity ramps up.",
-    "seoDetails": "Designed for instant play in your browser, LumaRush combines arcade energy with responsive controls so every run feels skill-driven. It is easy to start and challenging to master.",
-    "seoHowToPlay": "Use movement controls to stay ahead of hazards, maintain rhythm, and push for higher scores with each run.",
+    "seoDetails": "LumaRush is about staying calm while the screen keeps asking for faster decisions. A good run feels smooth: you spot the next safe lane early, move just enough, and keep the rhythm alive instead of jerking back and forth.",
+    "seoHowToPlay": "Start by watching the space ahead of you, not the center of the screen. Move early, make small corrections, and use each restart to learn which hazards made you panic.",
     "seoFeatures": [
-      "Arcade-style gameplay tuned for short sessions",
-      "Smooth controls with immediate feedback",
-      "Repeatable runs ideal for score improvement"
+      "Look ahead for the next safe lane",
+      "Make small corrections instead of big saves",
+      "Restart quickly and chase a cleaner rhythm"
     ],
-    "designNotes": "LumaRush is built around readable momentum. The useful skill is not only reacting quickly, but keeping enough control to avoid overcorrecting when the pace rises.",
+    "designNotes": "The trap in LumaRush is overreacting. When the pace rises, the best players make fewer moves, not more. Treat the early seconds as rhythm setup so your hands are ready before the hard part starts.",
     "controls": [
-      "Use keyboard movement on desktop browsers when available",
-      "Use the fullscreen launch for the most stable play area on smaller screens",
-      "Restart quickly after mistakes so each attempt reinforces timing"
+      "Use keyboard movement on desktop when available",
+      "Use fullscreen if the play area feels tight",
+      "Restart quickly after mistakes while the timing is still fresh"
     ],
     "playerTips": [
       "Watch the next safe lane instead of staring at the player position",
@@ -89,14 +89,14 @@
     "accent": "ember",
     "image": "/images/games/racer.png",
     "seoIntro": "Racer is a browser kart-racing game with toy-scale tracks, quick laps, and multiplayer-ready race sessions.",
-    "seoDetails": "Built for instant browser play, Racer focuses on readable track layouts, fast restarts, and short competitive runs. Practice cleaner turns, learn the track, and keep improving your lap rhythm.",
-    "seoHowToPlay": "Pick a racer, learn the course rhythm, steer cleanly through turns, and use boost windows to improve lap times.",
+    "seoDetails": "Racer rewards clean lines more than frantic steering. The fun is learning a toy-scale track corner by corner, finding where to ease off, and carrying a smoother exit into the next stretch.",
+    "seoHowToPlay": "Take the first lap as scouting. Learn where the sharp turns, ramps, and boost windows are, then retry with one cleaner section as your goal.",
     "seoFeatures": [
-      "Direct browser play with no separate download",
-      "Toy-scale racing with quick restarts",
-      "Short racing sessions built around route learning and replay"
+      "Learn one corner before chasing a full fast lap",
+      "Brake or ease off before sharp turns",
+      "Use boost only when the exit is lined up"
     ],
-    "designNotes": "Racer is designed around toy-track readability: corners, ramps, and boost opportunities should be clear enough to learn quickly while still leaving room for better lines over repeated runs.",
+    "designNotes": "If you are sliding wide, you probably started the turn too late. Slow down before the corner, aim for a clean exit, and let speed come from rhythm instead of correction.",
     "controls": [
       "Use keyboard movement controls on desktop browsers",
       "Use fullscreen mode for the most stable view of the track",
@@ -172,14 +172,14 @@
     "accent": "citrus",
     "image": "/images/games/color-crunch.jpg",
     "seoIntro": "Color Crunch is a color-matching puzzle game for players who enjoy speed, clarity, and satisfying pattern recognition.",
-    "seoDetails": "As rounds progress, your ability to spot visual cues quickly becomes the difference between average and top performance. It is a strong choice for puzzle fans who enjoy fast feedback.",
-    "seoHowToPlay": "Identify color groups quickly, make clean matches, and keep momentum to build stronger scoring runs.",
+    "seoDetails": "Color Crunch is a quick visual puzzle about seeing the board before you touch it. The satisfying runs come from spotting a strong color group, clearing it cleanly, and keeping the next move open.",
+    "seoHowToPlay": "Pause for a beat before the first move. Find the biggest useful color group, clear it, then look for the follow-up instead of tapping every match you see.",
     "seoFeatures": [
-      "Color-based puzzle mechanics with quick rounds",
-      "Easy to learn and challenging at higher pace",
-      "Optimized for instant browser sessions"
+      "Scan the whole board before the first move",
+      "Keep useful color groups intact when possible",
+      "Use speed after you know the next match"
     ],
-    "designNotes": "Color Crunch is strongest when players build a repeatable scanning pattern. The game rewards quick visual grouping, but rushing without a plan can waste the openings that lead to better chains.",
+    "designNotes": "The board punishes autopilot. If a move breaks a useful cluster, it may cost more than it clears. Build a simple scan pattern and let the faster moves come after the plan is obvious.",
     "controls": [
       "Use direct pointer or touch input for quick selections",
       "Keep the browser zoom at a normal level so color groups remain readable",
@@ -282,12 +282,12 @@
     "accent": "signal",
     "image": "/images/games/worm-breaker.jpg",
     "seoIntro": "Worm Breaker is an action browser game centered on timing, positioning, and staying one step ahead.",
-    "seoDetails": "Its core loop is easy to jump into while still demanding control and consistency at higher intensity. Each attempt is a chance to improve precision and decision speed.",
-    "seoHowToPlay": "Track movement patterns, react quickly, and prioritize safe positioning to extend each run.",
+    "seoDetails": "Worm Breaker is a survival challenge where panic is the real enemy. You last longer by choosing safe space early, avoiding corners, and making one clean move instead of three desperate ones.",
+    "seoHowToPlay": "Keep your eyes on the next escape lane. Move before the route closes, stay out of traps, and use each failed run to name what caught you.",
     "seoFeatures": [
-      "Action gameplay with immediate input response",
-      "Short sessions with high replay potential",
-      "Designed for players who like reflex challenges"
+      "Find the escape lane before it closes",
+      "Stay away from corners unless you already have a way out",
+      "Make one clean move instead of several panic corrections"
     ],
     "designNotes": "Worm Breaker is about controlled reactions more than constant movement. The safest runs come from reading the next pressure point early, then making one clean adjustment instead of a chain of panic moves.",
     "controls": [
@@ -364,12 +364,12 @@
     "accent": "gold",
     "image": "/images/games/speedsolitaire.jpg",
     "seoIntro": "SpeedSolitaire is a fast browser card game that blends classic solitaire logic with time-focused play.",
-    "seoDetails": "It rewards quick pattern recognition and low-latency decision making, making it a strong option for players who enjoy traditional card structure with a modern pace.",
-    "seoHowToPlay": "Build stacks efficiently, reduce hesitation, and keep card flow moving to finish rounds faster.",
+    "seoDetails": "SpeedSolitaire keeps the familiar card logic but makes hesitation visible. Better runs come from exposing hidden cards early, recognizing obvious moves faster, and avoiding side moves that slow the whole board down.",
+    "seoHowToPlay": "Start by opening hidden cards when the move is clean. Keep foundations moving when it helps, but do not chase every possible move if it breaks your flow.",
     "seoFeatures": [
-      "Classic solitaire principles with speed emphasis",
-      "Simple controls and immediate browser access",
-      "Excellent for daily practice and time attacks"
+      "Expose hidden cards early",
+      "Move quickly when the next play is obvious",
+      "Practice one habit per run, like fewer pauses or cleaner stacks"
     ],
     "designNotes": "SpeedSolitaire keeps the familiar solitaire structure but frames each session around pace. The best runs come from reducing pauses, recognizing card movement options early, and avoiding unnecessary backtracking.",
     "controls": [

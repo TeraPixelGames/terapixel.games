@@ -26,7 +26,7 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
 
 <BaseLayout
   title="Home"
-  description="Play original browser arcade, puzzle, and card games from Terapixel Games with clear game guides and no downloads."
+  description="Play free browser arcade, puzzle, racing, action, and card games from Terapixel Games."
   image={featuredGame.image}
   enableAds={true}
 >
@@ -58,11 +58,11 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
         <div class="portal-player-copy">
           <p class="portal-kicker">Playable now</p>
           <h1 id="home-hero-title">{featuredGame.title}</h1>
-          <p>{featuredGame.seoIntro ?? 'Launch a playable Terapixel browser game and read the guide notes below the play surface.'}</p>
+          <p>{featuredGame.seoIntro ?? 'Jump into a quick browser game, learn the controls, and try for a better run.'}</p>
           <div class="portal-meta-row">
             {featuredGame.genre && <span>{featuredGame.genre}</span>}
             {featuredGame.mood && <span>{featuredGame.mood}</span>}
-            <span>{playableGames.length} playable guides</span>
+            <span>{playableGames.length} games</span>
           </div>
         </div>
 
@@ -90,9 +90,9 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
       <div class="section-head split-head">
         <div>
           <p class="portal-kicker">Instant launch</p>
-          <h2 id="playable-heading" class="section-title">Live Games</h2>
+          <h2 id="playable-heading" class="section-title">Play Now</h2>
         </div>
-        <p class="section-copy">These titles have working browser builds, direct game pages, and fullscreen launch links.</p>
+        <p class="section-copy">Pick a game, open it in the browser, and use fullscreen when you want more room.</p>
       </div>
       <div class="game-grid arcade-grid">
         {playableGames.map((game) => <GameCard game={game} playMode="fullscreen" />)}
@@ -102,10 +102,10 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
     <section class="section-block" aria-labelledby="library">
       <div class="section-head split-head">
         <div>
-          <p class="portal-kicker">The full cabinet wall</p>
-          <h2 id="library" class="section-title">Player Guides</h2>
+          <p class="portal-kicker">Learn the games</p>
+          <h2 id="library" class="section-title">Tips and Controls</h2>
         </div>
-        <a href={withBasePath('/guides')} class="btn btn-secondary">Open Guides</a>
+        <a href={withBasePath('/guides')} class="btn btn-secondary">View Tips</a>
       </div>
       <div class="game-grid">
         {playableGames.map((game) => <GameCard game={game} />)}
@@ -115,8 +115,8 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
     <section class="section-block" aria-labelledby="studio-note-heading">
       <div class="section-head split-head">
         <div>
-          <p class="portal-kicker">Studio notes</p>
-          <h2 id="studio-note-heading" class="section-title">Why These Games Exist</h2>
+          <p class="portal-kicker">For quick breaks</p>
+          <h2 id="studio-note-heading" class="section-title">Easy to Start, Worth Replaying</h2>
         </div>
         <a href={withBasePath('/about')} class="btn btn-secondary">About Terapixel</a>
       </div>
@@ -124,17 +124,15 @@ const isFeaturedPortrait = featuredGame.embedOrientation === 'portrait';
         <article class="glass-panel text-panel">
           <h3>Short Sessions, Clear Goals</h3>
           <p>
-            Terapixel Games focuses on browser games that load quickly, explain their goals clearly, and give players a
-            concrete reason to retry. The site is built around playable exports, direct support contact, and written
-            guides that help players understand each game before or after launching it.
+            These games are built for short sessions: race a lap, survive a little longer, clear a puzzle faster, or
+            improve a card run. You can play in the browser without downloading anything.
           </p>
         </article>
         <article class="glass-panel text-panel">
-          <h3>Playable Builds First</h3>
+          <h3>Know What to Do</h3>
           <p>
-            Live games stay paired with instructions, controls, tips, and guide notes so the page is useful even before
-            a player opens the embedded build. Preview-only projects stay out of public navigation until they have a
-            working browser export.
+            Each game page includes the basics before you start: what the goal is, how to control it, and a few tips
+            for improving your next attempt.
           </p>
         </article>
       </div>

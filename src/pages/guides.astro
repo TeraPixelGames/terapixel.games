@@ -9,17 +9,16 @@ const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScree
 ---
 
 <BaseLayout
-  title="Player Guides"
-  description="Read Terapixel Games player guides with controls, strategy notes, and practical tips for each playable browser game."
+  title="Tips and Controls"
+  description="Read quick controls and tips for Terapixel browser games."
   enableAds={true}
 >
   <div class="shell stack">
     <header class="page-head">
-      <h1 class="page-title">Player Guides</h1>
+      <h1 class="page-title">Tips and Controls</h1>
       <p class="page-copy">
-        These guides explain how each live Terapixel browser game works before you launch a fullscreen build. Every entry
-        is written for games we publish and focuses on practical play: controls, common mistakes, and what to practice
-        when a run goes badly.
+        Learn the goal, pick up the controls, and get a few practical tips before your next run. These notes are short
+        on purpose so you can get back to playing.
       </p>
     </header>
 
@@ -35,7 +34,7 @@ const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScree
               {(game.playerTips ?? game.seoFeatures ?? []).slice(0, 3).map((tip) => <li>{tip}</li>)}
             </ul>
             <div class="hero-actions">
-              <a href={withBasePath(`/${game.slug}`)} class="btn btn-primary">Read Guide</a>
+              <a href={withBasePath(`/${game.slug}`)} class="btn btn-primary">Open Game</a>
             </div>
           </article>
         ))
@@ -44,23 +43,22 @@ const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScree
 
     <section class="section-block" aria-labelledby="practice-heading">
       <div class="section-head">
-        <p class="portal-kicker">Practice method</p>
-        <h2 id="practice-heading" class="section-title">How to Use These Guides</h2>
+        <p class="portal-kicker">Practice</p>
+        <h2 id="practice-heading" class="section-title">One Thing at a Time</h2>
       </div>
       <div class="content-grid">
         <article class="glass-panel text-panel">
           <h3>Start With One Skill</h3>
           <p>
-            Pick one behavior to improve before launching a game: smoother steering, cleaner color scanning, faster card
-            recognition, or calmer movement under pressure. Short browser games are easier to learn when each run has a
-            specific purpose.
+            Pick one thing to improve before you start: smoother steering, faster color scanning, quicker card choices,
+            or calmer movement under pressure. A focused retry is usually better than a random one.
           </p>
         </article>
         <article class="glass-panel text-panel">
-          <h3>Use Fullscreen Deliberately</h3>
+          <h3>Use Fullscreen When It Helps</h3>
           <p>
-            Fullscreen mode helps when browser chrome, a small frame, or mobile viewport changes make the game harder to
-            read. The embedded pages are useful for quick checks, while fullscreen is better for focused practice.
+            Fullscreen gives the game more room and makes motion easier to read. It is especially useful on smaller
+            screens or when you are trying to beat a score.
           </p>
         </article>
       </div>

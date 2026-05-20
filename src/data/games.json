@@ -45,7 +45,7 @@
     ],
     "designNotes": "LumaRush is built around readable momentum. The useful skill is not only reacting quickly, but keeping enough control to avoid overcorrecting when the pace rises.",
     "controls": [
-      "Use keyboard movement on desktop browsers when available in the embedded build",
+      "Use keyboard movement on desktop browsers when available",
       "Use the fullscreen launch for the most stable play area on smaller screens",
       "Restart quickly after mistakes so each attempt reinforces timing"
     ],
@@ -65,7 +65,7 @@
       },
       {
         "heading": "When to Use Fullscreen",
-        "copy": "Fullscreen is recommended when the embedded frame feels tight or when browser chrome distracts from the play area. It gives the exported build more space and helps keep focus on motion cues."
+        "copy": "Fullscreen is recommended when the game feels cramped or when browser chrome distracts from the play area. It gives you more room to focus on motion cues."
       }
     ],
     "faq": [
@@ -89,11 +89,11 @@
     "accent": "ember",
     "image": "/images/games/racer.png",
     "seoIntro": "Racer is a browser kart-racing game with toy-scale tracks, quick laps, and multiplayer-ready race sessions.",
-    "seoDetails": "Built for instant browser play, Racer focuses on readable track layouts, fast restarts, and short competitive runs. Players can practice solo lines or use the live Nakama backend for online race flow as multiplayer features come online.",
+    "seoDetails": "Built for instant browser play, Racer focuses on readable track layouts, fast restarts, and short competitive runs. Practice cleaner turns, learn the track, and keep improving your lap rhythm.",
     "seoHowToPlay": "Pick a racer, learn the course rhythm, steer cleanly through turns, and use boost windows to improve lap times.",
     "seoFeatures": [
-      "Playable Godot web export with direct browser launch",
-      "Cloud Run Nakama backend for online multiplayer services",
+      "Direct browser play with no separate download",
+      "Toy-scale racing with quick restarts",
       "Short racing sessions built around route learning and replay"
     ],
     "designNotes": "Racer is designed around toy-track readability: corners, ramps, and boost opportunities should be clear enough to learn quickly while still leaving room for better lines over repeated runs.",
@@ -117,18 +117,18 @@
         "copy": "Strong runs start with reading the next corner early. Keep the kart stable before entering a turn, then accelerate once the exit is clear instead of overcorrecting midway through the corner."
       },
       {
-        "heading": "Online Play",
-        "copy": "Racer is connected to a live Nakama backend on Google Cloud Run. The web build can use that backend for multiplayer services as supported race modes are exposed to players."
+        "heading": "What to Practice First",
+        "copy": "Racer is easiest to enjoy when you treat each lap as practice. Pick one corner, ramp, or boost window to improve, then restart and try to carry that cleaner line through the full run."
       }
     ],
     "faq": [
       {
         "question": "Can I play Racer in the browser?",
-        "answer": "Yes. Racer has a web build that launches directly from Terapixel Games."
+        "answer": "Yes. Racer opens directly from Terapixel Games in a modern browser."
       },
       {
-        "question": "Does Racer use online services?",
-        "answer": "Yes. Racer is wired to a Cloud Run Nakama backend for multiplayer and online race services."
+        "question": "What should I practice first in Racer?",
+        "answer": "Start with clean steering through corners. A steady line is more useful than chasing speed before you know the track."
       }
     ],
     "fullScreenUrl": "/play/racer/",
@@ -183,7 +183,7 @@
     "controls": [
       "Use direct pointer or touch input for quick selections",
       "Keep the browser zoom at a normal level so color groups remain readable",
-      "Use fullscreen if the embedded frame feels cramped"
+      "Use fullscreen if the play area feels cramped"
     ],
     "playerTips": [
       "Scan from large color groups to smaller cleanup moves",
@@ -373,7 +373,7 @@
     ],
     "designNotes": "SpeedSolitaire keeps the familiar solitaire structure but frames each session around pace. The best runs come from reducing pauses, recognizing card movement options early, and avoiding unnecessary backtracking.",
     "controls": [
-      "Use mouse, trackpad, or touch input to move cards in the browser build",
+      "Use mouse, trackpad, or touch input to move cards",
       "Use fullscreen mode when practicing time-focused runs",
       "Pause only when needed; repeated short runs build faster recognition"
     ],

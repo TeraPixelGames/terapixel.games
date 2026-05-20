@@ -18,20 +18,20 @@ const genreFilters = Array.from(new Set(playableGames.map((game) => game.genre).
 
 <BaseLayout
   title="Games"
-  description="Browse playable Terapixel browser games with fullscreen launch links, controls, and original player guides."
+  description="Browse free Terapixel browser games you can play now."
   enableAds={true}
 >
   <section class="arcade-wall-hero" aria-labelledby="games-heading">
     <div class="arcade-wall-copy">
-      <p class="portal-kicker">Cabinet wall</p>
-      <h1 id="games-heading">Playable browser games with guides, controls, and fullscreen builds.</h1>
+      <p class="portal-kicker">Game library</p>
+      <h1 id="games-heading">Choose a game and start playing.</h1>
       <p>
-        This library only lists games with working web exports. Each playable game includes launch links, guide content,
-        controls, and practical notes so visitors can decide what to play before opening a fullscreen build.
+        Play racing, puzzle, action, and card games right in your browser. Open a game page for controls and tips, or
+        jump straight into fullscreen.
       </p>
       <div class="portal-meta-row">
-        <span>{playableGames.length} playable now</span>
-        <span>{playableGames.length} player guides</span>
+        <span>{playableGames.length} games</span>
+        <span>No downloads</span>
       </div>
       <div class="filter-strip" aria-label="Genre shortcuts">
         {genreFilters.map((genre) => <a href={`#${String(genre).toLowerCase().replaceAll(' ', '-')}`}>{genre}</a>)}
@@ -41,7 +41,7 @@ const genreFilters = Array.from(new Set(playableGames.map((game) => game.genre).
     <div class="arcade-spotlight" data-accent={primaryGame.accent ?? 'signal'}>
       <img src={withBasePath(primaryGame.image)} alt={primaryGame.title} />
       <div>
-        <span>Featured live build</span>
+        <span>Featured game</span>
         <strong>{primaryGame.title}</strong>
         <p>{primaryGame.seoIntro}</p>
         <div class="game-card-actions">
@@ -61,9 +61,9 @@ const genreFilters = Array.from(new Set(playableGames.map((game) => game.genre).
       <div class="section-head split-head">
         <div>
           <p class="portal-kicker">Ready now</p>
-          <h2 id="playable-games-heading" class="section-title">Playable Games</h2>
+          <h2 id="playable-games-heading" class="section-title">Games You Can Play</h2>
         </div>
-        <p class="section-copy">Fullscreen links go directly to live web exports. Details pages include controls and strategy notes.</p>
+        <p class="section-copy">Use fullscreen for the biggest play area, or open the details page first for controls and tips.</p>
       </div>
       <div class="game-grid arcade-grid">
         {playableGames.map((game) => (
@@ -76,22 +76,22 @@ const genreFilters = Array.from(new Set(playableGames.map((game) => game.genre).
 
     <section class="section-block" aria-labelledby="quality-heading">
       <div class="section-head">
-        <p class="portal-kicker">Player-first publishing</p>
-        <h2 id="quality-heading" class="section-title">What We Publish Here</h2>
+        <p class="portal-kicker">What to expect</p>
+        <h2 id="quality-heading" class="section-title">Quick Games, Clear Goals</h2>
       </div>
       <div class="content-grid">
         <article class="glass-panel text-panel">
-          <h3>Playable Browser Builds</h3>
+          <h3>Start Fast</h3>
           <p>
-            Every game listed here has an active web export, a detail page, and a fullscreen launch path. Unreleased
-            work stays out of public navigation until there is something real to try.
+            Each listed game is ready to open from the browser. Most sessions are short, so it is easy to retry and
+            chase a better score, lap, or time.
           </p>
         </article>
         <article class="glass-panel text-panel">
-          <h3>Useful Game Pages</h3>
+          <h3>Read Less, Play More</h3>
           <p>
-            Each live game page includes plain-language rules, control notes, design context, and player tips. That makes
-            the page useful on its own instead of relying on an embedded frame to carry all of the value.
+            Game pages keep the instructions practical: what you are trying to do, how to control the game, and what to
+            practice when you want to improve.
           </p>
         </article>
       </div>

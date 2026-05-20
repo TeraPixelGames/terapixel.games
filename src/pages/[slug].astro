@@ -32,7 +32,7 @@ const isPortraitEmbed = game.embedOrientation === 'portrait';
 
 const fallbackIntro = `${game.title} is a browser game from Terapixel Games with quick sessions and accessible gameplay.`;
 const fallbackDetails =
-  'This page includes direct play access, fullscreen support when available, and a focused game hub for players returning to improve their results.';
+  'Play in your browser, use fullscreen when you want more room, and come back for another run when you want to improve.';
 const fallbackHowToPlay = `Launch ${game.title}, learn the core loop, and improve performance over repeated sessions.`;
 const fallbackFeatures = ['Instant browser play', 'Short sessions with replay value', 'Works well on modern desktop and mobile browsers'];
 
@@ -153,7 +153,7 @@ const faqJsonLd =
       <div class="portal-meta-row">
         {game.genre && <span>{game.genre}</span>}
         {game.mood && <span>{game.mood}</span>}
-        <span>{showEmbed ? 'Embedded build' : 'Coming soon'}</span>
+        <span>{showEmbed ? 'Play in browser' : 'Coming soon'}</span>
       </div>
     </div>
   </section>
@@ -161,7 +161,7 @@ const faqJsonLd =
   <div id="game-info" class="shell stack below-play">
     <section class="content-grid" aria-label="Game details">
       <article class="glass-panel text-panel">
-        <p class="portal-kicker">About this cabinet</p>
+        <p class="portal-kicker">About the game</p>
         <h2>About {game.title}</h2>
         <p>{seoDetails}</p>
       </article>

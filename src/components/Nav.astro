@@ -7,14 +7,13 @@ const logoUrl =
   'https://lh3.googleusercontent.com/sitesv/APaQ0SQpb2N1PxGF7N9Iepr_9UbAKup_lJOLK5xjljlAfp4tEhTkxYPqfdu14ETCaiX-pzs4EswA481TbQqKx00S_xDyTkmafajnzGMW6mSLlXTD9HgchqxI_cqpCsNb0_yE13WADpRMlGVrHle3pEVGZwezAW989u6JHGE9Xr8SgvJpIfC-yY4o0ClcwiQ=w16383';
 
 const links = [
-  { href: '/', label: 'Home' },
   { href: '/games', label: 'Games' },
   { href: '/guides', label: 'Guides' },
   { href: '/about', label: 'About' },
   { href: '/support', label: 'Support' }
 ];
 
-const staticPaths = new Set(['/', '/games', '/guides', '/about', '/shop', '/account', '/support', '/privacy-policy', '/contact']);
+const staticPaths = new Set(['/games', '/guides', '/about', '/shop', '/account', '/support', '/privacy-policy', '/contact']);
 const baseRelativePath = withoutBasePath(pathname);
 const normalizedPath =
   baseRelativePath.endsWith('/') && baseRelativePath !== '/' ? baseRelativePath.slice(0, -1) : baseRelativePath;
@@ -25,7 +24,7 @@ const accountActive = normalizedPath === '/account';
 <header class="site-header">
   <div class="shell">
     <div class="topbar">
-      <a href={withBasePath('/')} class="brand" aria-label="Terapixel Games Home">
+      <a href={withBasePath('/games')} class="brand" aria-label="Terapixel Games">
         <img
           src={logoUrl}
           alt=""

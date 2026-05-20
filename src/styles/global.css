@@ -1088,6 +1088,10 @@ input {
   padding-top: 0;
 }
 
+body:has(.play-shell.is-game-first) .site-header {
+  display: none;
+}
+
 .portal-hero,
 .arcade-wall-hero,
 .play-shell {
@@ -1315,7 +1319,8 @@ input {
 
 .portal-player-frame iframe,
 .portal-player-frame img,
-.play-frame-shell iframe {
+.play-frame-shell iframe,
+.play-frame-shell img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1323,7 +1328,8 @@ input {
   border: 0;
 }
 
-.portal-player-frame img {
+.portal-player-frame img,
+.play-frame-shell img {
   object-fit: cover;
 }
 
@@ -1461,6 +1467,75 @@ input {
   grid-template-rows: minmax(360px, 1fr) auto auto;
 }
 
+.play-shell.is-game-first {
+  width: 100%;
+  max-width: none;
+  min-height: 100svh;
+  margin-inline: 0;
+  padding: clamp(0.35rem, 0.9vw, 0.65rem);
+  border-radius: 0;
+  border-inline: 0;
+  display: grid;
+  grid-template-areas:
+    'toolbar'
+    'frame';
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.play-shell.is-game-first .play-toolbar {
+  grid-area: toolbar;
+  margin: 0 0 clamp(0.35rem, 0.8vw, 0.55rem);
+  min-height: 48px;
+  border-radius: 0.9rem;
+}
+
+.play-shell.is-game-first .play-frame-shell {
+  grid-area: frame;
+  margin: 0;
+  min-height: 0;
+  border-radius: clamp(0.75rem, 1.2vw, 1rem);
+}
+
+.play-shell.is-game-first .play-frame-shell.is-portrait {
+  max-width: min(100%, 680px);
+}
+
+.play-shell.is-game-first .play-title-row {
+  position: absolute;
+  z-index: 3;
+  left: clamp(0.8rem, 1.6vw, 1.2rem);
+  right: auto;
+  bottom: clamp(0.8rem, 1.6vw, 1.2rem);
+  width: min(420px, calc(100% - 1.6rem));
+  padding: 0.55rem 0.7rem;
+  border: 1px solid rgba(133, 184, 205, 0.22);
+  border-radius: 0.9rem;
+  background: linear-gradient(180deg, rgba(3, 8, 14, 0.76), rgba(3, 8, 14, 0.58));
+  backdrop-filter: blur(14px);
+  pointer-events: none;
+}
+
+.play-shell.is-game-first .play-title-row h1 {
+  max-width: none;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.play-shell.is-game-first .portal-kicker {
+  margin: 0;
+}
+
+.play-shell.is-game-first .portal-meta-row {
+  display: none;
+}
+
+.play-shell.is-game-first .portal-meta-row span {
+  min-height: 28px;
+  font-size: 0.78rem;
+  background: rgba(15, 31, 47, 0.82);
+}
+
 .play-title-row {
   position: relative;
   z-index: 2;
@@ -1556,6 +1631,27 @@ input {
     align-items: start;
     flex-direction: column;
   }
+
+  .play-shell.is-game-first {
+    min-height: 100svh;
+  }
+
+  .play-shell.is-game-first .play-toolbar {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .play-shell.is-game-first .portal-toolbar-actions {
+    justify-content: end;
+  }
+
+  .play-shell.is-game-first .portal-toolbar-actions > * {
+    flex: 0 0 auto;
+  }
+
+  .play-shell.is-game-first .play-title-row {
+    align-items: start;
+    gap: 0.45rem;
+  }
 }
 
 @media (max-width: 620px) {
@@ -1580,6 +1676,34 @@ input {
   .play-frame-shell {
     min-height: 62svh;
     border-radius: 0.9rem;
+  }
+
+  .play-shell.is-game-first {
+    min-height: 100svh;
+    padding: 0.35rem;
+  }
+
+  .play-shell.is-game-first .play-frame-shell {
+    min-height: 0;
+    border-radius: 0.7rem;
+  }
+
+  .play-shell.is-game-first .play-frame-shell.is-portrait {
+    min-height: 0;
+  }
+
+  .play-shell.is-game-first .play-toolbar {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .play-shell.is-game-first .portal-game-tabs {
+    display: none;
+  }
+
+  .play-shell.is-game-first .play-title-row {
+    left: 0.7rem;
+    bottom: 0.7rem;
+    width: min(300px, calc(100% - 1.4rem));
   }
 
   .portal-player-frame.is-portrait,

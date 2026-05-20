@@ -61,7 +61,7 @@ const playRel = playMode === 'fullscreen' && game.fullScreenUrl ? 'noreferrer no
       {
         isPlayable ? (
           <a href={playHref} target={playTarget} rel={playRel} class="btn btn-primary">
-            {playMode === 'fullscreen' ? 'Launch Fullscreen' : 'Play Now'}
+            {playMode === 'fullscreen' ? 'Fullscreen' : 'Play Now'}
           </a>
         ) : (
           <span class="chip muted">Release Watch</span>

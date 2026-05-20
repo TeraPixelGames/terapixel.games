@@ -32,7 +32,7 @@ const isPortraitEmbed = game.embedOrientation === 'portrait';
 
 const fallbackIntro = `${game.title} is a browser game from Terapixel Games with quick sessions and accessible gameplay.`;
 const fallbackDetails =
-  'This page includes direct play access, fullscreen support when available, and a focused game hub for players returning to improve their results.';
+  'Play in your browser, use fullscreen when you want more room, and come back for another run when you want to improve.';
 const fallbackHowToPlay = `Launch ${game.title}, learn the core loop, and improve performance over repeated sessions.`;
 const fallbackFeatures = ['Instant browser play', 'Short sessions with replay value', 'Works well on modern desktop and mobile browsers'];
 
@@ -99,7 +99,7 @@ const faqJsonLd =
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(videoGameJsonLd)} />
   {faqJsonLd && <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
-  <section class="play-shell" data-accent={game.accent ?? 'signal'} aria-labelledby="game-title">
+  <section class="play-shell is-game-first" data-accent={game.accent ?? 'signal'} aria-labelledby="game-title">
     <div class:list={['play-frame-shell', isPortraitEmbed && 'is-portrait']}>
       {
         showEmbed ? (
@@ -153,7 +153,7 @@ const faqJsonLd =
       <div class="portal-meta-row">
         {game.genre && <span>{game.genre}</span>}
         {game.mood && <span>{game.mood}</span>}
-        <span>{showEmbed ? 'Embedded build' : 'Coming soon'}</span>
+        <span>{showEmbed ? 'Play in browser' : 'Coming soon'}</span>
       </div>
     </div>
   </section>
@@ -161,14 +161,14 @@ const faqJsonLd =
   <div id="game-info" class="shell stack below-play">
     <section class="content-grid" aria-label="Game details">
       <article class="glass-panel text-panel">
-        <p class="portal-kicker">About this cabinet</p>
-        <h2>About {game.title}</h2>
+        <p class="portal-kicker">Why play</p>
+        <h2>The Hook</h2>
         <p>{seoDetails}</p>
       </article>
 
       <article class="glass-panel text-panel">
         <p class="portal-kicker">How to play</p>
-        <h2>Start Fast</h2>
+        <h2>Your First Run</h2>
         <p>{seoHowToPlay}</p>
         <ul class="product-list">
           {seoFeatures.map((feature) => <li>{feature}</li>)}
@@ -181,7 +181,7 @@ const faqJsonLd =
         <section class="content-grid" aria-label={`${game.title} player guide`}>
           {designNotes && (
             <article class="glass-panel text-panel">
-              <p class="portal-kicker">Design notes</p>
+              <p class="portal-kicker">What matters</p>
               <h2>What to Watch</h2>
               <p>{designNotes}</p>
             </article>
@@ -190,7 +190,7 @@ const faqJsonLd =
           {controls.length > 0 && (
             <article class="glass-panel text-panel">
               <p class="portal-kicker">Controls</p>
-              <h2>Input Basics</h2>
+              <h2>Controls</h2>
               <ul class="product-list">
                 {controls.map((control) => <li>{control}</li>)}
               </ul>

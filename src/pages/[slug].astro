@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import KeepPageWheelScroll from '../components/KeepPageWheelScroll.astro';
 import games from '../data/games.json';
 import type { Game } from '../types';
 import { addBuildVersion, withBasePath } from '../lib/site-paths';
@@ -100,7 +101,7 @@ const faqJsonLd =
   {faqJsonLd && <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />}
 
   <section class="play-shell is-game-first" data-accent={game.accent ?? 'signal'} aria-labelledby="game-title">
-    <div class:list={['play-frame-shell', isPortraitEmbed && 'is-portrait']}>
+    <div class:list={['play-frame-shell', isPortraitEmbed && 'is-portrait']} data-page-wheel-scroll>
       {
         showEmbed ? (
           <iframe
@@ -265,4 +266,6 @@ const faqJsonLd =
       )
     }
   </div>
+
+  <KeepPageWheelScroll />
 </BaseLayout>

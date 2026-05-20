@@ -1,0 +1,48 @@
+<script>
+  const attachedFrames = new WeakMap();
+
+  const forwardWheelToPage = (event) => {
+    if (!event.deltaY && !event.deltaX) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    window.scrollBy({
+      top: event.deltaY,
+      left: event.deltaX,
+      behavior: 'auto'
+    });
+  };
+
+  const attachWheelForwarding = (iframe) => {
+    const previous = attachedFrames.get(iframe);
+    if (previous) {
+      previous.window?.removeEventListener('wheel', forwardWheelToPage, true);
+      previous.document?.removeEventListener('wheel', forwardWheelToPage, true);
+    }
+
+    try {
+      const frameWindow = iframe.contentWindow;
+      const frameDocument = iframe.contentDocument;
+      if (!frameWindow || !frameDocument) return;
+
+      frameWindow.addEventListener('wheel', forwardWheelToPage, { capture: true, passive: false });
+      frameDocument.addEventListener('wheel', forwardWheelToPage, { capture: true, passive: false });
+      attachedFrames.set(iframe, { window: frameWindow, document: frameDocument });
+    } catch {
+      // Cross-origin frames cannot be wired; current Terapixel game embeds are same-origin.
+    }
+  };
+
+  const wireGameFrames = () => {
+    document.querySelectorAll('[data-page-wheel-scroll] iframe').forEach((iframe) => {
+      attachWheelForwarding(iframe);
+      iframe.addEventListener('load', () => attachWheelForwarding(iframe));
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', wireGameFrames, { once: true });
+  } else {
+    wireGameFrames();
+  }
+</script>

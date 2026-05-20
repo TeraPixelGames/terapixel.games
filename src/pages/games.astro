@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GameCard from '../components/GameCard.astro';
+import KeepPageWheelScroll from '../components/KeepPageWheelScroll.astro';
 import games from '../data/games.json';
 import type { Game } from '../types';
 import { addBuildVersion, withBasePath } from '../lib/site-paths';
@@ -29,7 +30,7 @@ const isPrimaryPortrait = primaryGame.embedOrientation === 'portrait';
   enableAds={true}
 >
   <section class="play-shell is-game-first" data-accent={primaryGame.accent ?? 'signal'} aria-labelledby="games-heading">
-    <div class:list={['play-frame-shell', isPrimaryPortrait && 'is-portrait']}>
+    <div class:list={['play-frame-shell', isPrimaryPortrait && 'is-portrait']} data-page-wheel-scroll>
       {
         primaryEmbedUrl ? (
           <iframe
@@ -121,4 +122,6 @@ const isPrimaryPortrait = primaryGame.embedOrientation === 'portrait';
       </div>
     </section>
   </div>
+
+  <KeepPageWheelScroll />
 </BaseLayout>

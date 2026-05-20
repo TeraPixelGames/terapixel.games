@@ -6,22 +6,22 @@
     "mood": "Focused",
     "accent": "signal",
     "image": "/images/games/scrollsort.jpg",
-    "seoIntro": "ScrollSort is a pattern-based browser puzzle game where quick reading and clean decisions matter.",
-    "seoDetails": "Each run challenges you to scan, sort, and react with precision. If you like logic games that reward focus and speed, ScrollSort delivers short sessions with real replay value.",
-    "seoHowToPlay": "Start each round by identifying the rule in play, then sort items efficiently while avoiding slow or unnecessary moves.",
+    "seoIntro": "ScrollSort is a reading-and-sorting puzzle about catching the active rule before the list gets away from you.",
+    "seoDetails": "ScrollSort is built around quick classification. Each round asks you to read the prompt, identify what belongs together, and sort confidently instead of hesitating over every item.",
+    "seoHowToPlay": "Start by naming the sorting rule out loud in your head, then move through the list in batches. If an item does not fit the current rule, skip it for a moment and come back once the obvious matches are cleared.",
     "seoFeatures": [
-      "Fast puzzle rounds built for browser play",
-      "Skill-based progression through better decision making",
-      "Great fit for quick breaks and repeat attempts"
+      "Read the current sorting rule before moving items",
+      "Group obvious matches first",
+      "Use later passes for edge cases instead of stalling"
     ],
     "faq": [
       {
-        "question": "Is ScrollSort free to play?",
-        "answer": "Yes. ScrollSort is free to access on Terapixel Games."
+        "question": "What kind of puzzle is ScrollSort?",
+        "answer": "ScrollSort is a sorting puzzle about reading a rule quickly and organizing items that match it."
       },
       {
-        "question": "Does ScrollSort work on mobile browsers?",
-        "answer": "ScrollSort is designed for modern web browsers on desktop and mobile devices."
+        "question": "What should I practice first in ScrollSort?",
+        "answer": "Practice clearing the obvious matches first so you do not lose time debating every borderline item."
       }
     ],
     "fullScreenUrl": null,
@@ -98,7 +98,7 @@
     ],
     "designNotes": "If you are sliding wide, you probably started the turn too late. Slow down before the corner, aim for a clean exit, and let speed come from rhythm instead of correction.",
     "controls": [
-      "Use keyboard movement controls on desktop browsers",
+      "Use arrow keys or WASD-style movement controls on desktop",
       "Use fullscreen mode for the most stable view of the track",
       "Keep steering inputs deliberate through corners before accelerating out"
     ],
@@ -142,22 +142,22 @@
     "mood": "Pressure",
     "accent": "ember",
     "image": "/images/games/wormhole-raiders.jpg",
-    "seoIntro": "Wormhole Raiders is a browser action game built around dodging pressure, quick reactions, and tactical movement.",
-    "seoDetails": "The game rewards players who can stay calm while conditions change quickly. With each attempt, you can refine route choices and improve your survivability.",
-    "seoHowToPlay": "Keep moving, read threats early, and take safe windows when they appear to survive longer and improve your performance.",
+    "seoIntro": "Wormhole Raiders is a survival action game about diving through unstable space, reading enemy pressure, and taking the opening before it collapses.",
+    "seoDetails": "Wormhole Raiders is about controlled aggression. You are not just dodging; you are choosing when to cut through danger, when to hold distance, and when a wormhole gives you enough room to reset the fight.",
+    "seoHowToPlay": "Keep your eyes on the next safe pocket, then move before the screen closes in. Use wormholes and open space to break pressure instead of drifting into the edge of the arena.",
     "seoFeatures": [
-      "Action-focused gameplay that rewards reflexes",
-      "Short rounds with strong replayability",
-      "Runs that encourage constant improvement"
+      "Use wormholes to escape collapsing pressure",
+      "Read enemy movement before committing",
+      "Survive longer by resetting into open space"
     ],
     "faq": [
       {
         "question": "What type of game is Wormhole Raiders?",
-        "answer": "Wormhole Raiders is a browser action game focused on reflexes and survival."
+        "answer": "Wormhole Raiders is a survival action game about using movement and wormholes to stay alive under pressure."
       },
       {
-        "question": "Do I need to download anything to play Wormhole Raiders?",
-        "answer": "No. You can launch the game from the web using the play links on the game page."
+        "question": "What should I watch in Wormhole Raiders?",
+        "answer": "Watch where pressure is closing in, then move toward open space before the escape route disappears."
       }
     ],
     "fullScreenUrl": null,
@@ -224,22 +224,22 @@
     "mood": "Deliberate",
     "accent": "ember",
     "image": "/images/games/block-forge.jpg",
-    "seoIntro": "Block Forge is a browser puzzle game where planning ahead and efficient piece placement are key to success.",
-    "seoDetails": "The game rewards smart positioning and disciplined decisions rather than random moves. Players who enjoy strategic puzzle loops can keep refining their approach over time.",
-    "seoHowToPlay": "Place blocks with future space in mind, prevent dead zones, and build consistent scoring opportunities.",
+    "seoIntro": "Block Forge is a placement puzzle about fitting block pieces cleanly while keeping the board open for the next shape.",
+    "seoDetails": "Block Forge rewards players who think two pieces ahead. A strong board is not just full of completed lines; it has flexible gaps, clean corners, and enough breathing room for awkward shapes.",
+    "seoHowToPlay": "Place each block where it clears space or preserves future options. Avoid creating one-cell holes, keep the center flexible, and save wide open areas for pieces that are hard to fit.",
     "seoFeatures": [
-      "Strategy-forward puzzle gameplay",
-      "Quick starts with long-term mastery potential",
-      "Replayable sessions that reward planning"
+      "Place pieces without trapping small gaps",
+      "Build clears while preserving open board space",
+      "Plan around awkward shapes before they arrive"
     ],
     "faq": [
       {
         "question": "What makes Block Forge different from casual puzzle games?",
-        "answer": "Block Forge emphasizes planning and positioning, so smart long-term decisions matter more than random moves."
+        "answer": "Block Forge is about piece placement and board control, so the best moves preserve space instead of only chasing the first clear."
       },
       {
-        "question": "Can I play Block Forge on a phone or tablet?",
-        "answer": "Block Forge is built for modern browsers and is accessible across common device types."
+        "question": "What is the main mistake in Block Forge?",
+        "answer": "The main mistake is creating tiny dead spaces that future pieces cannot use."
       }
     ],
     "fullScreenUrl": null,
@@ -253,22 +253,22 @@
     "mood": "Clean logic",
     "accent": "gold",
     "image": "/images/games/sumslide.jpg",
-    "seoIntro": "SumSlide is a number puzzle game focused on clean logic, accurate moves, and efficient problem solving.",
-    "seoDetails": "Players who enjoy math-flavored challenges can use each round to sharpen recognition speed and improve solution quality. It is built for smooth browser play and repeat sessions.",
-    "seoHowToPlay": "Analyze each board state, make deliberate moves, and optimize your path to complete goals in fewer steps.",
+    "seoIntro": "SumSlide is a number puzzle about sliding tiles into useful totals without wasting moves.",
+    "seoDetails": "SumSlide turns arithmetic into route planning. Each move changes the board, so good solutions come from seeing which numbers can combine cleanly and which slide will set up the next sum.",
+    "seoHowToPlay": "Find the target total first, then trace which tiles can reach it with the fewest slides. Move numbers only when the path creates a sum or opens a better lane for the next one.",
     "seoFeatures": [
-      "Number-based puzzle design for logical thinkers",
-      "Low-friction gameplay that works well in-browser",
-      "Strong replayability through optimization"
+      "Build target sums from movable number tiles",
+      "Plan slide paths before committing",
+      "Replay boards to reduce wasted moves"
     ],
     "faq": [
       {
-        "question": "Is SumSlide available now?",
-        "answer": "SumSlide is listed on Terapixel Games and may be marked coming soon depending on release status."
+        "question": "What is the goal in SumSlide?",
+        "answer": "The goal is to combine number tiles into the needed sums while using clean slide paths."
       },
       {
         "question": "What skills does SumSlide focus on?",
-        "answer": "SumSlide focuses on logical sequencing, number awareness, and efficient move planning."
+        "answer": "SumSlide focuses on mental arithmetic, path planning, and recognizing efficient number combinations."
       }
     ],
     "fullScreenUrl": null,
@@ -291,7 +291,7 @@
     ],
     "designNotes": "Worm Breaker is about controlled reactions more than constant movement. The safest runs come from reading the next pressure point early, then making one clean adjustment instead of a chain of panic moves.",
     "controls": [
-      "Use keyboard movement controls on desktop browsers when available",
+      "Use arrow keys or WASD-style movement controls to stay out of danger",
       "Keep the play area in fullscreen when practicing longer survival runs",
       "Restart quickly after a collision so the timing pattern stays fresh"
     ],
@@ -335,22 +335,22 @@
     "mood": "Luminous",
     "accent": "mint",
     "image": "/images/games/globlocks.jpg",
-    "seoIntro": "GloBlocks is a browser puzzle game built around block logic, clean arrangement, and tactical sequencing.",
-    "seoDetails": "The game is ideal for players who want a thoughtful challenge that still fits into short play sessions. Success comes from balancing immediate gains with long-term board control.",
-    "seoHowToPlay": "Evaluate incoming shapes, set up combinations, and preserve board space for future moves.",
+    "seoIntro": "GloBlocks is a luminous block puzzle about placing glowing shapes, setting up clears, and keeping the board from choking itself.",
+    "seoDetails": "GloBlocks is slower and more deliberate than a reaction game. The useful move is often the one that keeps future shapes playable, even if another placement scores sooner.",
+    "seoHowToPlay": "Study the incoming shapes before placing the first one. Keep edges clean, avoid isolated gaps, and set up clears that leave the board easier to use afterward.",
     "seoFeatures": [
-      "Block puzzle mechanics with strategic depth",
-      "Accessible sessions for casual and competitive play",
-      "Great replay loop for refining puzzle efficiency"
+      "Place glowing shapes with future pieces in mind",
+      "Set up clears that open the board",
+      "Avoid isolated holes that break later placements"
     ],
     "faq": [
       {
         "question": "What kind of game is GloBlocks?",
-        "answer": "GloBlocks is a strategy-oriented block puzzle game for browser play."
+        "answer": "GloBlocks is a block placement puzzle about fitting glowing shapes while preserving board space."
       },
       {
-        "question": "Is GloBlocks better for short or long sessions?",
-        "answer": "It supports both, with quick rounds and a replay loop that rewards longer practice."
+        "question": "What should I focus on in GloBlocks?",
+        "answer": "Focus on keeping the board flexible, especially around edges and corners where bad gaps are hard to repair."
       }
     ],
     "fullScreenUrl": null,

@@ -1319,7 +1319,8 @@ body:has(.play-shell.is-game-first) .site-header {
 
 .portal-player-frame iframe,
 .portal-player-frame img,
-.play-frame-shell iframe {
+.play-frame-shell iframe,
+.play-frame-shell img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1327,7 +1328,8 @@ body:has(.play-shell.is-game-first) .site-header {
   border: 0;
 }
 
-.portal-player-frame img {
+.portal-player-frame img,
+.play-frame-shell img {
   object-fit: cover;
 }
 

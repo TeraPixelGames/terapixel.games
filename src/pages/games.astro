@@ -9,11 +9,18 @@ const gameList = games as Game[];
 const playableGames = gameList.filter((game) => (game.embedUrl || game.fullScreenUrl) && !game.isComingSoon);
 const buildVersion = import.meta.env.PUBLIC_TPX_BUILD_ID;
 const primaryGame = playableGames[0] ?? gameList[0];
-const primaryFullScreenUrl =
-  primaryGame.fullScreenUrl && primaryGame.fullScreenUrl.startsWith('/')
-    ? addBuildVersion(withBasePath(primaryGame.fullScreenUrl), buildVersion)
-    : primaryGame.fullScreenUrl;
-const genreFilters = Array.from(new Set(playableGames.map((game) => game.genre).filter(Boolean)));
+const mapPlayableUrl = (value: string | null): string | null => {
+  if (!value) return null;
+  if (value.startsWith('/')) {
+    const baseAwareUrl = withBasePath(value);
+    return value.startsWith('/play/') ? addBuildVersion(baseAwareUrl, buildVersion) : baseAwareUrl;
+  }
+  return value;
+};
+
+const primaryEmbedUrl = mapPlayableUrl(primaryGame.embedUrl);
+const primaryFullScreenUrl = mapPlayableUrl(primaryGame.fullScreenUrl);
+const isPrimaryPortrait = primaryGame.embedOrientation === 'portrait';
 ---
 
 <BaseLayout
@@ -21,37 +28,54 @@ const genreFilters = Array.from(new Set(playableGames.map((game) => game.genre).
   description="Browse free Terapixel browser games you can play now."
   enableAds={true}
 >
-  <section class="arcade-wall-hero" aria-labelledby="games-heading">
-    <div class="arcade-wall-copy">
-      <p class="portal-kicker">Game library</p>
-      <h1 id="games-heading">Choose a game and start playing.</h1>
-      <p>
-        Play racing, puzzle, action, and card games right in your browser. Open a game page for controls and tips, or
-        jump straight into fullscreen.
-      </p>
-      <div class="portal-meta-row">
-        <span>{playableGames.length} games</span>
-        <span>No downloads</span>
-      </div>
-      <div class="filter-strip" aria-label="Genre shortcuts">
-        {genreFilters.map((genre) => <a href={`#${String(genre).toLowerCase().replaceAll(' ', '-')}`}>{genre}</a>)}
+  <section class="play-shell is-game-first" data-accent={primaryGame.accent ?? 'signal'} aria-labelledby="games-heading">
+    <div class:list={['play-frame-shell', isPrimaryPortrait && 'is-portrait']}>
+      {
+        primaryEmbedUrl ? (
+          <iframe
+            src={primaryEmbedUrl}
+            title={`${primaryGame.title} featured game`}
+            loading="eager"
+            allow="fullscreen"
+            allowfullscreen
+          />
+        ) : (
+          <img src={withBasePath(primaryGame.image)} alt={primaryGame.title} />
+        )
+      }
+    </div>
+
+    <div class="play-toolbar" aria-label="Featured game controls">
+      <a href={withBasePath('/games')} class="portal-brand-lockup">
+        <span class="portal-led" aria-hidden="true"></span>
+        <span>Games</span>
+      </a>
+      <nav class="portal-game-tabs" aria-label="Switch featured game">
+        {playableGames.map((game) => (
+          <a href={withBasePath(`/${game.slug}`)} class:list={['portal-tab', game.slug === primaryGame.slug && 'is-active']}>
+            {game.title}
+          </a>
+        ))}
+      </nav>
+      <div class="portal-toolbar-actions">
+        {primaryFullScreenUrl && (
+          <a href={primaryFullScreenUrl} target="_blank" rel="noreferrer noopener" class="portal-tool-button">
+            Fullscreen
+          </a>
+        )}
+        <a href="#playable-games-heading" class="portal-tool-button muted">Library</a>
       </div>
     </div>
 
-    <div class="arcade-spotlight" data-accent={primaryGame.accent ?? 'signal'}>
-      <img src={withBasePath(primaryGame.image)} alt={primaryGame.title} />
+    <div class="play-title-row">
       <div>
-        <span>Featured game</span>
-        <strong>{primaryGame.title}</strong>
-        <p>{primaryGame.seoIntro}</p>
-        <div class="game-card-actions">
-          {primaryFullScreenUrl && (
-            <a href={primaryFullScreenUrl} target="_blank" rel="noreferrer noopener" class="btn btn-primary">
-              Launch Fullscreen
-            </a>
-          )}
-          <a href={withBasePath(`/${primaryGame.slug}`)} class="btn btn-secondary">Details</a>
-        </div>
+        <p class="portal-kicker">Featured game</p>
+        <h1 id="games-heading">{primaryGame.title}</h1>
+      </div>
+      <div class="portal-meta-row">
+        {primaryGame.genre && <span>{primaryGame.genre}</span>}
+        {primaryGame.mood && <span>{primaryGame.mood}</span>}
+        <span>{playableGames.length} games</span>
       </div>
     </div>
   </section>

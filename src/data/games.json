@@ -31,41 +31,41 @@
   {
     "title": "LumaRush",
     "slug": "lumarush",
-    "genre": "Arcade runner",
-    "mood": "Velocity",
+    "genre": "Tap puzzle",
+    "mood": "Pattern",
     "accent": "neon",
     "image": "/images/games/lumarush.jpg",
-    "seoIntro": "LumaRush is a fast-paced web game focused on movement, timing, and staying in control as intensity ramps up.",
-    "seoDetails": "LumaRush is about staying calm while the screen keeps asking for faster decisions. A good run feels smooth: you spot the next safe lane early, move just enough, and keep the rhythm alive instead of jerking back and forth.",
-    "seoHowToPlay": "Guide the runner through the glowing lanes, dodge the incoming blocks, and keep your movement tight as the pace climbs. The goal is not to make huge saves; it is to stay centered, read the next opening, and keep the run alive one lane change at a time.",
+    "seoIntro": "LumaRush is a fast-paced matching game about spotting the odd block and tapping the color that belongs with the surrounding pattern.",
+    "seoDetails": "LumaRush rewards quick pattern reading more than raw speed. Each round asks you to compare the center block with the blocks around it, find the matching color, and tap cleanly before the timer pressure breaks your focus.",
+    "seoHowToPlay": "Look at the surrounding blocks first, then tap the block or color that matches that pattern. The best runs come from fast recognition: scan the group, trust the match, and avoid random taps when the board starts moving quickly.",
     "seoFeatures": [
-      "Shift lanes before the next block reaches you",
-      "Stay near the center so both escape routes remain open",
-      "Use each restart to learn the speed ramp"
+      "Tap the block that matches the surrounding blocks",
+      "Read the whole pattern before committing",
+      "Build streaks by avoiding rushed mis-taps"
     ],
-    "designNotes": "The trap in LumaRush is overreacting. When the pace rises, the best players make fewer moves, not more. Treat the early seconds as rhythm setup so your hands are ready before the hard part starts.",
+    "designNotes": "The trap in LumaRush is tapping the first bright block you notice. Strong runs come from checking the surrounding blocks, confirming the match, and keeping a steady tap rhythm as the patterns speed up.",
     "controls": [
-      "Use keyboard movement on desktop when available",
-      "Use fullscreen if the play area feels tight",
-      "Restart quickly after mistakes while the timing is still fresh"
+      "Tap or click the matching block",
+      "Use fullscreen if the board feels cramped",
+      "Restart quickly while the pattern rule is still fresh"
     ],
     "playerTips": [
-      "Watch the next safe lane instead of staring at the player position",
-      "Make smaller corrections when the run gets faster",
-      "Treat early seconds as rhythm setup, not just empty time"
+      "Compare the target block against the surrounding blocks",
+      "Wait for a confirmed match instead of panic tapping",
+      "Use early rounds to lock into the visual rhythm"
     ],
     "guideSections": [
       {
         "heading": "Who LumaRush Is For",
-        "copy": "LumaRush fits players who like short arcade runs where improvement is visible quickly. A good session is not about unlocking a long checklist; it is about reading the lane, reacting cleanly, and starting another run with a slightly better rhythm."
+        "copy": "LumaRush fits players who like quick visual puzzles where every tap says whether they read the pattern correctly. A good session is about recognizing the matching block faster, staying calm under pressure, and starting another run with sharper eyes."
       },
       {
         "heading": "How to Build Consistency",
-        "copy": "The most reliable improvement comes from watching upcoming movement space instead of reacting at the last possible moment. Players who make small corrections early usually last longer than players who wait for a dramatic save."
+        "copy": "The most reliable improvement comes from scanning the surrounding blocks before you tap. Players who confirm the match first usually last longer than players who chase the most obvious color on the board."
       },
       {
         "heading": "When to Use Fullscreen",
-        "copy": "Fullscreen is recommended when the game feels cramped or when browser chrome distracts from the play area. It gives you more room to focus on motion cues."
+        "copy": "Fullscreen is recommended when the board feels cramped or when browser chrome distracts from the pattern. A larger play area makes the surrounding blocks easier to compare at a glance."
       }
     ],
     "faq": [

@@ -1,0 +1,32 @@
+<script>
+  const requestFrameFullscreen = async (button) => {
+    const shell = button.closest('[data-player-shell]');
+    const frame = shell?.querySelector('iframe');
+    const requestFullscreen =
+      frame?.requestFullscreen ||
+      frame?.webkitRequestFullscreen ||
+      frame?.msRequestFullscreen;
+
+    if (!frame || !requestFullscreen) {
+      return;
+    }
+
+    try {
+      await requestFullscreen.call(frame);
+    } catch (error) {
+      console.warn('Unable to open player iframe fullscreen.', error);
+    }
+  };
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    const button = target instanceof Element ? target.closest('[data-player-fullscreen]') : null;
+
+    if (!button) {
+      return;
+    }
+
+    event.preventDefault();
+    requestFrameFullscreen(button);
+  });
+</script>

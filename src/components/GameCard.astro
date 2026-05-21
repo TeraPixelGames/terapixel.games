@@ -1,25 +1,16 @@
 ---
 import type { Game } from '../types';
-import { addBuildVersion, withBasePath } from '../lib/site-paths';
+import { withBasePath } from '../lib/site-paths';
 
 interface Props {
   game: Game;
-  playMode?: 'detail' | 'fullscreen';
 }
 
-const { game, playMode = 'detail' } = Astro.props;
-const buildVersion = import.meta.env.PUBLIC_TPX_BUILD_ID;
+const { game } = Astro.props;
 const detailHref = withBasePath(`/${game.slug}`);
 const isPlayable = Boolean(game.embedUrl || game.fullScreenUrl) && !game.isComingSoon;
 const fallbackImage = withBasePath('/images/placeholder-game.svg');
 const gameImageSrc = game.image.startsWith('/') ? withBasePath(game.image) : game.image;
-const fullScreenPath =
-  game.fullScreenUrl && game.fullScreenUrl.startsWith('/')
-    ? addBuildVersion(withBasePath(game.fullScreenUrl), buildVersion)
-    : game.fullScreenUrl;
-const playHref = playMode === 'fullscreen' && fullScreenPath ? fullScreenPath : detailHref;
-const playTarget = playMode === 'fullscreen' && game.fullScreenUrl ? '_blank' : undefined;
-const playRel = playMode === 'fullscreen' && game.fullScreenUrl ? 'noreferrer noopener' : undefined;
 ---
 
 <article class="game-card" data-accent={game.accent ?? 'signal'}>
@@ -60,8 +51,8 @@ const playRel = playMode === 'fullscreen' && game.fullScreenUrl ? 'noreferrer no
     <div class="game-card-actions">
       {
         isPlayable ? (
-          <a href={playHref} target={playTarget} rel={playRel} class="btn btn-primary">
-            {playMode === 'fullscreen' ? 'Fullscreen' : 'Play Now'}
+          <a href={detailHref} class="btn btn-primary">
+            Play Now
           </a>
         ) : (
           <span class="chip muted">Release Watch</span>

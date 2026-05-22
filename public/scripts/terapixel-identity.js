@@ -455,8 +455,23 @@
     if (normalizedEmail) {
       params[AUTH_CONFIG.emailParam] = normalizedEmail;
     }
-    var targetUrl = buildUrlWithParams(AUTH_CONFIG.loginUrl, params);
-    window.location.assign(targetUrl);
+    if (!normalizedEmail) {
+      window.location.assign(buildUrlWithParams(AUTH_CONFIG.loginUrl, params));
+      return;
+    }
+    var form = document.createElement("form");
+    form.method = "POST";
+    form.action = AUTH_CONFIG.loginUrl;
+    form.style.display = "none";
+    Object.keys(params).forEach(function (key) {
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
+      input.value = params[key];
+      form.appendChild(input);
+    });
+    document.body.appendChild(form);
+    form.submit();
   }
 
   function handleStorageEvent(event) {

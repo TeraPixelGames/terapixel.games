@@ -22,6 +22,10 @@ const mapPlayableUrl = (value: string | null): string | null => {
 
 const primaryEmbedUrl = mapPlayableUrl(primaryGame.embedUrl);
 const isPrimaryPortrait = primaryGame.embedOrientation === 'portrait';
+const configuredOverlayTimeout = Number.parseInt(import.meta.env.PUBLIC_FEATURED_GAME_OVERLAY_TIMEOUT_MS ?? '3000', 10);
+const featuredGameOverlayTimeoutMs = Number.isFinite(configuredOverlayTimeout) && configuredOverlayTimeout >= 0
+  ? configuredOverlayTimeout
+  : 3000;
 ---
 
 <BaseLayout
@@ -68,7 +72,11 @@ const isPrimaryPortrait = primaryGame.embedOrientation === 'portrait';
       </div>
     </div>
 
-    <div class="play-title-row">
+    <div
+      class="play-title-row"
+      data-featured-game-overlay
+      data-fade-timeout-ms={featuredGameOverlayTimeoutMs}
+    >
       <div>
         <p class="portal-kicker">Featured game</p>
         <h1 id="games-heading">{primaryGame.title}</h1>
@@ -125,4 +133,15 @@ const isPrimaryPortrait = primaryGame.embedOrientation === 'portrait';
 
   <KeepPageWheelScroll />
   <PlayerFullscreenController />
+
+  <script>
+    const featuredGameOverlay = document.querySelector('[data-featured-game-overlay]');
+    if (featuredGameOverlay instanceof HTMLElement) {
+      const configuredTimeout = Number.parseInt(featuredGameOverlay.dataset.fadeTimeoutMs ?? '', 10);
+      const fadeTimeoutMs = Number.isFinite(configuredTimeout) && configuredTimeout >= 0 ? configuredTimeout : 3000;
+      window.setTimeout(() => {
+        featuredGameOverlay.classList.add('is-faded');
+      }, fadeTimeoutMs);
+    }
+  </script>
 </BaseLayout>

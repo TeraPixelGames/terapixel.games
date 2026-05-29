@@ -1514,6 +1514,17 @@ body:has(.play-shell.is-game-first) .site-header {
   background: linear-gradient(180deg, rgba(3, 8, 14, 0.76), rgba(3, 8, 14, 0.58));
   backdrop-filter: blur(14px);
   pointer-events: none;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.45s ease, transform 0.45s ease, visibility 0s linear 0s;
+  visibility: visible;
+}
+
+.play-shell.is-game-first .play-title-row.is-faded {
+  opacity: 0;
+  transform: translateY(0.35rem);
+  transition-delay: 0s, 0s, 0.45s;
+  visibility: hidden;
 }
 
 .play-shell.is-game-first .play-title-row h1 {

@@ -1520,7 +1520,7 @@ body:has(.play-shell.is-game-first) .site-header {
   visibility: visible;
 }
 
-.play-shell.is-game-first .play-title-row.is-faded {
+.play-shell.is-game-first [data-player-title-overlay].is-faded {
   opacity: 0;
   transform: translateY(0.35rem);
   transition-delay: 0s, 0s, 0.45s;

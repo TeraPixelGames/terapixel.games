@@ -1,0 +1,31 @@
+---
+const configuredOverlayTimeout = Number.parseInt(import.meta.env.PUBLIC_FEATURED_GAME_OVERLAY_TIMEOUT_MS ?? '3000', 10);
+const overlayTimeoutMs = Number.isFinite(configuredOverlayTimeout) && configuredOverlayTimeout >= 0
+  ? configuredOverlayTimeout
+  : 3000;
+---
+
+<script define:vars={{ overlayTimeoutMs }}>
+  const fadePlayerTitleOverlays = () => {
+    document.querySelectorAll('[data-player-title-overlay]').forEach((overlay) => {
+      if (!(overlay instanceof HTMLElement)) {
+        return;
+      }
+
+      const configuredTimeout = Number.parseInt(overlay.dataset.fadeTimeoutMs ?? '', 10);
+      const fadeTimeoutMs = Number.isFinite(configuredTimeout) && configuredTimeout >= 0
+        ? configuredTimeout
+        : overlayTimeoutMs;
+
+      window.setTimeout(() => {
+        overlay.classList.add('is-faded');
+      }, fadeTimeoutMs);
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fadePlayerTitleOverlays, { once: true });
+  } else {
+    fadePlayerTitleOverlays();
+  }
+</script>

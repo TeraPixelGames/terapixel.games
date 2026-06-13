@@ -6,9 +6,18 @@ const overlayTimeoutMs = Number.isFinite(configuredOverlayTimeout) && configured
 ---
 
 <script define:vars={{ overlayTimeoutMs }}>
+  const hideOverlay = (overlay) => {
+    overlay.classList.add('is-faded');
+    overlay.dataset.fadeScheduled = 'done';
+  };
+
   const fadePlayerTitleOverlays = () => {
     document.querySelectorAll('[data-player-title-overlay]').forEach((overlay) => {
       if (!(overlay instanceof HTMLElement)) {
+        return;
+      }
+
+      if (overlay.dataset.fadeScheduled) {
         return;
       }
 
@@ -17,9 +26,8 @@ const overlayTimeoutMs = Number.isFinite(configuredOverlayTimeout) && configured
         ? configuredTimeout
         : overlayTimeoutMs;
 
-      window.setTimeout(() => {
-        overlay.classList.add('is-faded');
-      }, fadeTimeoutMs);
+      overlay.dataset.fadeScheduled = 'true';
+      window.setTimeout(() => hideOverlay(overlay), fadeTimeoutMs);
     });
   };
 
@@ -28,4 +36,12 @@ const overlayTimeoutMs = Number.isFinite(configuredOverlayTimeout) && configured
   } else {
     fadePlayerTitleOverlays();
   }
+
+  window.addEventListener('pageshow', fadePlayerTitleOverlays);
+  document.addEventListener('astro:page-load', fadePlayerTitleOverlays);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      fadePlayerTitleOverlays();
+    }
+  });
 </script>

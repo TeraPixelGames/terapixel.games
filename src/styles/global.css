@@ -1518,6 +1518,7 @@ body:has(.play-shell.is-game-first) .site-header {
   transform: translateY(0);
   transition: opacity 0.45s ease, transform 0.45s ease, visibility 0s linear 0s;
   visibility: visible;
+  animation: player-title-overlay-auto-hide 0.45s ease 3s forwards;
 }
 
 .play-shell.is-game-first [data-player-title-overlay].is-faded {
@@ -1525,6 +1526,14 @@ body:has(.play-shell.is-game-first) .site-header {
   transform: translateY(0.35rem);
   transition-delay: 0s, 0s, 0.45s;
   visibility: hidden;
+}
+
+@keyframes player-title-overlay-auto-hide {
+  to {
+    opacity: 0;
+    transform: translateY(0.35rem);
+    visibility: hidden;
+  }
 }
 
 .play-shell.is-game-first .play-title-row h1 {

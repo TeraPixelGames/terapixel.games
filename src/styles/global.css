@@ -1513,6 +1513,18 @@ body:has(.play-shell.is-game-first) .site-header {
   background: linear-gradient(180deg, rgba(3, 8, 14, 0.76), rgba(3, 8, 14, 0.58));
   backdrop-filter: blur(14px);
   pointer-events: none;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  animation: player-title-overlay-auto-hide 0.45s ease 3s forwards;
+}
+
+@keyframes player-title-overlay-auto-hide {
+  to {
+    opacity: 0;
+    transform: translateY(0.35rem);
+    visibility: hidden;
+  }
 }
 
 .play-shell.is-game-first .play-title-row h1 {

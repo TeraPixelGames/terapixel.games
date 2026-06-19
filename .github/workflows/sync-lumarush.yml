@@ -20,6 +20,7 @@ concurrency:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   resolve:
@@ -141,6 +142,8 @@ jobs:
 
       - name: Commit and push changes
         shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -154,9 +157,10 @@ jobs:
           git add public/play/lumarush src/data/games.json
           git commit -m "sync: update LumaRush web build"
 
+          BRANCH_NAME="automation/sync-lumarush-${{ needs.resolve.outputs.release_tag }}-${GITHUB_RUN_ID}"
           for attempt in 1 2 3; do
-            if git push origin HEAD:main; then
-              exit 0
+            if git push origin "HEAD:${BRANCH_NAME}"; then
+              break
             fi
 
             if [ "${attempt}" -eq 3 ]; then
@@ -164,7 +168,13 @@ jobs:
               exit 1
             fi
 
-            echo "Push rejected, rebasing onto origin/main and retrying (attempt $((attempt + 1)))"
+            echo "Branch push rejected, rebasing onto origin/main and retrying (attempt $((attempt + 1)))"
             git fetch origin main
             git rebase origin/main
           done
+
+          gh pr create \
+            --base main \
+            --head "${BRANCH_NAME}" \
+            --title "sync: update LumaRush web build" \
+            --body "Automated sync for LumaRush ${{ needs.resolve.outputs.release_tag }}."

@@ -1,5 +1,59 @@
 [
   {
+    "title": "GlowPath",
+    "slug": "glowpath",
+    "genre": "Path puzzle",
+    "mood": "Luminous logic",
+    "accent": "neon",
+    "image": "/images/games/glowpath.png",
+    "seoIntro": "GlowPath is a swipe puzzle about lighting every active square from one starting point without wasting the route.",
+    "seoDetails": "GlowPath turns each board into a clean pathfinding challenge. Start on the pulsing entry tile, swipe through adjacent squares, backtrack when needed, and finish when every active tile glows.",
+    "seoHowToPlay": "Press the starting tile, then swipe through unlit neighboring tiles. Holes are blocked, revisiting a lit tile is ignored unless it is the previous square, and a completed route lights the whole stage.",
+    "seoFeatures": [
+      "Start from the pulsing entry square",
+      "Swipe through each active tile exactly once",
+      "Backtrack one step to repair a route without restarting"
+    ],
+    "designNotes": "The useful move in GlowPath is often the one that preserves exits. Watch corners and narrow bridges before committing, because a bright-looking route can still strand an unlit square.",
+    "controls": [
+      "Tap the pulsing start tile to begin",
+      "Swipe or drag into adjacent active tiles",
+      "Swipe into the previous tile to undo the last step"
+    ],
+    "playerTips": [
+      "Trace the forced corners before lighting the middle",
+      "Use backtracking immediately when a route traps itself",
+      "Leave branching areas flexible until the path shape is clear"
+    ],
+    "guideSections": [
+      {
+        "heading": "Who GlowPath Is For",
+        "copy": "GlowPath fits players who like compact logic puzzles with a tactile swipe rhythm. Each stage is short, readable, and built around finding one continuous route through the lit squares."
+      },
+      {
+        "heading": "Reading the Board",
+        "copy": "Look for dead ends, corners, and narrow connectors before you start moving quickly. Strong routes usually handle constrained tiles first, then use open space to connect the remaining squares."
+      },
+      {
+        "heading": "Using Backtrack",
+        "copy": "Backtracking is not a penalty. If the route blocks itself, swipe into the previous square, turn off the last tile, and correct the path while the board shape is still fresh."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What kind of puzzle is GlowPath?",
+        "answer": "GlowPath is a path puzzle where you light every active square by swiping a continuous route from the starting tile."
+      },
+      {
+        "question": "Can I undo a move in GlowPath?",
+        "answer": "Yes. Swipe back into the previous square to turn off the last tile and continue from there."
+      }
+    ],
+    "fullScreenUrl": "/play/glowpath/",
+    "embedUrl": "/play/glowpath/",
+    "embedOrientation": "portrait"
+  },
+  {
     "title": "ScrollSort",
     "slug": "scrollsort",
     "genre": "Pattern puzzle",

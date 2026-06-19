@@ -1335,16 +1335,16 @@ body:has(.play-shell.is-game-first) .site-header {
 
 .portal-player-frame.is-portrait,
 .play-frame-shell.is-portrait {
-  max-width: min(100%, 620px);
-  justify-self: center;
+  max-width: none;
+  justify-self: stretch;
   width: 100%;
 }
 
 .portal-player-frame.is-portrait iframe,
 .play-frame-shell.is-portrait iframe {
-  width: min(100%, 520px);
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
+  left: 0;
+  transform: none;
 }
 
 .below-play {
@@ -1497,7 +1497,7 @@ body:has(.play-shell.is-game-first) .site-header {
 }
 
 .play-shell.is-game-first .play-frame-shell.is-portrait {
-  max-width: min(100%, 680px);
+  max-width: none;
 }
 
 .play-shell.is-game-first .play-title-row {

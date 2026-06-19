@@ -59,15 +59,112 @@ jobs:
 
   sync:
     needs: resolve
-    uses: Terapixel-Games/ArcadeCore/.github/workflows/reusable-sync-consumer-web-build.yml@main
-    with:
-      source_repo: ${{ needs.resolve.outputs.source_repo }}
-      release_tag: ${{ needs.resolve.outputs.release_tag }}
-      release_asset: ${{ needs.resolve.outputs.release_asset }}
-      destination_dir: public/play/lumarush
-      game_slug: lumarush
-      game_play_path: lumarush
-      target_branch: main
-      commit_message: "sync: update LumaRush web build"
-    secrets:
-      UPSTREAM_RELEASE_READ_TOKEN: ${{ secrets.LUMARUSH_RELEASE_READ_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site repo
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Download and extract LumaRush release asset
+        shell: bash
+        env:
+          READ_TOKEN: ${{ secrets.LUMARUSH_RELEASE_READ_TOKEN }}
+          SOURCE_REPO: ${{ needs.resolve.outputs.source_repo }}
+          RELEASE_TAG: ${{ needs.resolve.outputs.release_tag }}
+          RELEASE_ASSET: ${{ needs.resolve.outputs.release_asset }}
+        run: |
+          set -euxo pipefail
+          sudo apt-get update
+          sudo apt-get install -y unzip rsync
+
+          API_URL="https://api.github.com/repos/${SOURCE_REPO}/releases/tags/${RELEASE_TAG}"
+          AUTH_HEADER=()
+          if [ -n "${READ_TOKEN:-}" ]; then
+            AUTH_HEADER=(-H "Authorization: Bearer ${READ_TOKEN}")
+          fi
+
+          RELEASE_JSON="$(curl -fsSL "${AUTH_HEADER[@]}" \
+            -H "Accept: application/vnd.github+json" \
+            "${API_URL}")"
+          BROWSER_URL="$(RELEASE_JSON="${RELEASE_JSON}" ASSET_NAME="${RELEASE_ASSET}" python3 -c "import json, os; data = json.loads(os.environ.get('RELEASE_JSON', '{}')); asset = os.environ.get('ASSET_NAME', ''); print(next((a.get('browser_download_url', '') for a in data.get('assets', []) if a.get('name') == asset), ''))")"
+
+          if [ -z "${BROWSER_URL}" ]; then
+            echo "Release asset not found: ${RELEASE_ASSET}"
+            exit 1
+          fi
+
+          curl -sS -L "${AUTH_HEADER[@]}" \
+            -o /tmp/lumarush-web.zip \
+            "${BROWSER_URL}"
+
+          rm -rf /tmp/lumarush-build
+          mkdir -p /tmp/lumarush-build
+          unzip -o /tmp/lumarush-web.zip -d /tmp/lumarush-build
+          test -f /tmp/lumarush-build/build/web/index.html
+
+      - name: Sync LumaRush build into site
+        shell: bash
+        run: |
+          set -euxo pipefail
+          mkdir -p public/play/lumarush
+          rsync -a --delete /tmp/lumarush-build/build/web/ public/play/lumarush/
+
+      - name: Update LumaRush play URLs
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f src/data/games.json ]; then
+            echo "src/data/games.json not found; skipping URL update."
+            exit 0
+          fi
+
+          node <<'EOF'
+          const fs = require("fs");
+          const path = "src/data/games.json";
+          const games = JSON.parse(fs.readFileSync(path, "utf8"));
+          let found = false;
+          for (const game of games) {
+            if (String(game.slug) === "lumarush") {
+              game.fullScreenUrl = "/play/lumarush/";
+              game.embedUrl = "/play/lumarush/";
+              found = true;
+            }
+          }
+          if (!found) {
+            console.error("Game slug not found in games.json: lumarush");
+            process.exit(1);
+          }
+          fs.writeFileSync(path, JSON.stringify(games, null, 2) + "\n");
+          EOF
+
+      - name: Commit and push changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add public/play/lumarush src/data/games.json
+          git commit -m "sync: update LumaRush web build"
+
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            if [ "${attempt}" -eq 3 ]; then
+              echo "Push failed after 3 attempts"
+              exit 1
+            fi
+
+            echo "Push rejected, rebasing onto origin/main and retrying (attempt $((attempt + 1)))"
+            git fetch origin main
+            git rebase origin/main
+          done

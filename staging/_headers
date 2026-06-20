@@ -1,0 +1,5 @@
+/play/lumarush/*
+  Cache-Control: no-cache, must-revalidate
+
+/play/worm-breaker/*
+  Cache-Control: no-cache, must-revalidate
